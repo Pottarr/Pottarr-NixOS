@@ -1,0 +1,22 @@
+# Nix build artifacts
+result
+# result-*
+
+# Hardware Configuration
+hardware-configuration.nix
+
+# Flake lockfile (optional — keep if you want reproducibility)
+flake.lock
+
+# Logs and caches
+# .cache/
+# logs/
+
+# VSCode / Editor files
+# .vscode/
+# *.swp
+# *~
+
+# Secrets (if not using agenix or sops)
+# secrets.nix
+# secrets/
