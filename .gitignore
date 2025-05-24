@@ -3,7 +3,7 @@ result
 # result-*
 
 # Hardware Configuration
-hosts/Siri/hardware-configuration.nix
+# hosts/Siri/hardware-configuration.nix
 
 # Flake lockfile (optional — keep if you want reproducibility)
 flake.lock

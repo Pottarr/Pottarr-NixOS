@@ -24,12 +24,13 @@
         modules = [ 
           ./hosts/Siri/configuration.nix
           ./hosts/Siri/hardware-configuration.nix
-          ];
+        ];
       };
     };
     homeConfigurations = {
       pottarr = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
+        username = "pottarr";
         modules = [ ./home.nix ];
       }; 
     };
