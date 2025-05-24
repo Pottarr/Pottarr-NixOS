@@ -4,7 +4,8 @@
 
   inputs = {
     nixpkgs = {
-      url = "github:NixOS/nixpkgs/24.11";
+      # url = "github:NixOS/nixpkgs/24.11";
+      url = "github:NixOS/nixpkgs/nixos-25.05";
     };
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -20,7 +21,10 @@
     nixosConfigurations = {
       Siri = nixpkgs.lib.nixosSystem {
         inherit system;
-        modules = [ ./configuration.nix ];
+        modules = [ 
+          ./hosts/Siri/configuration.nix
+          ./hosts/Siri/hardware-configuration.nix
+          ];
       };
     };
     homeConfigurations = {

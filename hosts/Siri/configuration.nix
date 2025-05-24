@@ -5,10 +5,10 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  # imports =
+  #   [ # Include the results of the hardware scan.
+  #     ./hardware-configuration.nix
+  #   ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -100,8 +100,8 @@
     obs-studio
     pasystray
     pulseaudio
-    qt6.full
-    qtcreator
+    # qt6.full
+    # qtcreator
     rofi
     rustup
     scrot
