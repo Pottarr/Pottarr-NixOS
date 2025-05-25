@@ -7,7 +7,7 @@
       # url = "github:NixOS/nixpkgs/24.11";
       url = "github:NixOS/nixpkgs/nixos-25.05";
     };
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -30,8 +30,8 @@
     homeConfigurations = {
       pottarr = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        username = "pottarr";
-        modules = [ ./home.nix ];
+        # username = "pottarr";
+        modules = [ ./hosts/Siri/home.nix ];
       }; 
     };
   };

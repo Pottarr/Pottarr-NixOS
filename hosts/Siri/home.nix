@@ -1,24 +1,31 @@
-{ config, pkgs, lib, ... }:
+# { config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 
 {
   home.username = "pottarr";
   home.homeDirectory = "/home/pottarr";
 
-  home.stateVersion = "24.11";
+  home.stateVersion = "25.05";
 
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
     dconf
-    glib
-    gvfs
+    # glib
+    # gvfs
   ];
 
   gtk = {
     enable = true;
     theme = {
+      # name = "adw-gtk3";
       name = "Adwaita-dark";
-      # package = pkgs.adwaita-theme;
+      # package = pkgs.adw-gtk3;
+      package = pkgs.gnome-themes-extra;
+    };
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
     };
   };
 
@@ -26,28 +33,49 @@
     enable = true;
     settings = {
       "org/gnome/desktop/interface" = {
-        color-scheme = lib.hm.gvariant.mkVariant "prefer-dark";
-        # gtk-theme = lib.hm.gvariant.mkVariant "Adwaita-dark";
+        "color-scheme" = "prefer-dark";
       };
     };
+  #   settings = {
+  #     "org/gnome/desktop/interface" = {
+  #       color-scheme = lib.hm.gvariant.mkVariant "prefer-dark";
+  #       # gtk-theme = lib.hm.gvariant.mkVariant "Adwaita-dark";
+  #     };
+  #   };
   };
-
-  home.sessionVariables = {
-    GTK_THEME = "Adwaita-dark";
+  #
+  # home.sessionVariables = {
+  #   GTK_THEME = "Adwaita-dark";
+  # };
+  
+  home.file = {
+    # "xdg/gtk-2.0/gtkrc".text = "gtk-application-prefer-dark-theme=1";
+    "xdg/gtk-3.0/settings.ini".text = ''
+      [Settings]
+      gtk-application-prefer-dark-theme=1
+    '';
+    "xdg/gtk-4.0/settings.ini".text = ''
+      [Settings]
+      gtk-application-prefer-dark-theme=1
+    '';
   };
 
 
   qt = {
     enable = true;
     platformTheme.name = "gtk"; # Makes Qt apps follow GTK theme
+    style = {
+      name = "adwaita-dark";
+      package = pkgs.adwaita-qt;
+    };
   };
 
-  home.sessionVariables = {
-    XDG_DATA_DIRS = lib.makeSearchPath "share" [
-      pkgs.glib
-      pkgs.gtk3
-      pkgs.gtk4
-    ] + ":/run/current-system/sw/share";
-  };
+  # home.sessionVariables = {
+  #   XDG_DATA_DIRS = lib.makeSearchPath "share" [
+  #     pkgs.glib
+  #     pkgs.gtk3
+  #     pkgs.gtk4
+  #   ] + ":/run/current-system/sw/share";
+  # };
 
 }

@@ -91,12 +91,13 @@
     fastfetch
     gcc
     git
+    glib
     google-chrome
     i3lock-color
     # light
     neovim
     networkmanagerapplet
-    nodejs_23
+    nodejs_24
     obs-studio
     pasystray
     pulseaudio
@@ -125,6 +126,12 @@
     };
     # Brightness CLI light
     # light.enable = true;
+    # i3lock
+    i3lock.enable = true;
+  };
+
+  security.pam.services.i3lock = {
+    allowNullPassword = false;
   };
   
   # Configure Keyboard Input fcitx
@@ -138,8 +145,8 @@
   fonts = {
     enableDefaultPackages = true;
     packages  = with pkgs; [
-      (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
-      # nerd-fonts.caskaydia-cove
+      # (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
+      nerd-fonts.caskaydia-cove
     ];
   };
 
@@ -157,7 +164,7 @@
   hardware.bluetooth.enable = true;
 
 
-  hardware.pulseaudio.enable = false; # Disable PulseAudio
+  services.pulseaudio.enable = false; # Disable PulseAudio
   security.rtkit.enable = true;
   services.pipewire = {
      enable = true;
