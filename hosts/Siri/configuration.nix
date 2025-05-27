@@ -74,6 +74,10 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+
+  nixpkgs.config.allowBroken = true;
+
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -87,19 +91,28 @@
     brightnessctl
     curl
     deno
+    binutils
     discord
     fastfetch
+    # ferium
     gcc
+    gdb
     git
     glib
     google-chrome
+    gparted
     i3lock-color
     # light
-    neovim
+    minecraft
+    nasm
     networkmanagerapplet
+    # For neovim
+    lua-language-server
+    #
     nodejs_24
     obs-studio
     pasystray
+    prismlauncher
     pulseaudio
     # qt6.full
     # qtcreator
@@ -128,6 +141,10 @@
     # light.enable = true;
     # i3lock
     i3lock.enable = true;
+    neovim = {
+      enable = true;
+    };
+    steam.enable = true;
   };
 
   security.pam.services.i3lock = {
