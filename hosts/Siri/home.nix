@@ -12,6 +12,18 @@
     ../../modules/editors/neovim.nix
   ];
 
+  programs.neovim = {
+    enable = true;
+    # package = pkgs.wrapNeovim pkgs.neovim-unwrapped {
+    #   lua = pkgs.neovim-unwrapped.lua;
+    #   # Optional: Add runtime dependencies like Python or Ruby here
+    # };
+    extraPackages = with pkgs; [
+      lua5_4
+    ];
+  };
+
+
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
