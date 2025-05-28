@@ -1,0 +1,8 @@
+/result
+/nix
+*.swp
+*.lock
+*.bak
+# Don't ignore your config files:
+# /dotfiles <-- DO NOT DO THIS if you want to include dotfiles
+

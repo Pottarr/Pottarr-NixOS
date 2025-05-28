@@ -4,7 +4,29 @@
     username = "pottarr";
     homeDirectory = "/home/pottarr/";
     stateVersion = "25.05";
+    file = {
+      ".config/nvim" = {
+        source = builtins.path {
+          name = "NeoVim Config";
+          path = ../../dotfiles/nvim;
+        };
+      };
+
+      "xdg/gtk-3.0/settings.ini".text = ''
+        [Settings]
+        gtk-application-prefer-dark-theme=1
+      '';
+
+      "xdg/gtk-4.0/settings.ini".text = ''
+        [Settings]
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+    packages = with pkgs; [
+      dconf
+    ];
   };
+
 
   imports = [
     ../../modules/editors/neovim.nix
@@ -20,9 +42,6 @@
 
   programs.home-manager.enable = true;
 
-  home.packages = with pkgs; [
-    dconf
-  ];
   
   gtk = {
     enable = true;
@@ -45,17 +64,6 @@
     };
   };
   
-  home.file = {
-    "xdg/gtk-3.0/settings.ini".text = ''
-      [Settings]
-      gtk-application-prefer-dark-theme=1
-    '';
-    "xdg/gtk-4.0/settings.ini".text = ''
-      [Settings]
-      gtk-application-prefer-dark-theme=1
-    '';
-  };
-
 
   qt = {
     enable = true;

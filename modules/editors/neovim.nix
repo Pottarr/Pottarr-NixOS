@@ -1,9 +1,10 @@
 # { config, pkgs, ... }:
 { pkgs, ... }:
 
-let
-  # configDir = "${config.home.homeDirectory}/.config/nvim";
-in {
+# let
+#   configDir = "../../dotfiles/nvim/";
+# in {
+{
   home.packages = with pkgs; [
     # Bash
     bash-language-server

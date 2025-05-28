@@ -1,0 +1,140 @@
+warning: Git tree '/home/pottarr/Setups/Pottarr-NixOS' is dirty
+warning: updating lock file '"/home/pottarr/Setups/Pottarr-NixOS/flake.lock"':
+• Added input 'home-manager':
+    'github:nix-community/home-manager/83665c39fa688bd6a1f7c43cf7997a70f6a109f9?narHash=sha256-GaBRgxjWO1bAQa8P2%2BFDxG4ANBVhjnSjBms096qQdxo%3D' (2025-05-26)
+• Added input 'home-manager/nixpkgs':
+    follows 'nixpkgs'
+• Added input 'nixpkgs':
+    'github:NixOS/nixpkgs/7c43f080a7f28b2774f3b3f43234ca11661bf334?narHash=sha256-rqc2RKYTxP3tbjA%2BPB3VMRQNnjesrT0pEofXQTrMsS8%3D' (2025-05-25)
+warning: Git tree '/home/pottarr/Setups/Pottarr-NixOS' is dirty
+error:
+       … while calling the 'derivationStrict' builtin
+         at <nix/derivation-internal.nix>:37:12:
+           36|
+           37|   strict = derivationStrict drvAttrs;
+             |            ^
+           38|
+
+       … while evaluating derivation 'home-manager-generation'
+         whose name attribute is located at /nix/store/vj980b72z6zb0yg6v0a7nzc9rcww3jmn-source/pkgs/stdenv/generic/make-derivation.nix:480:13
+
+       … while evaluating attribute 'buildCommand' of derivation 'home-manager-generation'
+         at /nix/store/vj980b72z6zb0yg6v0a7nzc9rcww3jmn-source/pkgs/build-support/trivial-builders/default.nix:80:17:
+           79|         enableParallelBuilding = true;
+           80|         inherit buildCommand name;
+             |                 ^
+           81|         passAsFile = [ "buildCommand" ] ++ (derivationArgs.passAsFile or [ ]);
+
+       … while calling the 'getAttr' builtin
+         at <nix/derivation-internal.nix>:50:17:
+           49|     value = commonAttrs // {
+           50|       outPath = builtins.getAttr outputName strict;
+             |                 ^
+           51|       drvPath = strict.drvPath;
+
+       … while calling the 'derivationStrict' builtin
+         at <nix/derivation-internal.nix>:37:12:
+           36|
+           37|   strict = derivationStrict drvAttrs;
+             |            ^
+           38|
+
+       … while evaluating derivation 'home-manager-files'
+         whose name attribute is located at /nix/store/vj980b72z6zb0yg6v0a7nzc9rcww3jmn-source/pkgs/stdenv/generic/make-derivation.nix:480:13
+
+       … while evaluating attribute 'buildCommand' of derivation 'home-manager-files'
+         at /nix/store/vj980b72z6zb0yg6v0a7nzc9rcww3jmn-source/pkgs/build-support/trivial-builders/default.nix:80:17:
+           79|         enableParallelBuilding = true;
+           80|         inherit buildCommand name;
+             |                 ^
+           81|         passAsFile = [ "buildCommand" ] ++ (derivationArgs.passAsFile or [ ]);
+
+       … while calling the 'concatStringsSep' builtin
+         at /nix/store/xcky37rz2sx1c92s7py0qpf3ps6q6r69-source/modules/files.nix:357:13:
+          356|           ''
+          357|           + lib.concatStrings (
+             |             ^
+          358|             lib.mapAttrsToList (n: v: ''
+
+       … while calling anonymous lambda
+         at /nix/store/xcky37rz2sx1c92s7py0qpf3ps6q6r69-source/modules/files.nix:358:36:
+          357|           + lib.concatStrings (
+          358|             lib.mapAttrsToList (n: v: ''
+             |                                    ^
+          359|               insertFile ${
+
+       … from call site
+         at /nix/store/xcky37rz2sx1c92s7py0qpf3ps6q6r69-source/modules/files.nix:360:17:
+          359|               insertFile ${
+          360|                 lib.escapeShellArgs [
+             |                 ^
+          361|                   (sourceStorePath v)
+
+       … while calling 'concatMapStringsSep'
+         at /nix/store/vj980b72z6zb0yg6v0a7nzc9rcww3jmn-source/lib/strings.nix:231:13:
+          230|   concatMapStringsSep =
+          231|     sep: f: list:
+             |             ^
+          232|     concatStringsSep sep (map f list);
+
+       … while calling the 'concatStringsSep' builtin
+         at /nix/store/vj980b72z6zb0yg6v0a7nzc9rcww3jmn-source/lib/strings.nix:232:5:
+          231|     sep: f: list:
+          232|     concatStringsSep sep (map f list);
+             |     ^
+          233|
+
+       … while calling 'escapeShellArg'
+         at /nix/store/vj980b72z6zb0yg6v0a7nzc9rcww3jmn-source/lib/strings.nix:1136:5:
+         1135|   escapeShellArg =
+         1136|     arg:
+             |     ^
+         1137|     let
+
+       … while evaluating a branch condition
+         at /nix/store/vj980b72z6zb0yg6v0a7nzc9rcww3jmn-source/lib/strings.nix:1140:5:
+         1139|     in
+         1140|     if match "[[:alnum:],._+:@%/-]+" string == null then
+             |     ^
+         1141|       "'${replaceStrings [ "'" ] [ "'\\''" ] string}'"
+
+       … while calling the 'match' builtin
+         at /nix/store/vj980b72z6zb0yg6v0a7nzc9rcww3jmn-source/lib/strings.nix:1140:8:
+         1139|     in
+         1140|     if match "[[:alnum:],._+:@%/-]+" string == null then
+             |        ^
+         1141|       "'${replaceStrings [ "'" ] [ "'\\''" ] string}'"
+
+       … while evaluating the second argument passed to builtins.match
+
+       … while calling the 'toString' builtin
+         at /nix/store/vj980b72z6zb0yg6v0a7nzc9rcww3jmn-source/lib/strings.nix:1138:16:
+         1137|     let
+         1138|       string = toString arg;
+             |                ^
+         1139|     in
+
+       … from call site
+         at /nix/store/xcky37rz2sx1c92s7py0qpf3ps6q6r69-source/modules/files.nix:361:20:
+          360|                 lib.escapeShellArgs [
+          361|                   (sourceStorePath v)
+             |                    ^
+          362|                   v.target
+
+       … while calling 'sourceStorePath'
+         at /nix/store/xcky37rz2sx1c92s7py0qpf3ps6q6r69-source/modules/files.nix:20:5:
+           19|   sourceStorePath =
+           20|     file:
+             |     ^
+           21|     let
+
+       … while calling the 'path' builtin
+         at /nix/store/xcky37rz2sx1c92s7py0qpf3ps6q6r69-source/modules/files.nix:28:7:
+           27|     else
+           28|       builtins.path {
+             |       ^
+           29|         path = file.source;
+
+       … while adding path '/nix/store/ldsjbvvg7ax713z43j884awcvh54iray-source/dotfiles/nvim'
+
+       error: path '/nix/store/ldsjbvvg7ax713z43j884awcvh54iray-source/dotfiles/nvim' does not exist
