@@ -108,6 +108,7 @@
     networkmanagerapplet
     # For neovim
     lua-language-server
+    rust-analyzer
     #
     nodejs_24
     obs-studio
@@ -145,6 +146,7 @@
       enable = true;
     };
     steam.enable = true;
+    tmux.enable = true;
   };
 
   security.pam.services.i3lock = {
@@ -159,7 +161,7 @@
   };
 
   # NerdFont
-  fonts = {
+fonts = {
     enableDefaultPackages = true;
     packages  = with pkgs; [
       # (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
@@ -191,6 +193,28 @@
      # jack.enable = true; # Optional, for JACK applications
   };
 
+  # hardware.graphics = {
+  #   enable = true;
+  #   extraPackages = with pkgs; [
+  #     vaapiIntel
+  #     vaapiVdpau
+  #     libvdpau-va-gl
+  #   ];
+  #   extraPackages32 = with pkgs.pkgsi686Linux; [
+  #     vaapiIntel
+  #     vaapiVdpau
+  #     libvdpau-va-gl
+  #   ];
+  # };
+  #
+  # hardware.nvidia = {
+  #   modesetting.enable = true;
+  #   open = true; # For RTX / GTX 16xx and newer
+  #   # open = false;
+  #   nvidiaSettings = true;
+  # };
+  #
+  # services.xserver.videoDrivers = [ "nvidia" ];
 
   # hardware.graphics.enable = true;
   # hardware.nvidia = {

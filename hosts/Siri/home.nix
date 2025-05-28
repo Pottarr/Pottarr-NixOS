@@ -2,10 +2,15 @@
 { config, pkgs, ... }:
 
 {
-  home.username = "pottarr";
-  home.homeDirectory = "/home/pottarr";
+  home = {
+    username = "pottarr";
+    homeDirectory = "/home/pottarr/";
+    stateVersion = "25.05";
+  };
 
-  home.stateVersion = "25.05";
+  imports = [
+    ../../modules/editors/neovim.nix
+  ];
 
   programs.home-manager.enable = true;
 
