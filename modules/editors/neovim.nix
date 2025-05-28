@@ -1,7 +1,8 @@
-{ config, pkgs, ... }:
+# { config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
-  configDir = "${config.home.homeDirectory}/.config/nvim";
+  # configDir = "${config.home.homeDirectory}/.config/nvim";
 in {
   home.packages = with pkgs; [
     # Bash
@@ -16,7 +17,7 @@ in {
     lua-language-server
     stylua
     # Nix
-    nil
+    nixd
     nixpkgs-fmt
     # Rust
     rust-analyzer
@@ -25,7 +26,7 @@ in {
 
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim;
+    # package = pkgs.neovim;
   };
 }
 

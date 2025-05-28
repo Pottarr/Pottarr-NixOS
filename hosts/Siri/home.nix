@@ -1,6 +1,4 @@
-# { config, pkgs, lib, ... }:
-{ config, pkgs, ... }:
-
+{ pkgs, ... }:
 {
   home = {
     username = "pottarr";
@@ -14,10 +12,6 @@
 
   programs.neovim = {
     enable = true;
-    # package = pkgs.wrapNeovim pkgs.neovim-unwrapped {
-    #   lua = pkgs.neovim-unwrapped.lua;
-    #   # Optional: Add runtime dependencies like Python or Ruby here
-    # };
     extraPackages = with pkgs; [
       lua5_4
     ];
@@ -28,16 +22,12 @@
 
   home.packages = with pkgs; [
     dconf
-    # glib
-    # gvfs
   ];
-
+  
   gtk = {
     enable = true;
     theme = {
-      # name = "adw-gtk3";
       name = "Adwaita-dark";
-      # package = pkgs.adw-gtk3;
       package = pkgs.gnome-themes-extra;
     };
     iconTheme = {
@@ -53,20 +43,9 @@
         "color-scheme" = "prefer-dark";
       };
     };
-  #   settings = {
-  #     "org/gnome/desktop/interface" = {
-  #       color-scheme = lib.hm.gvariant.mkVariant "prefer-dark";
-  #       # gtk-theme = lib.hm.gvariant.mkVariant "Adwaita-dark";
-  #     };
-  #   };
   };
-  #
-  # home.sessionVariables = {
-  #   GTK_THEME = "Adwaita-dark";
-  # };
   
   home.file = {
-    # "xdg/gtk-2.0/gtkrc".text = "gtk-application-prefer-dark-theme=1";
     "xdg/gtk-3.0/settings.ini".text = ''
       [Settings]
       gtk-application-prefer-dark-theme=1
@@ -86,13 +65,4 @@
       package = pkgs.adwaita-qt;
     };
   };
-
-  # home.sessionVariables = {
-  #   XDG_DATA_DIRS = lib.makeSearchPath "share" [
-  #     pkgs.glib
-  #     pkgs.gtk3
-  #     pkgs.gtk4
-  #   ] + ":/run/current-system/sw/share";
-  # };
-
 }
