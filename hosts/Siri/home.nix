@@ -7,7 +7,7 @@
     file = {
       ".config/nvim" = {
         source = builtins.path {
-          name = "NeoVim Config";
+          name = "NeoVim-Config";
           path = ../../dotfiles/nvim;
         };
       };

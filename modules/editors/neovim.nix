@@ -6,6 +6,8 @@
 # in {
 {
   home.packages = with pkgs; [
+    # Assembly
+    nasm
     # Bash
     bash-language-server
     shfmt
@@ -20,9 +22,15 @@
     # Nix
     nixd
     nixpkgs-fmt
+    # Python
+    pyright
+    black
     # Rust
     rust-analyzer
     rustfmt
+    # Typescript
+    typescript-language-server
+    nodePackages.prettier
   ];
 
   programs.neovim = {

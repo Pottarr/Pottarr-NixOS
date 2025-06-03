@@ -121,6 +121,7 @@
     rustup
     scrot
     spotify
+    tree
     unixtools.watch
     unzip
     v4l-utils
