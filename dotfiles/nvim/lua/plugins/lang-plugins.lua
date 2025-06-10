@@ -1,7 +1,7 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    event = "BufPreRead",
+    event = "BufReadPre",
   },
   {
     "mason-org/mason.nvim",

@@ -42,7 +42,6 @@
 
   programs.home-manager.enable = true;
 
-  
   gtk = {
     enable = true;
     theme = {
