@@ -6,7 +6,7 @@
 # - screenshot current window directly (no selection)
 
 export DISPLAY=:0
-FILE="$HOME/$(date +%F___%T | tr ':' '-').png"
+FILE="$HOME/Pictures/Screenshots/$(date +screenshot_on_%F_at_%T).png"
 
 colorpicker () { # click a pixel OR draw a selection for average color, returned in a notif & copied to clip
 TMP="/tmp/color.png"
@@ -48,7 +48,7 @@ post () { # copy image to clip & send a notification
 
 
 case "$1" in
-		color*) colorpicker ;;
+		color) colorpicker ;;
 		full) full ;;
 		window) window ;;
 		*) selection ;;

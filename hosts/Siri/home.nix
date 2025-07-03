@@ -4,6 +4,9 @@
         username = "pottarr";
         homeDirectory = "/home/pottarr/";
         stateVersion = "25.05";
+        sessionVariables = {
+            XDG_DATA_DIRS = "/var/lib/flatpak/exports/share:/home/pottarr/.local/share/flatpak/exports/share:/usr/local/share:/usr/share";
+        };
         file = {
         ".config/nvim" = {
             source = builtins.path {
@@ -12,18 +15,18 @@
             };
         };
 
-        "xdg/gtk-3.0/settings.ini".text = ''
+        ".config/gtk-3.0/settings.ini".text = ''
             [Settings]
             gtk-application-prefer-dark-theme=1
         '';
 
-        "xdg/gtk-4.0/settings.ini".text = ''
+        ".config/gtk-4.0/settings.ini".text = ''
             [Settings]
             gtk-application-prefer-dark-theme=1
         '';
         };
         packages = with pkgs; [
-        dconf
+            dconf
         ];
     };
 
@@ -31,7 +34,12 @@
     imports = [
         ../../modules/editors/neovim.nix
         ../../modules/screenshot/screenshot.nix
+        # ../../modules/window-manager/i3.nix
+        # ../../modules/window-manager/i3blocks.nix
     ];
+
+    # i3.enable = true;
+    # i3blocks.enable = true;
 
     programs.neovim = {
         enable = true;
@@ -64,7 +72,6 @@
         };
         };
     };
-    
 
     qt = {
         enable = true;

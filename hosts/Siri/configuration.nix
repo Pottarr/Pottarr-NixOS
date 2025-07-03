@@ -66,7 +66,7 @@
     users.users.pottarr = {
         isNormalUser = true;
         description = "Pottarr";
-        extraGroups = [ "networkmanager" "wheel" ];
+        extraGroups = [ "networkmanager" "wheel" "video"];
         # packages = with pkgs; [];
         shell = pkgs.zsh;
     };
@@ -90,11 +90,12 @@
         blueman
         brightnessctl
         curl
-        deno
+        dunst
         binutils
         discord
         fastfetch
-        # ferium
+        feh
+        flatpak
         gcc
         gdb
         git
@@ -102,19 +103,23 @@
         google-chrome
         gparted
         i3lock-color
-        # light
+        jdk
+        lazygit
+        libvlc
+        libxkbcommon
         minecraft
         nasm
         networkmanagerapplet
         # For neovim
         lua-language-server
         rust-analyzer
-        #
         nodejs_24
         obs-studio
         pasystray
         prismlauncher
         pulseaudio
+        python313Full
+        python313Packages.pip
         # qt6.full
         # qtcreator
         rofi
@@ -125,10 +130,20 @@
         unixtools.watch
         unzip
         v4l-utils
+        vlc
         vscode
-        xss-lock
+        xclip
         xfce.thunar
+        xfce.xfconf
+        xss-lock
+        zathura
     ];
+
+    services.flatpak.enable = true;
+    xdg.portal.enable = true;
+    xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    xdg.portal.config.common.default = "*";
+
 
     programs = {
         # ZSH
@@ -146,6 +161,10 @@
         neovim = {
         enable = true;
         };
+        # obs-studio = {
+        #     enable = true;
+        #     enableVirtualCamera = true;
+        # };
         steam.enable = true;
         tmux.enable = true;
     };
@@ -171,13 +190,35 @@
     };
 
     # https://nixos.wiki/wiki/OBS_Studio
+
+
+    boot.kernelModules = [ "v4l2loopback" ];
     boot.extraModulePackages = with config.boot.kernelPackages; [
         v4l2loopback
     ];
-    boot.kernelModules = [ "v4l2loopback" ];
+
+    # boot.extraModprobeConfig = ''
+    #     options v4l2loopback devices=1 video_nr=0 card_label="OBS Virtual Camera" exclusive_caps=1
+    # '';
+
+
+    #
+    #
+    # boot.extraModulePackages = with config.boot.kernelPackages; [
+    #     v4l2loopback
+    # ];
+    # boot.kernelModules = [ "v4l2loopback" ];
+    #
+    #
     boot.extraModprobeConfig = ''
         options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
     '';
+    #
+    #
+    #
+    # boot.extraModprobeConfig = ''
+    #     options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
+    # '';
     security.polkit.enable = true;
 
     # Bluetooth
@@ -194,6 +235,11 @@
         # jack.enable = true; # Optional, for JACK applications
     };
 
+
+    services.xserver.videoDrivers = [ "modesetting" ];
+
+
+
     # hardware.graphics = {
     #   enable = true;
     #   extraPackages = with pkgs; [
@@ -207,15 +253,20 @@
     #     libvdpau-va-gl
     #   ];
     # };
-    #
-    # hardware.nvidia = {
-    #   modesetting.enable = true;
-    #   open = true; # For RTX / GTX 16xx and newer
-    #   # open = false;
-    #   nvidiaSettings = true;
-    # };
-    #
+
     # services.xserver.videoDrivers = [ "nvidia" ];
+
+    # hardware.nvidia = {
+    #     modesetting.enable = true;
+    #     # open = true; # For RTX / GTX 16xx and newer
+    #     open = false;
+    #     nvidiaSettings = true;
+    #     prime = {
+    #         sync.enable = true;
+    #         intelBusId = "PCI:0:2:0";
+    #         nvidiaBusId = "PCI:1:0:0";
+    #     };
+    # };
 
     # hardware.graphics.enable = true;
     # hardware.nvidia = {
