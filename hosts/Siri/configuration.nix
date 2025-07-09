@@ -116,8 +116,9 @@
         nodejs_24
         obs-studio
         pasystray
+        pavucontrol
         prismlauncher
-        pulseaudio
+        # pulseaudio
         python313Full
         python313Packages.pip
         # qt6.full

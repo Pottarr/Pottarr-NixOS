@@ -2,44 +2,32 @@
 {
     home = {
         username = "pottarr";
-        homeDirectory = "/home/pottarr/";
+        homeDirectory = "/home/pottarr";
         stateVersion = "25.05";
         sessionVariables = {
             XDG_DATA_DIRS = "/var/lib/flatpak/exports/share:/home/pottarr/.local/share/flatpak/exports/share:/usr/local/share:/usr/share";
         };
-        file = {
-        ".config/nvim" = {
+
+        packages = with pkgs; [ dconf ];
+
+        file.".config/nvim" = {
             source = builtins.path {
             name = "NeoVim-Config";
             path = ../../dotfiles/nvim;
             };
         };
-
-        ".config/gtk-3.0/settings.ini".text = ''
-            [Settings]
-            gtk-application-prefer-dark-theme=1
-        '';
-
-        ".config/gtk-4.0/settings.ini".text = ''
-            [Settings]
-            gtk-application-prefer-dark-theme=1
-        '';
-        };
-        packages = with pkgs; [
-            dconf
-        ];
     };
 
 
     imports = [
         ../../modules/editors/neovim.nix
         ../../modules/screenshot/screenshot.nix
-        # ../../modules/window-manager/i3.nix
-        # ../../modules/window-manager/i3blocks.nix
+        ../../modules/window-manager/i3.nix
+        ../../modules/window-manager/i3blocks.nix
     ];
 
-    # i3.enable = true;
-    # i3blocks.enable = true;
+    i3.enable = true;
+    i3blocks.enable = true;
 
     programs.neovim = {
         enable = true;

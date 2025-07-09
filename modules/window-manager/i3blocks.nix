@@ -1,24 +1,29 @@
-{ config, lib, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
-    scriptNames = [ "battery" "disk" ];
+    cfg = config.i3blocks;
+    dotfiles = ../../dotfiles;
+    homeDir = config.home.homeDirectory;
 in
 {
     options.i3blocks.enable = lib.mkEnableOption "Enable i3blocks config";
-
-    config = lib.mkIf config.i3blocks.enable {
+    config = lib.mkIf cfg.enable {
         home.packages = with pkgs; [ i3blocks ];
 
-        xdg.configFile."i3blocks/config".source = ../../dotfiles/i3blocks/config;
-    };
-    home.file = builtins.listToAttrs (
-        map (name: {
-            name = ".local/bin/${name}";
-            value = {
-            source = ../scripts + "/${name}.sh";
-            executable = true;
-            };
-        }) scriptNames
-    );
-}
+        home.file.".config/i3blocks/config".source = "${dotfiles}/i3blocks/config";
+        home.file.".config/i3blocks/battery/battery".source = "${dotfiles}/i3blocks/battery/battery";
+        home.file.".config/i3blocks/disk/disk".source = "${dotfiles}/i3blocks/disk/disk";
 
+        home.activation.makeI3blocksScriptsExecutable = lib.hm.dag.entryAfter ["writeBoundary"] ''
+            chmod +x ${homeDir}/.config/i3blocks/battery/battery
+            chmod +x ${homeDir}/.config/i3blocks/disk/disk
+        '';
+
+        xsession.windowManager.i3.config.bars = [
+            {
+            position = "top";
+            statusCommand = "i3blocks";
+            }
+        ];
+    };
+}

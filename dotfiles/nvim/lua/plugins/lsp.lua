@@ -10,6 +10,13 @@ return {
     lspconfig.bashls.setup({ mason = false, })
     lspconfig.clangd.setup({ mason = false, })
     lspconfig.gopls.setup({ mason = false, })
+    lspconfig.jdtls.setup({
+      -- on_attach = function(client, bufnr)
+      on_attach = function(_, bufnr)
+        -- Disable diagnostics for this buffer (Java only)
+        vim.diagnostic.enable(true, bufnr)
+      end,
+    })
     lspconfig.nixd.setup({ mason = false, })
     lspconfig.pyright.setup({ mason = false, })
     lspconfig.tsserver.setup({ mason = false, })
@@ -30,13 +37,29 @@ return {
       settings = {
         ["rust-analyzer"] = {
           diagnostics = {
-            enable = false,
+            enable = true,
           },
         },
       },
     })
 
     -- You can add more servers here...
+
+    vim.diagnostic.config({
+      virtual_text = true,
+      signs = true,
+      underline = true,
+      update_in_insert = true,
+    })
+
+
+    lspconfig.gopls.setup({
+      -- on_attach = function(client, bufnr)
+      on_attach = function(_, bufnr)
+        -- Go to definition
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr })
+      end,
+    })
   end,
 }
 

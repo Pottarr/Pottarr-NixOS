@@ -16,6 +16,8 @@
         # Go
         go
         gopls
+        # Java
+        jdt-language-server
         # Lua
         lua-language-server
         stylua
