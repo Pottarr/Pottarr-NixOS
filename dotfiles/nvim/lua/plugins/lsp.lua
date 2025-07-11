@@ -20,6 +20,9 @@ return {
     lspconfig.nixd.setup({ mason = false, })
     lspconfig.pyright.setup({ mason = false, })
     lspconfig.tsserver.setup({ mason = false, })
+    -- require('render-markdown').setup({
+    --     completions = { lsp = { enabled = true } },
+    -- })
 
     -- Lua LS config
     lspconfig.lua_ls.setup({

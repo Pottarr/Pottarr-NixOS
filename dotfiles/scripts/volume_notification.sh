@@ -17,4 +17,5 @@ vol=$(wpctl get-volume "@DEFAULT_AUDIO_SINK@")
 vol=${vol#* }
 vol=$(echo "$vol" | tr -d ".")
 while [[ ${vol:0:1} == "0" ]]; do vol=${vol:1}; done
-dunstify "Volume: ${vol}%" "$sink_name"
+if [[ -z "$vol" ]]; then vol=0; fi
+dunstify "Volume: ${vol}%" "$sink_name" -h string:x-dunst-stack-tag:volume -h int:value:"$vol"

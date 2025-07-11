@@ -5,10 +5,9 @@
 { config, pkgs, ... }:
 
 {
-    # imports =
-    #   [ # Include the results of the hardware scan.
-    #     ./hardware-configuration.nix
-    #   ];
+    imports = [ # Include the results of the hardware scan.
+        ./hardware-configuration.nix
+    ];
 
     # Bootloader.
     boot.loader.systemd-boot.enable = true;
@@ -47,6 +46,13 @@
         variant = "";
     };
 
+    # Configure USB Mounting
+    services = {
+        devmon.enable = true;
+        gvfs.enable = true;
+        udisks2.enable = true;
+    };
+
     # Configure i3wm
     services.xserver = {
         enable = true;
@@ -66,7 +72,7 @@
     users.users.pottarr = {
         isNormalUser = true;
         description = "Pottarr";
-        extraGroups = [ "networkmanager" "wheel" "video"];
+        extraGroups = [ "networkmanager" "wheel" "video" "storage" "plugdev" ];
         # packages = with pkgs; [];
         shell = pkgs.zsh;
     };
@@ -94,8 +100,10 @@
         binutils
         discord
         fastfetch
+        fd
         feh
         flatpak
+        fzf
         gcc
         gdb
         git
@@ -105,6 +113,7 @@
         i3lock-color
         jdk
         lazygit
+        lua5_4
         libvlc
         libxkbcommon
         minecraft
@@ -123,11 +132,15 @@
         python313Packages.pip
         # qt6.full
         # qtcreator
+        ripgrep
         rofi
         rustup
         scrot
         spotify
+        sqlite
+        texliveFull
         tree
+        unetbootin
         unixtools.watch
         unzip
         v4l-utils
