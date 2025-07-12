@@ -108,7 +108,7 @@ interval=30
 #
 # The battery instance defaults to 0.
 [battery]
-command = $HOME/pottarr/.config/i3blocks/battery
+command = $HOME/.config/i3blocks/battery
 interval=10
 # LABEL=BAT
 LABEL=⚡

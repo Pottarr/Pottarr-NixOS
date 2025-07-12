@@ -20,11 +20,11 @@ in
             chmod +x ${homeDir}/.config/i3blocks/disk
         '';
 
-        xsession.windowManager.i3.config.bars = [
-            {
-            position = "top";
-            statusCommand = "i3blocks";
-            }
-        ];
+        # xsession.windowManager.i3.config.bars = [
+        #     {
+        #     position = "top";
+        #     statusCommand = "i3blocks";
+        #     }
+        # ];
     };
 }
