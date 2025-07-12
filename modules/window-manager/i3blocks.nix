@@ -11,12 +11,13 @@ in
         home.packages = with pkgs; [ i3blocks ];
 
         home.file.".config/i3blocks/config".source = "${dotfiles}/i3blocks/config";
-        home.file.".config/i3blocks/battery/battery".source = "${dotfiles}/i3blocks/battery/battery";
-        home.file.".config/i3blocks/disk/disk".source = "${dotfiles}/i3blocks/disk/disk";
+        home.file.".config/i3blocks/battery".source = "${dotfiles}/i3blocks/battery";
+        home.file.".config/i3blocks/disk".source = "${dotfiles}/i3blocks/disk";
 
         home.activation.makeI3blocksScriptsExecutable = lib.hm.dag.entryAfter ["writeBoundary"] ''
-            chmod +x ${homeDir}/.config/i3blocks/battery/battery
-            chmod +x ${homeDir}/.config/i3blocks/disk/disk
+            chmod +x ${homeDir}/.config/i3blocks/config
+            chmod +x ${homeDir}/.config/i3blocks/battery
+            chmod +x ${homeDir}/.config/i3blocks/disk
         '';
 
         xsession.windowManager.i3.config.bars = [
