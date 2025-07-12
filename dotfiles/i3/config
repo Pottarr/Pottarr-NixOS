@@ -219,5 +219,5 @@ bindsym $mod+r mode "resize"
 bar {
 	position top
         # status_command i3status
-        status_command SCRIPT_DIR=/home/pottarr/Setups/Pottarr-NixOS/dotfiles/i3blocks/i3blocks i3blocks
+        status_command SCRIPT_DIR=/home/pottarr/.config/i3blocks i3blocks
 }
