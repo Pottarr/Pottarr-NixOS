@@ -162,11 +162,11 @@
     programs = {
         # ZSH
         zsh = {
-        enable = true;
-        ohMyZsh = {
             enable = true;
-            theme = "robbyrussell";
-        };
+            ohMyZsh = {
+                enable = true;
+                theme = "robbyrussell";
+            };
         };
         # Brightness CLI light
         # light.enable = true;
