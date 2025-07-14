@@ -22,7 +22,6 @@
     imports = [
         ../../modules/editors/neovim.nix
         ../../modules/screenshot/screenshot.nix
-        # ../../modules/shell/zsh.nix
         ../../modules/window-manager/i3.nix
         ../../modules/window-manager/i3blocks.nix
     ];

@@ -154,6 +154,7 @@
     ];
 
     services.flatpak.enable = true;
+    services.dbus.enable = true;
     xdg.portal.enable = true;
     xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     xdg.portal.config.common.default = "*";
@@ -168,12 +169,15 @@
                 theme = "robbyrussell";
             };
         };
+        dconf = {
+            enable = true;
+        };
         # Brightness CLI light
         # light.enable = true;
         # i3lock
         i3lock.enable = true;
         neovim = {
-        enable = true;
+            enable = true;
         };
         # obs-studio = {
         #     enable = true;
