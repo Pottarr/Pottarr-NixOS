@@ -4,9 +4,18 @@
         username = "pottarr";
         homeDirectory = "/home/pottarr";
         stateVersion = "25.05";
-        sessionVariables = {
-            XDG_DATA_DIRS = "/var/lib/flatpak/exports/share:/home/pottarr/.local/share/flatpak/exports/share:/usr/local/share:/usr/share";
-        };
+        # sessionVariables = {
+        #     environment.sessionVariables.XDG_DATA_DIRS = builtins.concatStringsSep ":" [
+        #         "/home/pottarr/.nix-profile/share"
+        #         "/etc/profiles/per-user/pottarr/share"
+        #         "/run/current-system/sw/share"
+        #         "/usr/local/share"
+        #         "/usr/share"
+        #         "/var/lib/flatpak/exports/share"
+        #         "/home/pottarr/.local/share/flatpak/exports/share"
+        #     ];
+        #
+        # };
 
         packages = with pkgs; [ dconf ];
 

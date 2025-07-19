@@ -90,8 +90,11 @@ bindsym $mod+Shift+Print exec /home/pottarr/Setups/Pottarr-NixOS/dotfiles/script
 bindsym $mod+Shift+s+Print exec /home/pottarr/Setups/Pottarr-NixOS/dotfiles/scripts/screenshot.sh full
 bindsym $mod+Shift+s exec /home/pottarr/Setups/Pottarr-NixOS/dotfiles/scripts/screenshot.sh color
 
-# i3lokc-color
+# i3lock-color
 bindsym $mod+Shift+x exec --no-startup-id /home/pottarr/.config/i3/lock.sh
+
+# Battery Notification
+bindsym $mod+Shift+b exec --no-startup-id /home/pottarr/Setups/Pottarr-NixOS/dotfiles/scripts/battery_notification.sh
 
 # change focus
 bindsym $mod+h focus left

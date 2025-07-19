@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
     imports = [ # Include the results of the hardware scan.
@@ -113,9 +113,10 @@
         i3lock-color
         jdk
         lazygit
-        lua5_4
         libvlc
         libxkbcommon
+        libffi
+        lua5_4
         minecraft
         nasm
         networkmanagerapplet
@@ -124,8 +125,11 @@
         rust-analyzer
         nodejs_24
         obs-studio
+        openssl
         pasystray
         pavucontrol
+        pgadmin
+        pgcli
         prismlauncher
         # pulseaudio
         python313Full
@@ -149,15 +153,32 @@
         xclip
         xfce.thunar
         xfce.xfconf
+        xournalpp
         xss-lock
         zathura
     ];
+
+    services.postgresql = {
+        enable = true;
+        package = pkgs.postgresql; 
+    };
 
     services.flatpak.enable = true;
     services.dbus.enable = true;
     xdg.portal.enable = true;
     xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     xdg.portal.config.common.default = "*";
+
+    environment.sessionVariables.XDG_DATA_DIRS = lib.mkForce [
+        "/home/pottarr/.nix-profile/share"
+        "/etc/profiles/per-user/pottarr/share"
+        "/run/current-system/sw/share"
+        "/usr/local/share"
+        "/usr/share"
+        "/var/lib/flatpak/exports/share"
+        "/home/pottarr/.local/share/flatpak/exports/share"
+    ];
+
 
 
     programs = {
@@ -177,6 +198,9 @@
         # i3lock
         i3lock.enable = true;
         neovim = {
+            enable = true;
+        };
+        nix-ld = {
             enable = true;
         };
         # obs-studio = {
