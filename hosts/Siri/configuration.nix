@@ -143,6 +143,7 @@
         spotify
         sqlite
         texliveFull
+        thunderbird
         tree
         unetbootin
         unixtools.watch
