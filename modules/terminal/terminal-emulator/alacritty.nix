@@ -1,7 +1,7 @@
 { ... }:
 
 let
-    dotfiles = ../../dotfiles;
+    dotfiles = ../../../dotfiles;
 in {
     # Copy your alacirtty config file
     home.file.".config/alacirtty/alacirtty.toml".source = "${dotfiles}/alacritty/alacirtty.toml";

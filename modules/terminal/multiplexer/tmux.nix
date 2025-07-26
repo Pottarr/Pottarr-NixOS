@@ -2,9 +2,9 @@
 { ... }:
 
 let
-    dotfiles = ../../dotfiles;
+    dotfiles = ../../../dotfiles;
 in {
     # Copy your tmux config file
-    home.file.".config/tmux/tmux.conf".source = "${dotfiles}/alacritty/alacirtty.toml";
+    home.file.".config/tmux/tmux.conf".source = "${dotfiles}/tmux/tmux.conf";
 }
 
