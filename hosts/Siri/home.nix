@@ -30,6 +30,7 @@
 
     imports = [
         ../../modules/editors/neovim.nix
+        ../../modules/terminal/terminal.nix
         ../../modules/screenshot/screenshot.nix
         ../../modules/window-manager/i3.nix
         ../../modules/window-manager/i3blocks.nix

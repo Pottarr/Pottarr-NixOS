@@ -159,9 +159,17 @@
         zathura
     ];
 
-    services.postgresql = {
-        enable = true;
-        package = pkgs.postgresql; 
+    # DB
+    services = {
+        postgresql = {
+            enable = true;
+            package = pkgs.postgresql; 
+        };
+        mysql = {
+            enable = true;
+            package = pkgs.mysql80;
+            dataDir = "/var/lib/mysql";
+        };
     };
 
     services.flatpak.enable = true;

@@ -15,11 +15,11 @@ return {
     dependencies = {
         -- Add your colorscheme plugin here (e.g., "catppuccin/vim")
         "tanvirtin/monokai.nvim",
-        "ring0-rootkit/ring0-dark.nvim",
+        "blazkowolf/gruber-darker.nvim",
     },
     config = function()
         -- vim.cmd("colorscheme monokai")
-        vim.cmd("colorscheme ring0-dark")
+        vim.cmd("colorscheme gruber-darker")
         -- Or if you want to use a function
         -- local catppuccin = require("catppuccin").load()
         -- catppuccin()

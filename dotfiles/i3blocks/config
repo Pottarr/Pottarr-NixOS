@@ -25,7 +25,7 @@
 # The top properties below are applied to every block, but can be overridden.
 # Each block command defaults to the script name to avoid boilerplate.
 # Change $SCRIPT_DIR to the location of your scripts!
-# command=$SCRIPT_DIR/$BLOCK_NAME
+command=/home/pottarr/.config/i3blocks/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
@@ -65,7 +65,7 @@ markup=none
 # The script may be called with a optional argument to set the alert
 # (defaults to 10 for 10%).
 [disk]
-command = $HOME/.config/i3blocks/disk
+command = disk
 label=HOME
 #DIR=/mnt/data
 interval=30
@@ -108,7 +108,7 @@ interval=30
 #
 # The battery instance defaults to 0.
 [battery]
-command = $HOME/.config/i3blocks/battery
+command = battery
 interval=10
 # LABEL=BAT
 LABEL=⚡

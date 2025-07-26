@@ -1,9 +1,5 @@
-# { config, pkgs, ... }:
 { pkgs, ... }:
 
-# let
-#   configDir = "../../dotfiles/nvim/";
-# in {
 {
     home.packages = with pkgs; [
         # Assembly
