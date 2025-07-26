@@ -1,5 +1,8 @@
-# { pkgs, ... }: {
-{ ... }: {
+{ pkgs, ... }:
+
+let
+    dotfiles = ../../../dotfiles;
+in {
     programs.zsh = {
         enable = true;
 
@@ -13,8 +16,9 @@
         #     source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
         # '';
     };
+    home.file.".zshrc".source = "${dotfiles}/zsh/.zshrc";
 
-    # home.packages = with pkgs; [
-        # zsh-powerlevel10k
-    # ];
+    home.packages = with pkgs; [
+        zsh-powerlevel10k
+    ];
 }
