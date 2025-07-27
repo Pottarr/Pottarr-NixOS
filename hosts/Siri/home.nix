@@ -15,6 +15,9 @@
         #         "/home/pottarr/.local/share/flatpak/exports/share"
         #     ];
         #
+        #     EDITOR = "nvim";
+        #     VISUAL = "nvim";
+        #     PAGER = "bat";
         # };
 
         packages = with pkgs; [ dconf ];

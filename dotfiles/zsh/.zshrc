@@ -31,3 +31,8 @@ setopt HIST_IGNORE_SPACE
 unsetopt HIST_EXPIRE_DUPS_FIRST
 setopt SHARE_HISTORY
 unsetopt EXTENDED_HISTORY
+
+export WINIT_X11_SCALE_FACTOR=1
+export EDITOR="nvim"
+export VISUAL="nvim"
+export PAGER="bat"

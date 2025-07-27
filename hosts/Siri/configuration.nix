@@ -93,6 +93,7 @@
         acpi
         alacritty
         arandr
+        bat
         blueman
         brightnessctl
         curl
@@ -103,6 +104,7 @@
         fd
         feh
         flatpak
+        font-manager
         fzf
         gcc
         gdb
@@ -119,12 +121,15 @@
         lua5_4
         minecraft
         nasm
+        ncspot
+        networkmanager
         networkmanagerapplet
         # For neovim
         lua-language-server
         rust-analyzer
         nodejs_24
         obs-studio
+        obs-studio-plugins.obs-webkitgtk
         openssl
         pasystray
         pavucontrol
@@ -136,6 +141,7 @@
         python313Packages.pip
         # qt6.full
         # qtcreator
+        ranger
         ripgrep
         rofi
         rustup
