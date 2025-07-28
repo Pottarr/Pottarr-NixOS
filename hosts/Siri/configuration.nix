@@ -105,6 +105,7 @@
         feh
         flatpak
         font-manager
+        fusuma
         fzf
         gcc
         gdb
@@ -194,7 +195,7 @@
         "/home/pottarr/.local/share/flatpak/exports/share"
     ];
 
-
+    services.libinput.touchpad.naturalScrolling = true;
 
     programs = {
         # ZSH
