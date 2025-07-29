@@ -20,6 +20,7 @@
         ../../modules/screenshot/screenshot.nix
         ../../modules/window-manager/i3.nix
         ../../modules/window-manager/i3blocks.nix
+        ../../modules/gestures/fusuma.nix
     ];
 
     i3.enable = true;
