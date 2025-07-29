@@ -45,7 +45,7 @@ exec --no-startup-id fcitx5 -d
 exec --no-startup-id /home/pottarr/ELECOM.sh
 exec --no-startup-id pasystray
 exec --no-startup-id xfsettingsd
-exec --no-startup-id fusuma
+exec_always --no-startup-id fusuma -d
 
 # Config 2 displays with arandr manually
 bindsym $mod+Shift+i exec /home/pottarr/.screenlayout/double_display_top_down_campus.sh
