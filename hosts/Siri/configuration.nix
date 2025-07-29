@@ -72,7 +72,7 @@
     users.users.pottarr = {
         isNormalUser = true;
         description = "Pottarr";
-        extraGroups = [ "networkmanager" "wheel" "video" "storage" "plugdev" ];
+        extraGroups = [ "networkmanager" "wheel" "video" "storage" "plugdev" "input" ];
         # packages = with pkgs; [];
         shell = pkgs.zsh;
     };
