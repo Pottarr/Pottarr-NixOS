@@ -4,7 +4,9 @@
 
 { config, lib, pkgs, ... }:
 
-{
+let
+    wallpaper = ../../dotfiles/wallpaper/Background.png;
+in {
     imports = [ # Include the results of the hardware scan.
         ./hardware-configuration.nix
     ];
@@ -55,7 +57,7 @@
 
     # Configure i3wm
     
-    environment.etc."lightdm-background.jpg".source = ../../dotfiles/wallpaper/Backgorund.jpg;
+    # environment.etc."lightdm-background.jpg".source = ../../dotfiles/wallpaper/Background.jpg;
     services.xserver = {
         enable = true;
         displayManager.lightdm = {
@@ -65,6 +67,10 @@
                 theme.name = "Adwaita-dark";
                 cursorTheme.name = "Adwaita";
             };
+            # extraConfig = ''
+            #     background=${wallpaper}
+            # '';
+            background = wallpaper;
         };
         windowManager.i3 = {
         enable = true;
