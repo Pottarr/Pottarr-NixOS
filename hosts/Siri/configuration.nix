@@ -54,8 +54,18 @@
     };
 
     # Configure i3wm
+    
+    environment.etc."lightdm-background.jpg".source = ../../dotfiles/wallpaper/Backgorund.jpg;
     services.xserver = {
         enable = true;
+        displayManager.lightdm = {
+            enable =  true;
+            greeters.gtk = {
+                enable = true;
+                theme.name = "Adwaita-dark";
+                cursorTheme.name = "Adwaita";
+            };
+        };
         windowManager.i3 = {
         enable = true;
         extraPackages = with pkgs; [ i3status i3lock i3blocks ];
@@ -64,8 +74,8 @@
 
     # Configure Display Manager ly
     services.displayManager = {
-        ly.enable = true;
-        defaultSession = "i3+none";
+        # ly.enable = true;
+        defaultSession = "none+i3";
     };
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -96,6 +106,7 @@
         bat
         blueman
         brightnessctl
+        btop
         curl
         dunst
         binutils
