@@ -6,6 +6,7 @@
 
 let
     wallpaper = ../../dotfiles/wallpaper/Background.png;
+    mouse_script = /etc/ELECOM.sh;
 in {
     imports = [ # Include the results of the hardware scan.
         ./hardware-configuration.nix
@@ -56,8 +57,6 @@ in {
     };
 
     # Configure i3wm
-    
-    # environment.etc."lightdm-background.jpg".source = ../../dotfiles/wallpaper/Background.jpg;
     services.xserver = {
         enable = true;
         displayManager.lightdm = {
@@ -67,10 +66,10 @@ in {
                 theme.name = "Adwaita-dark";
                 cursorTheme.name = "Adwaita";
             };
-            # extraConfig = ''
-            #     background=${wallpaper}
-            # '';
             background = wallpaper;
+            extraSeatDefaults = ''
+                greeter-setup-script = ${pkgs.bash}/bin/bash ${mouse_script}
+            '';
         };
         windowManager.i3 = {
         enable = true;
