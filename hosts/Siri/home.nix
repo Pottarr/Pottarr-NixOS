@@ -21,6 +21,7 @@
         ../../modules/window-manager/i3.nix
         ../../modules/window-manager/i3blocks.nix
         ../../modules/gestures/fusuma.nix
+        ../../modules/obs/obs.nix
     ];
 
     i3.enable = true;

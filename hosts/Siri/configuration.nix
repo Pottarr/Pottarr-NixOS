@@ -6,7 +6,7 @@
 
 let
     wallpaper = ../../dotfiles/wallpaper/Background.png;
-    mouse_script = /etc/ELECOM.sh;
+    # mouse_script = /etc/ELECOM.sh;
 in {
     imports = [ # Include the results of the hardware scan.
         ./hardware-configuration.nix
@@ -67,9 +67,9 @@ in {
                 cursorTheme.name = "Adwaita";
             };
             background = wallpaper;
-            extraSeatDefaults = ''
-                greeter-setup-script = ${pkgs.bash}/bin/bash ${mouse_script}
-            '';
+            # extraSeatDefaults = ''
+            #     greeter-setup-script = ${pkgs.bash}/bin/bash ${mouse_script}
+            # '';
         };
         windowManager.i3 = {
         enable = true;
@@ -116,6 +116,7 @@ in {
         dunst
         binutils
         discord
+        eza
         fastfetch
         fd
         feh
@@ -146,7 +147,8 @@ in {
         rust-analyzer
         nodejs_24
         obs-studio
-        obs-studio-plugins.obs-webkitgtk
+        # (obs-studio.override { plugins = [ obs-linuxbrowser ]; })
+        # obs-studio-plugins.obs-webkitgtk
         openssl
         pasystray
         pavucontrol
@@ -174,6 +176,7 @@ in {
         v4l-utils
         vlc
         vscode
+        webkitgtk
         xclip
         xfce.thunar
         xfce.xfconf
@@ -243,6 +246,8 @@ in {
         tmux.enable = true;
     };
 
+    security.polkit.enable = true;
+
     security.pam.services.i3lock = {
         allowNullPassword = false;
     };
@@ -293,7 +298,6 @@ in {
     # boot.extraModprobeConfig = ''
     #     options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
     # '';
-    security.polkit.enable = true;
 
     # Bluetooth
     hardware.bluetooth.enable = true;

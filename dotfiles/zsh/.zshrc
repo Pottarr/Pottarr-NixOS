@@ -36,3 +36,6 @@ export WINIT_X11_SCALE_FACTOR=1
 export EDITOR="nvim"
 export VISUAL="nvim"
 export PAGER="bat"
+
+alias ls="eza --icons=always"
+alias tree="eza --icons=always -T"
