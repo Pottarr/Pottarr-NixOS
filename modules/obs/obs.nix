@@ -11,7 +11,8 @@
         # );
 
         plugins = with pkgs.obs-studio-plugins; [
-        obs-linuxbrowser
+        obs-webkitgtk
+        obs-backgroundremoval
         # wlrobs
         # obs-backgroundremoval
         # obs-pipewire-audio-capture

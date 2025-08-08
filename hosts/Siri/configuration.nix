@@ -105,6 +105,7 @@ in {
         vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
         wget
         # Added by Pottarr
+        abook
         acpi
         alacritty
         arandr
@@ -112,10 +113,12 @@ in {
         blueman
         brightnessctl
         btop
+        calcure
         curl
         dunst
         binutils
         discord
+        docker
         eza
         fastfetch
         fd
@@ -132,6 +135,7 @@ in {
         gparted
         i3lock-color
         jdk
+        lazydocker
         lazygit
         libvlc
         libxkbcommon
@@ -154,6 +158,7 @@ in {
         pavucontrol
         pgadmin
         pgcli
+        pmutils
         prismlauncher
         # pulseaudio
         python313Full
@@ -174,6 +179,7 @@ in {
         unixtools.watch
         unzip
         v4l-utils
+        vdirsyncer
         vlc
         vscode
         webkitgtk
@@ -215,6 +221,10 @@ in {
     ];
 
     services.libinput.touchpad.naturalScrolling = true;
+
+    virtualisation.docker = {
+        enable = true;
+    };
 
     programs = {
         # ZSH
@@ -382,7 +392,7 @@ in {
     # List services that you want to enable:
 
     # Enable the OpenSSH daemon.
-    # services.openssh.enable = true;
+    services.openssh.enable = true;
 
     # Open ports in the firewall.
     # networking.firewall.allowedTCPPorts = [ ... ];

@@ -45,6 +45,7 @@ exec --no-startup-id fcitx5 -d
 exec --no-startup-id /home/pottarr/ELECOM.sh
 exec --no-startup-id pasystray
 exec --no-startup-id xfsettingsd
+exec --no-startup-id /home/pottarr/.config/i3/battery-notification/battery_notification.sh
 
 
 set $wallpaper /home/pottarr/Pictures/Profile/Background.jpg
@@ -99,7 +100,7 @@ bindsym $mod+Shift+s exec /home/pottarr/Setups/Pottarr-NixOS/dotfiles/scripts/sc
 bindsym $mod+Shift+x exec --no-startup-id /home/pottarr/.config/i3/lock.sh
 
 # Battery Notification
-bindsym $mod+Shift+b exec --no-startup-id /home/pottarr/Setups/Pottarr-NixOS/dotfiles/scripts/battery_notification.sh
+# bindsym $mod+Shift+b exec --no-startup-id /home/pottarr/Setups/Pottarr-NixOS/dotfiles/scripts/battery_notification.sh
 
 # change focus
 bindsym $mod+h focus left
