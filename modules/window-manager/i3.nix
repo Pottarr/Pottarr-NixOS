@@ -15,7 +15,7 @@ in {
 
         home.file.".config/i3/lock.sh".source = "${dotfiles}/i3/lock.sh";
         home.file.".config/i3/volume_notification.sh".source = "${dotfiles}/scripts/volume_notification.sh";
-        home.file.".config/i3/brightness_notification.sh".source = "${dotfiles}/scripts/brightness_notification";
+        home.file.".config/i3/brightness_notification.sh".source = "${dotfiles}/scripts/brightness_notification.sh";
         home.file.".config/i3/battery-notification/battery_notification.sh".source = "${dotfiles}/scripts/battery-notification/battery_notification.sh";
         home.file.".config/i3/battery-notification/icons/battery-low.svg".source = "${dotfiles}/scripts/battery-notification/icons/battery-low.svg";
         home.file.".config/i3/battery-notification/icons/battery-full.svg".source = "${dotfiles}/scripts/battery-notification/icons/battery-full.svg";
