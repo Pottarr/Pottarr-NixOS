@@ -72,7 +72,7 @@ in {
                 #     greeter-setup-script = ${pkgs.bash}/bin/bash ${mouse_script}
                 # '';
             };
-            defaultSession = "none+i3";
+            # defaultSession = "none+i3";
         };
         windowManager.i3 = {
         enable = true;
@@ -81,10 +81,10 @@ in {
     };
 
     # Configure Display Manager ly
-    # services.displayManager = {
+    services.displayManager = {
         # ly.enable = true;
-    #     defaultSession = "none+i3";
-    # };
+        defaultSession = "none+i3";
+    };
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.pottarr = {
@@ -332,8 +332,8 @@ in {
 
 
 
-    hardware.graphics = {
-      enable = true;
+    # hardware.graphics = {
+    #   enable = true;
     #   extraPackages = with pkgs; [
     #     vaapiIntel
     #     vaapiVdpau
@@ -344,21 +344,21 @@ in {
     #     vaapiVdpau
     #     libvdpau-va-gl
     #   ];
-    };
+    # };
 
     # services.xserver.videoDrivers = [ "nvidia" ];
 
-    hardware.nvidia = {
-        modesetting.enable = true;
-        open = true; # For RTX / GTX 16xx and newer
-        # open = false;
-        nvidiaSettings = true;
-        # prime = {
-        #     sync.enable = true;
-        #     intelBusId = "PCI:0:2:0";
-        #     nvidiaBusId = "PCI:1:0:0";
-        # };
-    };
+    # hardware.nvidia = {
+    #     modesetting.enable = true;
+    #     open = true; # For RTX / GTX 16xx and newer
+    #     # open = false;
+    #     nvidiaSettings = true;
+    #     # prime = {
+    #     #     sync.enable = true;
+    #     #     intelBusId = "PCI:0:2:0";
+    #     #     nvidiaBusId = "PCI:1:0:0";
+    #     # };
+    # };
 
 
     # hardware.graphics.enable = true;
