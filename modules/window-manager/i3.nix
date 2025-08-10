@@ -21,6 +21,7 @@ in {
         home.file.".config/i3/battery-notification/icons/battery-full.svg".source = "${dotfiles}/scripts/battery-notification/icons/battery-full.svg";
         home.file.".config/i3/battery-notification/icons/battery-full-charging.svg".source = "${dotfiles}/scripts/battery-notification/icons/battery-full-charging.svg";
         home.file.".config/i3/power_menu.sh".source = "${dotfiles}/scripts/power_menu.sh";
+        home.file.".config/i3/xfce_display_settings.sh".source = "${dotfiles}/scripts/xfce_display_settings.sh";
 
         home.activation.makeI3LockExecutable = lib.hm.dag.entryAfter ["writeBoundary"] ''
         chmod +x ${config.home.homeDirectory}/.config/i3/lock.sh
@@ -28,6 +29,7 @@ in {
         chmod +x ${config.home.homeDirectory}/.config/i3/brightness_notification.sh
         chmod +x ${config.home.homeDirectory}/.config/i3/battery-notification/battery_notification.sh
         chmod +x ${config.home.homeDirectory}/.config/i3/power_menu.sh
+        chmod +x ${config.home.homeDirectory}/.config/i3/xfce_display_settings.sh
         '';
     };
 

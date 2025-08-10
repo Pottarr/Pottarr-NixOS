@@ -59,20 +59,17 @@ in {
     # Configure i3wm
     services.xserver = {
         enable = true;
-        displayManager = {
-            lightdm = {
-                enable =  true;
-                greeters.gtk = {
-                    enable = true;
-                    theme.name = "Adwaita-dark";
-                    cursorTheme.name = "Adwaita";
-                };
-                background = wallpaper;
-                # extraSeatDefaults = ''
-                #     greeter-setup-script = ${pkgs.bash}/bin/bash ${mouse_script}
-                # '';
+        displayManager.lightdm = {
+            enable =  true;
+            greeters.gtk = {
+                enable = true;
+                theme.name = "Adwaita-dark";
+                cursorTheme.name = "Adwaita";
             };
-            # defaultSession = "none+i3";
+            background = wallpaper;
+            # extraSeatDefaults = ''
+            #     greeter-setup-script = ${pkgs.bash}/bin/bash ${mouse_script}
+            # '';
         };
         windowManager.i3 = {
         enable = true;
@@ -189,6 +186,7 @@ in {
         # webkitgtk
         xclip
         xfce.thunar
+        xfce.xfce4-settings
         xfce.xfconf
         xournalpp
         xss-lock
@@ -328,7 +326,7 @@ in {
     # };
 
 
-    # services.xserver.videoDrivers = [ "modesetting" ];
+    services.xserver.videoDrivers = [ "modesetting" ];
 
 
 
@@ -350,16 +348,15 @@ in {
 
     # hardware.nvidia = {
     #     modesetting.enable = true;
-    #     open = true; # For RTX / GTX 16xx and newer
-    #     # open = false;
+    #     # open = true; # For RTX / GTX 16xx and newer
+    #     open = false;
     #     nvidiaSettings = true;
-    #     # prime = {
-    #     #     sync.enable = true;
-    #     #     intelBusId = "PCI:0:2:0";
-    #     #     nvidiaBusId = "PCI:1:0:0";
-    #     # };
+    #     prime = {
+    #         sync.enable = true;
+    #         intelBusId = "PCI:0:2:0";
+    #         nvidiaBusId = "PCI:1:0:0";
+    #     };
     # };
-
 
     # hardware.graphics.enable = true;
     # hardware.nvidia = {
@@ -370,7 +367,7 @@ in {
     # };
 
     # services.xserver.videoDrivers = [ "nvidia" ]; # Add Nvidia to the video drivers list
-    services.xserver.videoDrivers = [ "nouveau" ]; # Add Nvidia to the video drivers list
+    # services.xserver.videoDrivers = [ "nouveau" ]; # Add Nvidia to the video drivers list
 
     # boot.kernelModules = [ "nouveau" ];
 
