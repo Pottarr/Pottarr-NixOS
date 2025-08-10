@@ -19,13 +19,15 @@ in {
         home.file.".config/i3/battery-notification/battery_notification.sh".source = "${dotfiles}/scripts/battery-notification/battery_notification.sh";
         home.file.".config/i3/battery-notification/icons/battery-low.svg".source = "${dotfiles}/scripts/battery-notification/icons/battery-low.svg";
         home.file.".config/i3/battery-notification/icons/battery-full.svg".source = "${dotfiles}/scripts/battery-notification/icons/battery-full.svg";
-        home.file.".config/i3/battery-notification/icons/battery-full-charging.svg".source = "${dotfiles}/scripts/battery-notification/icons/battery-fulll-charging.svg";
+        home.file.".config/i3/battery-notification/icons/battery-full-charging.svg".source = "${dotfiles}/scripts/battery-notification/icons/battery-full-charging.svg";
+        home.file.".config/i3/power_menu.sh".source = "${dotfiles}/scripts/power_menu.sh";
 
         home.activation.makeI3LockExecutable = lib.hm.dag.entryAfter ["writeBoundary"] ''
         chmod +x ${config.home.homeDirectory}/.config/i3/lock.sh
         chmod +x ${config.home.homeDirectory}/.config/i3/volume_notification.sh
         chmod +x ${config.home.homeDirectory}/.config/i3/brightness_notification.sh
         chmod +x ${config.home.homeDirectory}/.config/i3/battery-notification/battery_notification.sh
+        chmod +x ${config.home.homeDirectory}/.config/i3/power_menu.sh
         '';
     };
 

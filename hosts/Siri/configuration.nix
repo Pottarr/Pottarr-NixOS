@@ -59,17 +59,20 @@ in {
     # Configure i3wm
     services.xserver = {
         enable = true;
-        displayManager.lightdm = {
-            enable =  true;
-            greeters.gtk = {
-                enable = true;
-                theme.name = "Adwaita-dark";
-                cursorTheme.name = "Adwaita";
+        displayManager = {
+            lightdm = {
+                enable =  true;
+                greeters.gtk = {
+                    enable = true;
+                    theme.name = "Adwaita-dark";
+                    cursorTheme.name = "Adwaita";
+                };
+                background = wallpaper;
+                # extraSeatDefaults = ''
+                #     greeter-setup-script = ${pkgs.bash}/bin/bash ${mouse_script}
+                # '';
             };
-            background = wallpaper;
-            # extraSeatDefaults = ''
-            #     greeter-setup-script = ${pkgs.bash}/bin/bash ${mouse_script}
-            # '';
+            defaultSession = "none+i3";
         };
         windowManager.i3 = {
         enable = true;
@@ -78,10 +81,10 @@ in {
     };
 
     # Configure Display Manager ly
-    services.displayManager = {
+    # services.displayManager = {
         # ly.enable = true;
-        defaultSession = "none+i3";
-    };
+    #     defaultSession = "none+i3";
+    # };
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.pottarr = {
@@ -134,6 +137,7 @@ in {
         google-chrome
         gparted
         i3lock-color
+        i3-volume
         jdk
         lazydocker
         lazygit
@@ -160,7 +164,7 @@ in {
         pgcli
         pmutils
         prismlauncher
-        # pulseaudio
+        pulseaudioFull
         python313Full
         python313Packages.pip
         # qt6.full
@@ -182,7 +186,7 @@ in {
         vdirsyncer
         vlc
         vscode
-        webkitgtk
+        # webkitgtk
         xclip
         xfce.thunar
         xfce.xfconf
@@ -313,23 +317,23 @@ in {
     hardware.bluetooth.enable = true;
 
 
-    services.pulseaudio.enable = false; # Disable PulseAudio
+    # services.pulseaudio.enable = false; # Disable PulseAudio
     security.rtkit.enable = true;
-    services.pipewire = {
-        enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
-        pulse.enable = true;
-        # jack.enable = true; # Optional, for JACK applications
-    };
+    # services.pipewire = {
+    #     enable = true;
+    #     alsa.enable = true;
+    #     alsa.support32Bit = true;
+    #     pulse.enable = true;
+    #     # jack.enable = true; # Optional, for JACK applications
+    # };
 
 
-    services.xserver.videoDrivers = [ "modesetting" ];
+    # services.xserver.videoDrivers = [ "modesetting" ];
 
 
 
-    # hardware.graphics = {
-    #   enable = true;
+    hardware.graphics = {
+      enable = true;
     #   extraPackages = with pkgs; [
     #     vaapiIntel
     #     vaapiVdpau
@@ -340,21 +344,22 @@ in {
     #     vaapiVdpau
     #     libvdpau-va-gl
     #   ];
-    # };
+    };
 
     # services.xserver.videoDrivers = [ "nvidia" ];
 
-    # hardware.nvidia = {
-    #     modesetting.enable = true;
-    #     # open = true; # For RTX / GTX 16xx and newer
-    #     open = false;
-    #     nvidiaSettings = true;
-    #     prime = {
-    #         sync.enable = true;
-    #         intelBusId = "PCI:0:2:0";
-    #         nvidiaBusId = "PCI:1:0:0";
-    #     };
-    # };
+    hardware.nvidia = {
+        modesetting.enable = true;
+        open = true; # For RTX / GTX 16xx and newer
+        # open = false;
+        nvidiaSettings = true;
+        # prime = {
+        #     sync.enable = true;
+        #     intelBusId = "PCI:0:2:0";
+        #     nvidiaBusId = "PCI:1:0:0";
+        # };
+    };
+
 
     # hardware.graphics.enable = true;
     # hardware.nvidia = {
@@ -365,7 +370,7 @@ in {
     # };
 
     # services.xserver.videoDrivers = [ "nvidia" ]; # Add Nvidia to the video drivers list
-    # services.xserver.videoDrivers = [ "nouveau" ]; # Add Nvidia to the video drivers list
+    services.xserver.videoDrivers = [ "nouveau" ]; # Add Nvidia to the video drivers list
 
     # boot.kernelModules = [ "nouveau" ];
 
