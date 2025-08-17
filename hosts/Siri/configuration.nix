@@ -182,6 +182,7 @@ in {
         v4l-utils
         vdirsyncer
         vlc
+        volctl
         vscode
         # webkitgtk
         xclip
@@ -256,6 +257,7 @@ in {
         # };
         steam.enable = true;
         tmux.enable = true;
+        zoxide.enable = true;
     };
 
     security.polkit.enable = true;

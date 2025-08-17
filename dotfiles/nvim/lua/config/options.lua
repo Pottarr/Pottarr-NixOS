@@ -8,6 +8,7 @@ vim.opt.tabstop = 4          -- Number of spaces tabs count for
 vim.opt.softtabstop = 4      -- Number of spaces for editing operations
 vim.opt.smartindent = true   -- Smart indentation
 vim.o.termguicolors = true
+vim.o.winborder = "rounded"
 
 vim.diagnostic.config({
   virtual_text = true,  -- show inline messages

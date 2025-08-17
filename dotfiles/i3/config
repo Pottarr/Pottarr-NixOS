@@ -43,7 +43,8 @@ exec --no-startup-id dbus-run-session --exit-with-session i3
 exec --no-startup-id nm-applet
 exec --no-startup-id fcitx5 -d
 exec --no-startup-id /home/pottarr/ELECOM.sh
-exec --no-startup-id pasystray
+# exec --no-startup-id pasystray
+exec --no-startup-id volctl
 exec --no-startup-id xfsettingsd
 exec_always --no-startup-id exec /home/pottarr/.config/i3/battery-notification/battery_notification.sh
 
@@ -57,8 +58,10 @@ bindsym $mod+Shift+i exec /home/pottarr/.screenlayout/double_display_top_down_ca
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume @DEFAULT_SINK@ 5%+ && /home/pottarr/Setups/Pottarr-NixOS/dotfiles/scripts/volume_notification.sh && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id wpctl set-volume @DEFAULT_SINK@ 5%- && /home/pottarr/Setups/Pottarr-NixOS/dotfiles/scripts/volume_notification.sh && $refresh_i3status
+# bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume @DEFAULT_SINK@ 5%+ && /home/pottarr/Setups/Pottarr-NixOS/dotfiles/scripts/volume_notification.sh && $refresh_i3status
+# bindsym XF86AudioLowerVolume exec --no-startup-id wpctl set-volume @DEFAULT_SINK@ 5%- && /home/pottarr/Setups/Pottarr-NixOS/dotfiles/scripts/volume_notification.sh && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume @DEFAULT_SINK@ 5%+ && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id wpctl set-volume @DEFAULT_SINK@ 5%- && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id wpctl set-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id wpctl set-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
@@ -196,6 +199,8 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 # bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 bindsym $mod+Shift+e exec rofi -show power-menu -modi power-menu:/home/pottarr/.config/i3/power_menu.sh
+# bindsym $mod+Shift+d exec rofi -show display -modes display:/home/pottarr/.config/i3/xfce_display_settings.sh
+bindsym $mod+Shift+d exec xfce4-display-settings
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

@@ -37,5 +37,6 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 export PAGER="bat"
 
+alias cd="z"
 alias ls="eza --icons=always"
-alias tree="eza --icons=always -T"
+alias tree="eza -T --icons=always"
