@@ -160,6 +160,7 @@ in {
         pgadmin
         pgcli
         pmutils
+        pnpm
         prismlauncher
         pulseaudioFull
         python313Full

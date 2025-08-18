@@ -12,6 +12,8 @@
         # Go
         go
         gopls
+        # HTML
+        nodePackages.live-server
         # Java
         jdt-language-server
         # Lua
