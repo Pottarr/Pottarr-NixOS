@@ -285,6 +285,11 @@ in {
 
     # https://nixos.wiki/wiki/OBS_Studio
 
+    boot.kernelParams = [ "sysrq_always_enabled" ];
+    boot.kernelPackages = pkgs.linuxPackages_latest;
+
+    boot.kernel.sysctl."kernel.sysrq" = 1;
+
 
     boot.kernelModules = [ "v4l2loopback" ];
     boot.extraModulePackages = with config.boot.kernelPackages; [
