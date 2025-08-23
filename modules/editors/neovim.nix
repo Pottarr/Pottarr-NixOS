@@ -9,34 +9,34 @@
     shfmt
     # C C++
     # Use Mason
-    # clang-tools
+    clang-tools
     # Go
     go
     # Use Mason
-    # gopls
+    gopls
     # HTML
     nodePackages.live-server
     # Java
     # Use Mason
-    # jdt-language-server
+    jdt-language-server
     # Lua
     # Use Mason
-    # lua-language-server
+    lua-language-server
     stylua
     # Nix
     nixd
     nixpkgs-fmt
     # Python
     # Use Mason
-    # pyright
+    pyright
     black
     # Rust
     # Use Mason
-    # rust-analyzer
+    rust-analyzer
     rustfmt
     # Typescript
     # Use Mason
-    # typescript-language-server
+    typescript-language-server
     nodePackages.prettier
   ];
 
