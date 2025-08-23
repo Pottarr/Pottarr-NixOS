@@ -1,41 +1,47 @@
 { pkgs, ... }:
 
 {
-    home.packages = with pkgs; [
-        # Assembly
-        nasm
-        # Bash
-        bash-language-server
-        shfmt
-        # C C++
-        clang-tools  # includes clangd & clang-format
-        # Go
-        go
-        gopls
-        # HTML
-        nodePackages.live-server
-        # Java
-        jdt-language-server
-        # Lua
-        lua-language-server
-        stylua
-        # Nix
-        nixd
-        nixpkgs-fmt
-        # Python
-        pyright
-        black
-        # Rust
-        rust-analyzer
-        rustfmt
-        # Typescript
-        typescript-language-server
-        nodePackages.prettier
-    ];
+  home.packages = with pkgs; [
+    # Assembly
+    nasm
+    # Bash
+    bash-language-server
+    shfmt
+    # C C++
+    # Use Mason
+    # clang-tools
+    # Go
+    go
+    # Use Mason
+    # gopls
+    # HTML
+    nodePackages.live-server
+    # Java
+    # Use Mason
+    # jdt-language-server
+    # Lua
+    # Use Mason
+    # lua-language-server
+    stylua
+    # Nix
+    nixd
+    nixpkgs-fmt
+    # Python
+    # Use Mason
+    # pyright
+    black
+    # Rust
+    # Use Mason
+    # rust-analyzer
+    rustfmt
+    # Typescript
+    # Use Mason
+    # typescript-language-server
+    nodePackages.prettier
+  ];
 
-    programs.neovim = {
-        enable = true;
-        # package = pkgs.neovim;
-    };
+  programs.neovim = {
+    enable = true;
+  };
 }
 

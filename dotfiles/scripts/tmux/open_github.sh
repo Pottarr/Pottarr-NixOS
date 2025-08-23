@@ -1,15 +1,22 @@
 #!/usr/bin/env bash
+# Get current pane's working directory
+dir=$(tmux display -p "#{pane_current_path}")
 
-# From Sylvan Franklin dotfiles config
+# Get the repo's remote URL
+url=$(git -C "$dir" remote get-url origin 2>/dev/null)
 
-# Open the current repository in the browser
-dir=$(tmux run "echo #{pane_start_path}")
-cd $dir
-url=$(git remote get-url origin) 
-
-# Check if the repository is on GitHub
-if [[ $url == *"github.com"* ]]; then
-    google-chrome-stable $url
-else
-    echo "This repository is not hosted on GitHub"
+if [[ -z "$url" ]]; then
+    echo "Not a Git repository"
+    exit 1
 fi
+
+# If it's SSH, convert to HTTPS
+if [[ $url =~ ^git@github\.com:(.*)\.git$ ]]; then
+    url="https://github.com/${BASH_REMATCH[1]}"
+elif [[ $url =~ ^https://github\.com/(.*)\.git$ ]]; then
+    # Strip .git for cleaner URL
+    url="https://github.com/${BASH_REMATCH[1]}"
+fi
+
+# Open in Chrome
+google-chrome-stable --new-window "$url" & disown 
