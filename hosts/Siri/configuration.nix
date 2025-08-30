@@ -114,10 +114,12 @@ in {
         brightnessctl
         btop
         calcure
+        caligula
         curl
         dunst
         binutils
         discord
+        discordo
         docker
         eza
         fastfetch
@@ -155,19 +157,21 @@ in {
         # (obs-studio.override { plugins = [ obs-linuxbrowser ]; })
         # obs-studio-plugins.obs-webkitgtk
         openssl
+        pandoc
         pasystray
         pavucontrol
+        poppler-utils
         pgadmin
         pgcli
         pmutils
         pnpm
+        posting
         prismlauncher
         pulseaudioFull
         python313Full
         python313Packages.pip
         # qt6.full
         # qtcreator
-        ranger
         ripgrep
         rofi
         rustup
@@ -177,6 +181,7 @@ in {
         texliveFull
         thunderbird
         tree
+        ueberzugpp
         unetbootin
         unixtools.watch
         unzip
@@ -192,6 +197,7 @@ in {
         xfce.xfconf
         xournalpp
         xss-lock
+        yazi
         zathura
     ];
 
