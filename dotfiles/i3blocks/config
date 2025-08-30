@@ -117,8 +117,12 @@ BAT_NUMBER=0
 # Date Time
 #
 [time]
-command=date '+%d/%m/%Y|%H:%M:%S'
+command=date '+%H:%M:%S'
 interval=1
+
+[rofi-calendar]
+command = rofi-calendar
+interval = 3600
 
 # [i3volume]
 # label=
