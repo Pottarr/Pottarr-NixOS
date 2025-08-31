@@ -10,7 +10,7 @@ PREV_MONTH_TEXT="${PREV_MONTH_TEXT:-« previous month «}"
 NEXT_MONTH_TEXT="${NEXT_MONTH_TEXT:-» next month »}"
 ROFI_CONFIG_FILE="${ROFI_CONFIG_FILE:-/dev/null}"
 BAR_POSITION="${BAR_POSITION:-bottom}"
-WEEK_START="${WEEK_START:-sunday}"
+WEEK_START="${WEEK_START:-monday}"
 ###### Variables ######
 
 

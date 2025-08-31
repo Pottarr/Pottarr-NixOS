@@ -114,15 +114,33 @@ interval=10
 LABEL=⚡
 BAT_NUMBER=0
 
+
+# [rofi-calendar]
+# command = rofi-calendar
+# WEEK_START = sunday
+# interval = 3600
+
+[date]
+command=date '+%A : %d/%m/%Y'
+interval=1
+# type = custom/script
+# command=date '+%A : %d/%m/%Y'
+# # open note
+# click-left = naivecalendar
+# # copy-to-clipboard
+# click-right = naivecalendar -x 
+# # switch between date format : '%H:%M' and '%d/%m/%y'
+# scroll-up = "kill -USR1 $(pgrep --oldest --parent %pid%)"
+# scroll-down = "kill -USR1 $(pgrep --oldest --parent %pid%)"
+# tail = true
+# interval = 30
+
 # Date Time
 #
 [time]
 command=date '+%H:%M:%S'
 interval=1
 
-[rofi-calendar]
-command = rofi-calendar
-interval = 3600
 
 # [i3volume]
 # label=

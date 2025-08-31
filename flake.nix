@@ -28,7 +28,7 @@
         homeConfigurations = {
         pottarr = home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
-            modules = [ ./hosts/Siri/home.nix ];
+            modules = [ ./users/pottarr/home.nix ];
         }; 
         };
     };

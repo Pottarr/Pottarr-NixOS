@@ -13,7 +13,15 @@ in {
     ];
 
     # Bootloader.
-    boot.loader.systemd-boot.enable = true;
+    # boot.loader.systemd-boot.enable = true;
+    boot.loader.grub = {
+        enable = true;
+        device = "nodev"; # For UEFI systems
+        efiSupport = true;
+        version = 2;
+        useOSProber = true;
+    };
+
     boot.loader.efi.canTouchEfiVariables = true;
 
     networking.hostName = "Siri"; # Define your hostname.
@@ -67,9 +75,6 @@ in {
                 cursorTheme.name = "Adwaita";
             };
             background = wallpaper;
-            # extraSeatDefaults = ''
-            #     greeter-setup-script = ${pkgs.bash}/bin/bash ${mouse_script}
-            # '';
         };
         windowManager.i3 = {
         enable = true;
@@ -143,6 +148,7 @@ in {
         libvlc
         libxkbcommon
         libffi
+        localsend
         lua5_4
         minecraft
         nasm
