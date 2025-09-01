@@ -1,5 +1,4 @@
-
-return { 
+return {
   'IogaMaster/neocord',
   event = "VeryLazy",
   config = function()

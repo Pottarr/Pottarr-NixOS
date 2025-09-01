@@ -2,34 +2,65 @@
     description = "Pottarr's Nix Flake";
 
     inputs = {
-        nixpkgs = {
-            url = "github:NixOS/nixpkgs/nixos-25.05";
+        nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+        home-manager = {
+        url = "github:nix-community/home-manager/release-25.05";
+        inputs.nixpkgs.follows = "nixpkgs";
         };
-        home-manager.url = "github:nix-community/home-manager/release-25.05";
-        home-manager.inputs.nixpkgs.follows = "nixpkgs";
     };
 
     outputs = { nixpkgs, home-manager, ... }:
     let
         system = "x86_64-linux";
-        pkgs = import nixpkgs {
-        inherit system;
-        };
-    in {  
+        pkgs = import nixpkgs { inherit system; };
+    in {
+        # -------------------------------
+        # NixOS Configurations (per host)
+        # -------------------------------
         nixosConfigurations = {
         Siri = nixpkgs.lib.nixosSystem {
             inherit system;
-            modules = [ 
+            modules = [
             ./hosts/Siri/configuration.nix
             ./hosts/Siri/hardware-configuration.nix
+            # ./modules/profile/profile.nix
+
+            # Enable home-manager as a NixOS module
+            home-manager.nixosModules.home-manager
+            {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.users.pottarr = import ./users/pottarr/home.nix;
+            }
+            ];
+        };
+
+        Tofu = nixpkgs.lib.nixosSystem {
+            inherit system;
+            modules = [
+            ./hosts/Tofu/configuration.nix
+            ./hosts/Tofu/hardware-configuration.nix
+            # ./modules/profile/profile.nix
+
+            home-manager.nixosModules.home-manager
+            {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.users.pottarr = import ./users/pottarr/home.nix;
+            }
             ];
         };
         };
+
+        # -------------------------------
+        # Standalone Home Manager Config
+        # -------------------------------
         homeConfigurations = {
         pottarr = home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
             modules = [ ./users/pottarr/home.nix ];
-        }; 
+        };
         };
     };
 }
+

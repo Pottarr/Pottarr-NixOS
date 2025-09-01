@@ -5,15 +5,10 @@
         homeDirectory = "/home/pottarr";
         stateVersion = "25.05";
         packages = with pkgs; [ dconf ];
-
-        file.".config/nvim" = {
-            source = builtins.path {
-            name = "NeoVim-Config";
-            path = ../../dotfiles/nvim;
-            };
-        };
     };
 
+    i3.enable = true;
+    i3blocks.enable = true;
     imports = [
         ../../modules/editors/neovim.nix
         ../../modules/terminal/terminal.nix
@@ -23,18 +18,8 @@
         ../../modules/window-manager/picom.nix
         ../../modules/gestures/fusuma.nix
         ../../modules/obs/obs.nix
+        ../../modules/profile/profile.nix
     ];
-
-    i3.enable = true;
-    i3blocks.enable = true;
-
-    programs.neovim = {
-        enable = true;
-        extraPackages = with pkgs; [
-        lua5_4
-        ];
-    };
-
     screenshot.enable = true;
 
     programs.home-manager.enable = true;
