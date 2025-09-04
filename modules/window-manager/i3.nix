@@ -19,8 +19,12 @@ in {
             source = "${dotfiles}/scripts/lock.sh";
             executable = true;
         };
+        home.file.".config/i3/screenshot.sh" = {
+            source = "${dotfiles}/scripts/screenshot.sh";
+            executable = true;
+        };
         home.file.".config/i3/volume_notification.sh" = {
-        source = "${dotfiles}/scripts/volume_notification.sh";
+            source = "${dotfiles}/scripts/volume_notification.sh";
             executable = true;
         };
         home.file.".config/i3/brightness_notification.sh" = {

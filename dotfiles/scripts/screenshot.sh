@@ -33,7 +33,7 @@ full () { # full screen incl. all monitors
 
 
 window () { # focused window
-		import -window "$(xdotool getwindowfocus -f)" "$FILE"
+		import -window "$(xdotool getwindowfocus -f)" "$FILE" && post
 }
 
 

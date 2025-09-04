@@ -131,6 +131,8 @@ in {
         feh
         # flatpak
         font-manager
+        #Fingerprint Scan
+        fprintd
         # fusuma
         fzf
         gcc
@@ -272,10 +274,15 @@ in {
         zoxide.enable = true;
     };
 
+    services.fprintd.enable = true;
+
     security.polkit.enable = true;
 
-    security.pam.services.i3lock = {
-        allowNullPassword = false;
+    security.pam.services = {
+        i3lock.allowNullPassword = false;
+        i3lock-color.fprintAuth = true;
+        lightdm.fprintAuth = true;
+        sudo.fprintAuth = true;
     };
     
     # Configure Keyboard Input fcitx
