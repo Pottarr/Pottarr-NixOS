@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
     home = {
         username = "pottarr";
@@ -53,4 +53,10 @@
         package = pkgs.adwaita-qt;
         };
     };
+
+    xdg.userDirs = {
+        enable = true;
+        pictures = "${config.home.homeDirectory}/Pictures";
+    };
+
 }

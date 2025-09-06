@@ -18,7 +18,6 @@ in {
         enable = true;
         device = "nodev"; # For UEFI systems
         efiSupport = true;
-        version = 2;
         useOSProber = true;
     };
 
@@ -182,6 +181,8 @@ in {
         rofi
         rustup
         scrot
+        showmethekey
+        snapshot
         spotify
         sqlite
         texliveFull
