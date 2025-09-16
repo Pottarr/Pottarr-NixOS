@@ -19,4 +19,4 @@ elif [[ $url =~ ^https://github\.com/(.*)\.git$ ]]; then
 fi
 
 # Open in Chrome
-google-chrome-stable --new-window "$url" & disown 
+google-chrome-stable "$url" & disown

@@ -14,12 +14,20 @@ in {
 
     # Bootloader.
     # boot.loader.systemd-boot.enable = true;
+    boot.tmp.cleanOnBoot = true;
     boot.loader.grub = {
         enable = true;
         device = "nodev"; # For UEFI systems
         efiSupport = true;
         useOSProber = true;
     };
+
+    # keep only last N generations
+    system.autoUpgrade.enable = true;
+    system.autoUpgrade.allowReboot = false;
+    nix.gc.automatic = true;
+    nix.gc.dates = "weekly";
+    nix.gc.options = "--delete-older-than 30d";
 
     boot.loader.efi.canTouchEfiVariables = true;
 
@@ -120,6 +128,7 @@ in {
         calcure
         caligula
         curl
+        digital
         dunst
         binutils
         discord
@@ -129,6 +138,7 @@ in {
         fastfetch
         fd
         feh
+        ffmpegthumbnailer
         flatpak
         font-manager
         fusuma
@@ -137,11 +147,13 @@ in {
         gdb
         git
         glib
+        glibc
         google-chrome
         gparted
         i3lock-color
         i3-volume
         jdk
+        jupyter
         lazydocker
         lazygit
         libvlc
@@ -149,9 +161,13 @@ in {
         libffi
         localsend
         lua5_4
+        man
+        man-pages
+        man-pages-posix
         minecraft
         nasm
         ncspot
+        ncurses
         networkmanager
         networkmanagerapplet
         # For neovim
@@ -185,6 +201,7 @@ in {
         snapshot
         spotify
         sqlite
+        stdenv.cc.cc
         texliveFull
         thunderbird
         tree
@@ -200,12 +217,14 @@ in {
         # webkitgtk
         xclip
         xfce.thunar
+        xfce.tumbler
         xfce.xfce4-settings
         xfce.xfconf
         xournalpp
         xss-lock
         yazi
         zathura
+        zoom-us
     ];
 
     # DB

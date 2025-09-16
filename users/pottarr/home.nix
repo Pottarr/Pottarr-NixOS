@@ -4,7 +4,18 @@
         username = "pottarr";
         homeDirectory = "/home/pottarr";
         stateVersion = "25.05";
-        packages = with pkgs; [ dconf ];
+        packages = with pkgs; [
+            dconf
+            # X11 libraries
+            xorg.libX11
+            xorg.libXcursor
+            xorg.libXi
+            xorg.libXrandr
+            libxkbcommon
+        ];
+        # sessionVariables = {
+        #     WINIT_UNIXBACKEND = "X11";
+        # };
     };
 
     i3.enable = true;
@@ -58,5 +69,4 @@
         enable = true;
         pictures = "${config.home.homeDirectory}/Pictures";
     };
-
 }

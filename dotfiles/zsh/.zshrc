@@ -33,9 +33,10 @@ setopt SHARE_HISTORY
 unsetopt EXTENDED_HISTORY
 
 export WINIT_X11_SCALE_FACTOR=1
+export WINIT_UNIX_BACKEND="x11"
 export EDITOR="nvim"
 export VISUAL="nvim"
-export PAGER="bat"
+export MANPAGER='nvim +Man!'
 
 alias cd="z"
 alias ls="eza --icons=always"
