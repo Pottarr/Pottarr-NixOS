@@ -54,7 +54,7 @@ set $wallpaper /home/pottarr/Pictures/Profile/Background.jpg
 exec --no-startup-id feh --bg-scale $wallpaper
 
 # Config 2 displays with arandr manually
-bindsym $mod+Shift+i exec feh --no-startup-id feh --bg-scale $wallpaper $wallpaper
+bindsym $mod+Shift+i exec --no-startup-id feh --bg-scale $wallpaper $wallpaper
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -94,17 +94,10 @@ bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons
 
 #Screenshot
 # My Insert Button is swapped wth Print Button, so I changed it.
-<<<<<<< HEAD
-bindsym $mod+Print exec /home/pottarr/.config/i3/screenshot.sh window
-bindsym $mod+Shift+Print exec /home/pottarr/.config/i3/screenshot.sh
-bindsym $mod+Shift+s+Print exec /home/pottarr/.config/i3/screenshot.sh full
-bindsym $mod+Shift+s exec /home/pottarr/.config/i3/screenshot.sh color
-=======
 bindsym $mod+Print exec /home/pottarr/.local/bin/screenshot window
 bindsym $mod+Shift+Print exec /home/pottarr/.local/bin/screenshot
 bindsym $mod+Shift+s+Print exec /home/pottarr/.local/binscreenshot full
 bindsym $mod+Shift+s exec /home/pottarr/.local/bin/screenshot color
->>>>>>> d09ebba (Tweaking some config)
 
 # i3lock-color
 bindsym $mod+Shift+x exec --no-startup-id /home/pottarr/.config/i3/lock.sh

@@ -8,7 +8,7 @@ return {
     -- end
     vim.cmd([[
       function! OpenMarkdownPreview(url)
-        silent! execute '!google-chrome-stable --new-window ' . shellescape(a:url)
+        silent! execute '!google-chrome-stable ' . shellescape(a:url)
       endfunction
     ]])
     vim.g.mkdp_browserfunc = "OpenMarkdownPreview"

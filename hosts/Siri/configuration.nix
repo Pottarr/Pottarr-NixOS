@@ -122,6 +122,7 @@ in {
         alacritty
         arandr
         bat
+        binutils
         blueman
         brightnessctl
         btop
@@ -130,9 +131,7 @@ in {
         curl
         digital
         dunst
-        binutils
         discord
-        discordo
         docker
         eza
         fastfetch
@@ -143,11 +142,11 @@ in {
         font-manager
         fusuma
         fzf
-        gcc
+        gcc_multi
         gdb
         git
-        glib
         glibc
+        gnumake
         google-chrome
         gparted
         i3lock-color
@@ -165,9 +164,12 @@ in {
         man-pages
         man-pages-posix
         minecraft
+        mongodb-compass
+        mongodb-tools
+        mongosh
         nasm
         ncspot
-        ncurses
+        # ncurses
         networkmanager
         networkmanagerapplet
         # For neovim
@@ -189,8 +191,8 @@ in {
         posting
         prismlauncher
         pulseaudioFull
-        python313Full
-        python313Packages.pip
+        python312Full
+        python312Packages.pip
         # qt6.full
         # qtcreator
         ripgrep
@@ -198,10 +200,11 @@ in {
         rustup
         scrot
         showmethekey
+        skyemu
         snapshot
         spotify
         sqlite
-        stdenv.cc.cc
+        stdenv.cc
         texliveFull
         thunderbird
         tree
@@ -231,12 +234,17 @@ in {
     services = {
         postgresql = {
             enable = true;
-            package = pkgs.postgresql; 
+            package = pkgs.postgresql;
         };
         mysql = {
             enable = true;
             package = pkgs.mysql80;
             dataDir = "/var/lib/mysql";
+        };
+        mongodb = {
+             enable = true;
+            package = pkgs.mongodb-ce;
+            bind_ip = "127.0.0.1";
         };
     };
 
@@ -353,6 +361,7 @@ in {
 
     # Bluetooth
     hardware.bluetooth.enable = true;
+    hardware.opentabletdriver.enable = true;
 
 
     # services.pulseaudio.enable = false; # Disable PulseAudio
