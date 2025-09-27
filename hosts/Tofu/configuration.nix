@@ -129,6 +129,7 @@ in {
         fastfetch
         fd
         feh
+        ffmpegthumbnailer
         # flatpak
         font-manager
         #Fingerprint Scan
@@ -144,6 +145,7 @@ in {
         i3lock-color
         i3-volume
         jdk
+        jupyter
         # lazydocker
         lazygit
         libvlc
@@ -175,7 +177,7 @@ in {
         posting
         # prismlauncher
         pulseaudioFull
-        python313Full
+        python313
         python313Packages.pip
         # qt6.full
         # qtcreator
@@ -198,8 +200,10 @@ in {
         volctl
         # vscode
         # webkitgtk
+        # weylus
         xclip
         xfce.thunar
+        xfce.tumbler
         xfce.xfce4-settings
         xfce.xfconf
         xournalpp
