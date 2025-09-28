@@ -2,27 +2,29 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
     wallpaper = ../../dotfiles/wallpaper/Background.png;
+    # mouse_script = /etc/ELECOM.sh;
 in {
     imports = [ # Include the results of the hardware scan.
         ./hardware-configuration.nix
     ];
 
     # Bootloader.
-    # boot.loader.systemd-boot.enable = true;
-    boot.loader.grub = {
-        enable = true;
-        device = "nodev"; # For UEFI systems
-        # efiSupport = true;
-        useOSProber = true;
-    };
+    boot.loader.systemd-boot.enable = true;
 
-    boot.loader.efi.canTouchEfiVariables = true;
+    # keep only last N generations
+    # system.autoUpgrade.enable = true;
+    # system.autoUpgrade.allowReboot = false;
+    # nix.gc.automatic = true;
+    # nix.gc.dates = "weekly";
+    # nix.gc.options = "--delete-older-than 30d";
 
-    networking.hostName = "ThinkPad"; # Define your hostname.
+    # boot.loader.efi.canTouchEfiVariables = true;
+
+    networking.hostName = "BMAX"; # Define your hostname.
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
     # Configure network proxy if necessary
@@ -63,41 +65,40 @@ in {
     };
 
     # Configure i3wm
-    services.xserver = {
-        enable = true;
-        displayManager.lightdm = {
-            enable =  true;
-            greeters.gtk = {
-                enable = true;
-                theme.name = "Adwaita-dark";
-                cursorTheme.name = "Adwaita";
-            };
-            background = wallpaper;
-        };
-        windowManager.i3 = {
-        enable = true;
-        extraPackages = with pkgs; [ i3status i3lock i3blocks ];
-        };
-    };
+    # services.xserver = {
+    #     enable = true;
+    #     displayManager.lightdm = {
+    #         enable =  true;
+    #         greeters.gtk = {
+    #             enable = true;
+    #             theme.name = "Adwaita-dark";
+    #             cursorTheme.name = "Adwaita";
+    #         };
+    #         background = wallpaper;
+    #     };
+    #     windowManager.i3 = {
+    #     enable = true;
+    #     extraPackages = with pkgs; [ i3status i3lock i3blocks ];
+    #     };
+    # };
 
-    # Configure Display Manager
-    services.displayManager = {
-        # ly.enable = true;
-        defaultSession = "none+i3";
-    };
+    # Configure Display Manager ly
+    # services.displayManager = {
+    #     # ly.enable = true;
+    #     defaultSession = "none+i3";
+    # };
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.pottarr = {
         isNormalUser = true;
         description = "Pottarr";
-        extraGroups = [ "networkmanager" "wheel" "video" "storage" "plugdev" "input" ];
+        extraGroups = [ "networkmanager" "wheel" "storage" "plugdev" "input" ];
+        # packages = with pkgs; [];
         shell = pkgs.zsh;
     };
 
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
-
-    nixpkgs.config.allowBroken = true;
 
     # List packages installed in system profile. To search, run:
     # $ nix search wget
@@ -105,91 +106,46 @@ in {
         vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
         wget
         # Added by Pottarr
-        acpi
-        alacritty
-        arandr
-        bat
-        blueman
-        brightnessctl
         btop
-        caligula
         curl
-        dunst
-        binutils
-        discord
         docker
         eza
         fastfetch
         fd
-        feh
-        ffmpegthumbnailer
-        font-manager
-        #Fingerprint Scan
-        fprintd
         fzf
-        gcc
-        gdb
         git
-        glib
-        google-chrome
-        gparted
-        i3lock-color
-        i3-volume
-        jdk
-        jupyter
         lazydocker
         lazygit
-        libvlc
-        libxkbcommon
-        libffi
-        localsend
-        lua5_4
-        nasm
         networkmanager
-        networkmanagerapplet
-        # For neovim
-        lua-language-server
-        rust-analyzer
-        nodejs_24
-        obs-studio
-        openssl
-        pandoc
-        pasystray
-        pavucontrol
-        poppler-utils
-        pmutils
-        posting
-        pulseaudioFull
-        python313
-        python313Packages.pip
         ripgrep
-        rofi
-        rustup
-        scrot
-        spotify
-        sqlite
-        texliveFull
         tree
-        ueberzugpp
-        unetbootin
-        unixtools.watch
         unzip
-        v4l-utils
-        vdirsyncer
-        vlc
-        volctl
-        xclip
-        xfce.thunar
-        xfce.tumbler
-        xfce.xfce4-settings
-        xfce.xfconf
-        xournalpp
-        xss-lock
         yazi
-        zathura
     ];
 
-    services.libinput.touchpad.naturalScrolling = true;
+    # DB
+    # services = {
+    #     postgresql = {
+    #         enable = true;
+    #         package = pkgs.postgresql;
+    #     };
+    #     mysql = {
+    #         enable = true;
+    #         package = pkgs.mysql80;
+    #         dataDir = "/var/lib/mysql";
+    #     };
+    #     mongodb = {
+    #          enable = true;
+    #         package = pkgs.mongodb-ce;
+    #         bind_ip = "127.0.0.1";
+    #     };
+    # };
+
+    # services.libinput.touchpad.naturalScrolling = true;
+
+    virtualisation.docker = {
+        enable = true;
+    };
 
     programs = {
         # ZSH
@@ -200,69 +156,31 @@ in {
                 theme = "robbyrussell";
             };
         };
-        dconf = {
-            enable = true;
-        };
-        # i3lock
-        i3lock.enable = true;
         neovim = {
             enable = true;
         };
-        nix-ld = {
-            enable = true;
-        };
+        # nix-ld = {
+        #     enable = true;
+        # };
         tmux.enable = true;
         zoxide.enable = true;
     };
-
-    services.fprintd.enable = true;
-
-    security.polkit.enable = true;
-
-    security.pam.services = {
-        i3lock.allowNullPassword = false;
-        i3lock-color.fprintAuth = true;
-        lightdm.fprintAuth = true;
-        sudo.fprintAuth = true;
-    };
     
     # Configure Keyboard Input fcitx
-    i18n.inputMethod = {
-        enable = true;
-        type = "fcitx5";
-        fcitx5.addons = with pkgs; [ fcitx5-configtool fcitx5-m17n ];
-    };
+    # i18n.inputMethod = {
+    #     enable = true;
+    #     type = "fcitx5";
+    #     fcitx5.addons = with pkgs; [ fcitx5-configtool fcitx5-m17n ];
+    # };
 
     # NerdFont
-    fonts = {
-        enableDefaultPackages = true;
-        packages  = with pkgs; [
-        # (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
-        nerd-fonts.caskaydia-cove
-        ];
-    };
-
-    boot.kernelParams = [ "sysrq_always_enabled" ];
-    boot.kernelPackages = pkgs.linuxPackages_latest;
-
-    boot.kernel.sysctl."kernel.sysrq" = 1;
-
-
-    boot.kernelModules = [ "v4l2loopback" ];
-    boot.extraModulePackages = with config.boot.kernelPackages; [
-        v4l2loopback
-    ];
-
-    boot.extraModprobeConfig = ''
-        options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
-    '';
-
-    # Bluetooth
-    hardware.bluetooth.enable = true;
-
-    security.rtkit.enable = true;
-
-    services.xserver.videoDrivers = [ "modesetting" ];
+    # fonts = {
+    #     enableDefaultPackages = true;
+    #     packages  = with pkgs; [
+    #     # (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
+    #     nerd-fonts.caskaydia-cove
+    #     ];
+    # };
 
     # Some programs need SUID wrappers, can be configured further or are
     # started in user sessions.
