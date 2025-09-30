@@ -11,6 +11,7 @@ vim.opt.spell = true
 vim.opt.spelllang= en_us
 vim.o.termguicolors = true
 vim.o.winborder = "rounded"
+vim.opt.colorcolumn = "70"
 
 vim.api.nvim_create_autocmd(
     "ColorScheme", {

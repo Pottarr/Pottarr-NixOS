@@ -191,8 +191,9 @@ in {
         posting
         prismlauncher
         pulseaudioFull
-        python312Full
-        python312Packages.pip
+        python3Full
+        python3Packages.pip
+        python3Packages.tkinter
         # qt6.full
         # qtcreator
         ripgrep

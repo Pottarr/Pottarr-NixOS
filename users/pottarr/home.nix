@@ -27,9 +27,7 @@
         ../../modules/window-manager/i3.nix
         ../../modules/window-manager/i3blocks.nix
         ../../modules/window-manager/picom.nix
-        ../../modules/gestures/fusuma.nix
         ../../modules/obs/obs.nix
-        ../../modules/profile/profile.nix
     ];
     screenshot.enable = true;
 
