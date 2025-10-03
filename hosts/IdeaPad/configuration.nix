@@ -55,7 +55,8 @@ in {
         LC_NUMERIC = "th_TH.UTF-8";
         LC_PAPER = "th_TH.UTF-8";
         LC_TELEPHONE = "th_TH.UTF-8";
-        LC_TIME = "en_US.UTF-8";
+        LC_TIME = "en_GB.UTF-8";
+        # LC_TIME = "en_CUSTOM.UTF-8/UTF-8:./locales/en_custom";
     };
 
     # Configure keymap in X11
@@ -129,10 +130,11 @@ in {
         calcure
         caligula
         curl
+        dbgate
         digital
-        dunst
         discord
         docker
+        dunst
         eza
         fastfetch
         fd
@@ -188,6 +190,8 @@ in {
         pgcli
         pmutils
         pnpm
+        postgresql
+        postgresql.pg_config
         posting
         prismlauncher
         pulseaudioFull
@@ -201,6 +205,7 @@ in {
         rustup
         scrot
         showmethekey
+        skim
         skyemu
         snapshot
         spotify
@@ -220,8 +225,9 @@ in {
         vscode
         # webkitgtk
         xclip
-        xfce.thunar
-        xfce.tumbler
+        pcmanfm
+        # xfce.thunar
+        # xfce.tumbler
         xfce.xfce4-settings
         xfce.xfconf
         xournalpp
@@ -428,8 +434,6 @@ in {
     # };
     #
     # hardware.nvidia-container-toolkit.enable = true;
-
-
 
 
 

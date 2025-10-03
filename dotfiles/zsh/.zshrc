@@ -41,3 +41,20 @@ export MANPAGER='nvim +Man!'
 alias cd="z"
 alias ls="eza --icons=always"
 alias tree="eza -T --icons=always"
+
+export SKIM_DEFAULT_OPTIONS="--color=fg:#e4e4ef,bg:#181818,fg+:#f4f4ff,bg+:#282828,pointer:#ffdd33 --height=50% --reverse --prompt='-> '"
+autoload -U colors && colors
+# NIXOS_LOGO="U+F302"
+# PROMPT="${NIXOS_LOGO} %F{cyan}%~%f %# "
+
+# PROMPT='%F{76}%n@%m%f:%F{220}%~%f %F{188}→%f '
+# PROMPT='%F{76}%~%f $(git_prompt_info) %F{188}→%f '
+# Enable OMZ git plugin in your .zshrc
+# plugins=(git)
+
+# Prompt definition
+PROMPT='%F{76}%n@%m%f:%F{220}%~%f $(git_prompt_info) %F{231}→%f '
+ZSH_THEME_GIT_PROMPT_PREFIX="%F{188}("    # before branch
+ZSH_THEME_GIT_PROMPT_SUFFIX=")%f"           # after branch
+ZSH_THEME_GIT_PROMPT_DIRTY="%F{124}✗%f"     # repo dirty
+ZSH_THEME_GIT_PROMPT_CLEAN="%F{76}✓%f"   # repo clean
