@@ -38,9 +38,12 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 export MANPAGER='nvim +Man!'
 
+export PATH="$HOME/.local/bin:$PATH"
+
 alias cd="z"
 alias ls="eza --icons=always"
 alias tree="eza -T --icons=always"
+# alias tmx="${HOME}/.local/tmux_scripts/tmux_manage_session.sh"
 
 export SKIM_DEFAULT_OPTIONS="--color=fg:#e4e4ef,bg:#181818,fg+:#f4f4ff,bg+:#282828,pointer:#ffdd33 --height=50% --reverse --prompt='-> '"
 autoload -U colors && colors

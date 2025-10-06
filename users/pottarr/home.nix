@@ -13,9 +13,6 @@
             xorg.libXrandr
             libxkbcommon
         ];
-        # sessionVariables = {
-        #     WINIT_UNIXBACKEND = "X11";
-        # };
     };
 
     i3.enable = true;
