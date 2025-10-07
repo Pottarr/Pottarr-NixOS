@@ -169,6 +169,7 @@ in {
         mongodb-compass
         mongodb-tools
         mongosh
+        mpv
         nasm
         ncspot
         # ncurses

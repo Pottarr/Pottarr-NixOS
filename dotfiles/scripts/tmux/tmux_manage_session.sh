@@ -42,7 +42,7 @@
 init_session() {
     if command -v tmux &> /dev/null; then
         if [ -z "$TMUX" ]; then
-            tmux attach -t main || tmux new -s main
+            tmux attach -t Main || tmux new -s Main
         else
             read -rp "Enter new session name: " SESSION_NAME
             [ -z "$SESSION_NAME" ] && echo "Session name cannot be empty!" && exit 1
