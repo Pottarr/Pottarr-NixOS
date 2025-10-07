@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Microsoft Teams
+Comment=
+Exec=xdg-open https://teams.microsoft.com/v2/
+Path=
+Icon=/home/pottarr/Pictures/AppIcon/microsoft-teams-icon.svg
+Categories=

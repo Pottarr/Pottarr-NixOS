@@ -25,6 +25,7 @@
         ../../modules/window-manager/i3blocks.nix
         ../../modules/window-manager/picom.nix
         ../../modules/obs/obs.nix
+        ../../modules/shortcuts/desktop.nix
     ];
     screenshot.enable = true;
 

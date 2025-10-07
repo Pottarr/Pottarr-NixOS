@@ -1,5 +1,8 @@
 { config, pkgs, lib, ... }:
 
+let
+    dotfiles = ../../dotfiles;
+in 
 {
     options.screenshot.enable = lib.mkEnableOption "Enable screenshot script dependencies";
 
@@ -12,7 +15,7 @@
             libnotify
         ];
 
-        home.file.".local/bin/screenshot".source = ../../dotfiles/scripts/screenshot.sh;
+        home.file.".local/bin/screenshot".source = "${dotfiles}/scripts/screenshot.sh";
         home.file.".local/bin/screenshot".executable = true;
     };
 }
