@@ -12,6 +12,10 @@
             xorg.libXi
             xorg.libXrandr
             libxkbcommon
+            gnome-themes-extra
+        ];
+        sessionPath = [
+            "$HOME/.local/bin"
         ];
     };
 
@@ -30,6 +34,10 @@
     screenshot.enable = true;
 
     programs.home-manager.enable = true;
+
+    xdg.mime = {
+        enable = true;
+    };
 
     gtk = {
         enable = true;

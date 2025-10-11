@@ -11,16 +11,10 @@ in {
             i3lock-color
         ];
 
+        # .config/i3
+
         home.file.".config/i3/config" = {
             source = "${dotfiles}/i3/config";
-            executable = true;
-        };
-        home.file.".config/i3/lock.sh" = {
-            source = "${dotfiles}/scripts/lock.sh";
-            executable = true;
-        };
-        home.file.".config/i3/screenshot.sh" = {
-            source = "${dotfiles}/scripts/screenshot.sh";
             executable = true;
         };
         home.file.".config/i3/volume_notification.sh" = {
@@ -53,6 +47,21 @@ in {
         };
         home.file.".config/i3/xfce_display_settings.sh" = {
             source = "${dotfiles}/scripts/xfce_display_settings.sh";
+            executable = true;
+        };
+
+        # .local
+
+        home.file.".local/bin/ELECOM" = {
+            source = "${dotfiles}/scripts/ELECOM.sh";
+            executable = true;
+        };
+        home.file.".local/bin/screenshot" = {
+            source = "${dotfiles}/scripts/screenshot.sh";
+            executable = true;
+        };
+        home.file.".local/bin/fancy-lock-cmd" = {
+            source = "${dotfiles}/scripts/lock.sh";
             executable = true;
         };
     };

@@ -163,6 +163,7 @@ in {
         libffi
         localsend
         lua5_4
+        luminance
         man
         man-pages
         man-pages-posix
@@ -195,6 +196,7 @@ in {
         postgresql
         postgresql.pg_config
         posting
+        postman
         prismlauncher
         pulseaudioFull
         python3Full
