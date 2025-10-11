@@ -276,6 +276,11 @@ in {
 
     # Enable the OpenSSH daemon.
     services.openssh.enable = true;
+    networking.firewall.allowedTCPPorts = [
+        80
+        443
+        22
+    ];
 
     # Open ports in the firewall.
     # networking.firewall.allowedTCPPorts = [ ... ];
@@ -291,8 +296,12 @@ in {
     # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
     system.stateVersion = "24.11"; # Did you read the comment?
 
-    nix.settings.experimental-features = [
-        "nix-command"
-        "flakes"
-    ];
+    nix.settings = {
+        experimental-features = [
+            "nix-command"
+                "flakes"
+        ];
+        cores = 0;
+        max-jobs = "auto";
+    };
 }
