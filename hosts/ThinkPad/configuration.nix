@@ -157,6 +157,7 @@ in {
         pandoc
         pasystray
         pavucontrol
+        pcmanfm
         poppler-utils
         pmutils
         posting
@@ -182,8 +183,8 @@ in {
         volctl
         emote
         xclip
-        xfce.thunar
-        xfce.tumbler
+        # xfce.thunar
+        # xfce.tumbler
         xfce.xfce4-settings
         xfce.xfconf
         xournalpp
