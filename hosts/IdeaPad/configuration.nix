@@ -135,6 +135,7 @@ in {
         discord
         docker
         dunst
+        emote
         eza
         fastfetch
         fd

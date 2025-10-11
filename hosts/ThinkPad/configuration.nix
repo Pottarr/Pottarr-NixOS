@@ -117,6 +117,7 @@ in {
         dunst
         binutils
         discord
+        digital
         docker
         eza
         fastfetch
@@ -166,6 +167,7 @@ in {
         rofi
         rustup
         scrot
+        skim
         spotify
         sqlite
         texliveFull
@@ -178,6 +180,7 @@ in {
         vdirsyncer
         vlc
         volctl
+        emote
         xclip
         xfce.thunar
         xfce.tumbler
@@ -237,6 +240,7 @@ in {
     fonts = {
         enableDefaultPackages = true;
         packages  = with pkgs; [
+        noto-fonts-emoji
         # (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
         nerd-fonts.caskaydia-cove
         ];
