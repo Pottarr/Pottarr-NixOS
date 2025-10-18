@@ -147,6 +147,7 @@ in {
         fzf
         gcc_multi
         gdb
+        gimp
         git
         glibc
         gnumake
@@ -156,6 +157,7 @@ in {
         i3-volume
         jdk
         jupyter
+        kdenlive
         lazydocker
         lazygit
         libvlc
