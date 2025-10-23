@@ -1,5 +1,9 @@
 # Pottarr NixOS Configuration ❄️
 
+## Preview
+
+![Preview Image of Desktop](Preview/DesktopPreview1.png)
+
 ## Recommendation
 
 - IdeaPad: For newer Laptop (comes with Dual-Boot)
