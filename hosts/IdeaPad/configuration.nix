@@ -157,7 +157,7 @@ in {
         i3-volume
         jdk
         jupyter
-        kdenlive
+        kdePackages.kdenlive
         lazydocker
         lazygit
         libvlc
@@ -338,8 +338,11 @@ in {
 
     # https://nixos.wiki/wiki/OBS_Studio
 
-    boot.kernelParams = [ "sysrq_always_enabled" ];
-    boot.kernelPackages = pkgs.linuxPackages_latest;
+    boot.kernelParams = [
+        "sysrq_always_enabled"
+    ];
+
+    # boot.kernelPackages = pkgs.linuxPackages_latest;
 
     boot.kernel.sysctl."kernel.sysrq" = 1;
 
