@@ -162,8 +162,9 @@ in {
         pmutils
         posting
         pulseaudioFull
-        python313
-        python313Packages.pip
+        python3Full
+        python3Packages.pip
+        python3Packages.tkinter
         ripgrep
         rofi
         rustup
