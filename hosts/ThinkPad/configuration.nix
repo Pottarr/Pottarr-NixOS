@@ -159,6 +159,7 @@ in {
         pavucontrol
         pcmanfm
         poppler-utils
+        playerctl
         pmutils
         posting
         pulseaudioFull
