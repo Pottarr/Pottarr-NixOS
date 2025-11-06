@@ -100,7 +100,7 @@ in {
     users.users.pottarr = {
         isNormalUser = true;
         description = "Pottarr";
-        extraGroups = [ "networkmanager" "wheel" "video" "storage" "plugdev" "input" ];
+        extraGroups = [ "networkmanager" "wheel" "video" "storage" "plugdev" "input" "docker" ];
         # packages = with pkgs; [];
         shell = pkgs.zsh;
     };
@@ -134,6 +134,7 @@ in {
         digital
         discord
         docker
+        docker-compose
         dunst
         emote
         eza
@@ -202,6 +203,7 @@ in {
         prismlauncher
         pulseaudioFull
         python3Full
+        python313Full
         python3Packages.pip
         python3Packages.tkinter
         # qt6.full
