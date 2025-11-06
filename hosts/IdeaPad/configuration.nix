@@ -161,6 +161,7 @@ in {
         kdePackages.kdenlive
         lazydocker
         lazygit
+        libreoffice
         libvlc
         libxkbcommon
         libffi
