@@ -161,7 +161,10 @@ in {
         poppler-utils
         playerctl
         pmutils
+        postgresql
+        postgresql.pg_config
         posting
+        postman
         pulseaudioFull
         python3Full
         python3Packages.pip
@@ -250,7 +253,7 @@ in {
     };
 
     boot.kernelParams = [ "sysrq_always_enabled" ];
-    boot.kernelPackages = pkgs.linuxPackages_latest;
+    # boot.kernelPackages = pkgs.linuxPackages_latest;
 
     boot.kernel.sysctl."kernel.sysrq" = 1;
 
@@ -288,6 +291,13 @@ in {
         443
         22
     ];
+
+    services = {
+        postgresql = {
+            enable = true;
+            package = pkgs.postgresql;
+        };
+    };
 
     # Open ports in the firewall.
     # networking.firewall.allowedTCPPorts = [ ... ];
