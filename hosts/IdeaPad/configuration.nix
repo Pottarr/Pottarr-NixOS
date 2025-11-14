@@ -220,8 +220,10 @@ in {
         spotify
         sqlite
         stdenv.cc
+        telegram-desktop
         texliveFull
         thunderbird
+        tigervnc
         tree
         ueberzugpp
         unetbootin
@@ -243,6 +245,7 @@ in {
         xss-lock
         yazi
         zathura
+        zip
         zoom-us
     ];
 

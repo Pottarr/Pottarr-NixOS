@@ -196,6 +196,7 @@ in {
         xss-lock
         yazi
         zathura
+        zip
     ];
 
     services.libinput.touchpad.naturalScrolling = true;
