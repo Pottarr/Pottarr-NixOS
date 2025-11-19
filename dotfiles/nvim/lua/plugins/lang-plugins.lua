@@ -5,11 +5,11 @@ return {
     },
     {
         "mason-org/mason.nvim",
-        enabled = false,
+        -- enabled = false,
     },
     {
         "mason-org/mason-lspconfig.nvim",
-        enabled = false,
+        -- enabled = false,
     },
     -- {
     --   "nvimtools/none-ls.nvim",
