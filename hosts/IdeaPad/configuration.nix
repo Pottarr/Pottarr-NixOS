@@ -20,6 +20,7 @@ in {
         device = "nodev"; # For UEFI systems
         efiSupport = true;
         useOSProber = true;
+        copyKernels = false;
     };
 
     # keep only last N generations
@@ -192,6 +193,7 @@ in {
         pandoc
         pasystray
         pavucontrol
+        pcmanfm
         poppler-utils
         pgadmin
         pgcli
@@ -236,7 +238,7 @@ in {
         vscode
         # webkitgtk
         xclip
-        pcmanfm
+        xdot
         # xfce.thunar
         # xfce.tumbler
         xfce.xfce4-settings
@@ -244,6 +246,7 @@ in {
         xournalpp
         xss-lock
         yazi
+        yosys
         zathura
         zip
         zoom-us
