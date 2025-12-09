@@ -21,6 +21,7 @@ in {
         efiSupport = true;
         useOSProber = true;
         copyKernels = false;
+        configurationLimit = 10;
     };
 
     # keep only last N generations
@@ -101,7 +102,7 @@ in {
     users.users.pottarr = {
         isNormalUser = true;
         description = "Pottarr";
-        extraGroups = [ "networkmanager" "wheel" "video" "storage" "plugdev" "input" "docker" ];
+        extraGroups = [ "networkmanager" "wheel" "video" "storage" "plugdev" "input" "docker" "libvirtd" "kvm" ];
         # packages = with pkgs; [];
         shell = pkgs.zsh;
     };
@@ -152,9 +153,11 @@ in {
         gimp
         git
         glibc
+        gnome-builder
         gnumake
         google-chrome
         gparted
+        gtk4
         i3lock-color
         i3-volume
         jdk
@@ -162,6 +165,7 @@ in {
         kdePackages.kdenlive
         lazydocker
         lazygit
+        libgcc
         libreoffice
         libvlc
         libxkbcommon
@@ -208,12 +212,20 @@ in {
         python3Full
         python313Full
         python3Packages.pip
+        python3Packages.pyside6
+        python3Packages.shiboken6
         python3Packages.tkinter
-        # qt6.full
+        qemu
+        virt-manager
+        qt6.qttools
         # qtcreator
         ripgrep
         rofi
         rustup
+        rustc
+        cargo
+        rustfmt
+        clippy
         scrot
         showmethekey
         skim
@@ -222,6 +234,7 @@ in {
         spotify
         sqlite
         stdenv.cc
+        swtpm
         telegram-desktop
         texliveFull
         thunderbird
@@ -237,12 +250,18 @@ in {
         volctl
         vscode
         # webkitgtk
+        xcb-util-cursor
         xclip
         xdot
         # xfce.thunar
         # xfce.tumbler
         xfce.xfce4-settings
         xfce.xfconf
+        pkgs.xorg.libxcb
+        xorg.xcbutilwm
+        xorg.xcbutilimage
+        xorg.xcbutilkeysyms
+        xorg.xcbutilrenderutil
         xournalpp
         xss-lock
         yazi
@@ -288,8 +307,21 @@ in {
 
     services.libinput.touchpad.naturalScrolling = true;
 
-    virtualisation.docker = {
-        enable = true;
+    virtualisation = {
+        libvirtd = {
+            enable = true;
+            qemuOvmf = true;
+            qemu = {
+                ovmf = {
+                    enable = true;
+                };
+                swtpm.enable = true;
+            };
+            qemuPackage = pkgs.qemu_kvm;
+        };
+        docker = {
+            enable = true;
+        };
     };
 
     programs = {
@@ -313,6 +345,9 @@ in {
         };
         nix-ld = {
             enable = true;
+            # libraries = with pkgs; [
+            #     glib
+            # ];
         };
         # obs-studio = {
         #     enable = true;
