@@ -308,17 +308,6 @@ in {
     services.libinput.touchpad.naturalScrolling = true;
 
     virtualisation = {
-        libvirtd = {
-            enable = true;
-            qemuOvmf = true;
-            qemu = {
-                ovmf = {
-                    enable = true;
-                };
-                swtpm.enable = true;
-            };
-            qemuPackage = pkgs.qemu_kvm;
-        };
         docker = {
             enable = true;
         };

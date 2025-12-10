@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
-Name=QT Desinger
+Name=QT Designer
 Comment=
-Exec=open_qt_designer
+Exec=designer -style qt6gtk2
 Path=
 Icon=
 Categories=

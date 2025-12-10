@@ -2,4 +2,4 @@
 
 DESIGER_PATH=which designer
 
-xdg-open DESIGER_PATH
+xdg-open DESIGER_PATH -style qt6gtk2
