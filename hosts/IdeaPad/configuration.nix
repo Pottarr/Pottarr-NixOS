@@ -131,6 +131,7 @@ in {
         btop
         calcure
         caligula
+        # ciscoPacketTracer8
         curl
         dbgate
         digital
@@ -249,6 +250,7 @@ in {
         vlc
         volctl
         vscode
+        wine
         # webkitgtk
         xcb-util-cursor
         xclip
