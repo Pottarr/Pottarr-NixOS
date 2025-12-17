@@ -4,7 +4,7 @@ let
     dotfiles = ../../../dotfiles;
 in {
     programs.zsh = {
-        enable = true;
+        # enable = true;
 
         oh-my-zsh = {
             enable = true;

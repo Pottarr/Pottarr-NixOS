@@ -177,7 +177,7 @@ in {
         man
         man-pages
         man-pages-posix
-        minecraft
+        # minecraft
         mongodb-compass
         mongodb-tools
         mongosh
@@ -200,7 +200,7 @@ in {
         pavucontrol
         pcmanfm
         poppler-utils
-        pgadmin
+        pgadmin4
         pgcli
         pmutils
         pnpm
@@ -210,8 +210,8 @@ in {
         postman
         prismlauncher
         pulseaudioFull
-        python3Full
-        python313Full
+        # python3Full
+        # python313Full
         python3Packages.pip
         python3Packages.pyside6
         python3Packages.shiboken6
@@ -359,7 +359,8 @@ in {
     i18n.inputMethod = {
         enable = true;
         type = "fcitx5";
-        fcitx5.addons = with pkgs; [ fcitx5-configtool fcitx5-m17n ];
+        # fcitx5.addons = with pkgs; [ fcitx5-configtool fcitx5-m17n ];
+        fcitx5.addons = with pkgs; [ fcitx5-m17n ];
     };
 
     # NerdFont

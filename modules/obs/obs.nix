@@ -11,7 +11,7 @@
         # );
 
         plugins = with pkgs.obs-studio-plugins; [
-        obs-webkitgtk
+        # obs-webkitgtk
         obs-backgroundremoval
         # wlrobs
         # obs-backgroundremoval

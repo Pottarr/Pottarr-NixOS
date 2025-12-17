@@ -15,7 +15,7 @@
         # Use Mason
         gopls
         # HTML
-        nodePackages.live-server
+        # nodePackages.live-server
         # Java
         # Use Mason
         jdt-language-server
