@@ -38,7 +38,6 @@ Nah, I use `i3wm` as Window Manager.
 - Editor: `Neovim`
 - TUI File Explorer: `Yazi`
 - TUI Alternative of Postman: `Posting`
-- TUI Alternative of Postman: `Posting`
 
 ## Alias in ZSH
 
@@ -56,7 +55,7 @@ Nah, I use `i3wm` as Window Manager.
 - `tmxs` $\rightarrow$ Tmux session manager written with pain as I was
 trying to learn Shell Script  
 (Inspiration: [Sylvan Franklin](https://github.com/SylvanFranklin/.config))
-- `tmxs` (Still in development) $\rightarrow$ Tmux directory manager
+- `tmxd` (Still in development) $\rightarrow$ Tmux directory manager
 also written in pain  
 (Purpose: I don't want to exit and `tmux a -t SESSION_NAME -c DIRECTORY`.)
 - Tmux internal scripts
