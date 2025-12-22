@@ -166,7 +166,7 @@ in {
         posting
         postman
         pulseaudioFull
-        python3Full
+        # python3Full
         python3Packages.pip
         python3Packages.tkinter
         ripgrep
@@ -240,14 +240,15 @@ in {
     i18n.inputMethod = {
         enable = true;
         type = "fcitx5";
-        fcitx5.addons = with pkgs; [ fcitx5-configtool fcitx5-m17n ];
+        # fcitx5.addons = with pkgs; [ fcitx5-configtool fcitx5-m17n ];
+        fcitx5.addons = with pkgs; [ fcitx5-m17n ];
     };
 
     # NerdFont
     fonts = {
         enableDefaultPackages = true;
         packages  = with pkgs; [
-        noto-fonts-emoji
+        # noto-fonts-emoji
         # (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
         nerd-fonts.caskaydia-cove
         ];
