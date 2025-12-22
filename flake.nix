@@ -2,7 +2,7 @@
     description = "Pottarr's Nix Flake";
 
     inputs = {
-        nixpkgs.url = "github:NixOS/nixpkgs/release-25.11";
+        nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
         home-manager = {
             url = "github:nix-community/home-manager/release-25.11";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -25,12 +25,12 @@
                     ./hosts/IdeaPad/hardware-configuration.nix
 
                     # Enable home-manager as a NixOS module
-                    # home-manager.nixosModules.home-manager
-                    # {
-                    #     home-manager.useGlobalPkgs = true;
-                    #     home-manager.useUserPackages = true;
-                    #     home-manager.users.pottarr = import ./users/pottarr/home.nix;
-                    # }
+                    home-manager.nixosModules.home-manager
+                    {
+                        home-manager.useGlobalPkgs = true;
+                        home-manager.useUserPackages = true;
+                        home-manager.users.pottarr = import ./users/pottarr/home.nix;
+                    }
                 ];
             };
 
@@ -40,12 +40,12 @@
                     ./hosts/ThinkPad/configuration.nix
                     ./hosts/ThinkPad/hardware-configuration.nix
 
-                    # home-manager.nixosModules.home-manager
-                    # {
-                    #     home-manager.useGlobalPkgs = true;
-                    #     home-manager.useUserPackages = true;
-                    #     home-manager.users.pottarr = import ./users/pottarr/home.nix;
-                    # }
+                    home-manager.nixosModules.home-manager
+                    {
+                        home-manager.useGlobalPkgs = true;
+                        home-manager.useUserPackages = true;
+                        home-manager.users.pottarr = import ./users/pottarr/home.nix;
+                    }
                 ];
             };
 
@@ -55,12 +55,12 @@
                     ./hosts/BMAX/configuration.nix
                     ./hosts/BMAX/hardware-configuration.nix
 
-                    # home-manager.nixosModules.home-manager
-                    # {
-                    #     home-manager.useGlobalPkgs = true;
-                    #     home-manager.useUserPackages = true;
-                    #     home-manager.users.pottarr = import ./users/pottarr/home.nix;
-                    # }
+                    home-manager.nixosModules.home-manager
+                    {
+                        home-manager.useGlobalPkgs = true;
+                        home-manager.useUserPackages = true;
+                        home-manager.users.pottarr = import ./users/pottarr/home.nix;
+                    }
                 ];
             };
         };
