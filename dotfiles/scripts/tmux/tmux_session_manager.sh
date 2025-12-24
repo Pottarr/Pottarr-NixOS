@@ -29,6 +29,7 @@
 # }
 
 init_session() {
+    local START_DIR="${PWD}"
     if ! command -v tmux &> /dev/null; then
         echo "TMUX not found!"
         exit 1
@@ -40,7 +41,9 @@ init_session() {
         read -rp "Enter new session name: " SESSION_NAME
         [ -z "$SESSION_NAME" ] && echo "Session name cannot be empty!" && exit 1
 
-        START_DIR="${PWD}"
+        if [[ -z $2 ]]; then
+            START_DIR="$(cat ~/.config/tmux/dir_list | fzf)"
+        fi
         tmux new-session -d -s "$SESSION_NAME" -c "$START_DIR"
         tmux switch-client -t "$SESSION_NAME"
     fi
@@ -135,9 +138,7 @@ else
         init_session
         exit 0
     fi
-    if [[ $# != 1 ]]; then
-        echo "Invalid number of arguments. We need 0 to 1, you entered " $#
-    else
+    if [[ $# == 1 ]]; then
         case $1 in
             -sw|--switch-session)
             switch_session
@@ -145,9 +146,22 @@ else
             -de|--delete-session)
             delete_session
             ;;
+            -ia|--init-at)
+            echo "--init-at needs 2 arguments"
+            exit 1
+            ;;
             *)
             echo "Unknown option $1"
             exit 1
+            ;;
+        esac
+    else
+        case $1 in
+            -ia|--init-at)
+            init_session "$2"
+            ;;
+            *)
+            echo "Invalid set of arguments"
             ;;
         esac
     fi
