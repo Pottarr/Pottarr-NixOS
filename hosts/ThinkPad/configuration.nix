@@ -141,6 +141,7 @@ in {
         jupyter
         lazydocker
         lazygit
+        libreoffice
         libvlc
         libxkbcommon
         libffi
@@ -249,7 +250,7 @@ in {
     fonts = {
         enableDefaultPackages = true;
         packages  = with pkgs; [
-        # noto-fonts-emoji
+        noto-fonts
         # (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
         nerd-fonts.caskaydia-cove
         ];
