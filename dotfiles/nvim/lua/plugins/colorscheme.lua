@@ -1,15 +1,3 @@
--- return {
---   "tanvirtin/monokai.nvim",
---   lazy = false,
---   init = function()
---     -- local palette = require("monokai")
---     -- palette.base2 = '#000000'
---     -- require("monokai").setup({ palette = palette })
---     require("monokai").setup({})
---   end,
---   enabled = true,
--- }
-
 return {
     "LazyVim/LazyVim",
     dependencies = {
