@@ -151,6 +151,7 @@ in {
         fzf
         gcc_multi
         gdb
+        gf
         gimp
         git
         glibc

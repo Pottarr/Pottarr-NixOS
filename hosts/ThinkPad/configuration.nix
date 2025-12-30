@@ -130,6 +130,7 @@ in {
         fzf
         gcc
         gdb
+        gf
         git
         glib
         google-chrome
