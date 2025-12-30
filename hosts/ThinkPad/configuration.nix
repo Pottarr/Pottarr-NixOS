@@ -159,13 +159,14 @@ in {
         pasystray
         pavucontrol
         pcmanfm
-        poppler-utils
         playerctl
         pmutils
+        poppler-utils
         postgresql
         postgresql.pg_config
         posting
         postman
+        projectlibre
         pulseaudioFull
         # python3Full
         python3Packages.pip

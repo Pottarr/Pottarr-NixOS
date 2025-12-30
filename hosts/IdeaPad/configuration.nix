@@ -210,6 +210,7 @@ in {
         posting
         postman
         prismlauncher
+        projectlibre
         pulseaudioFull
         # python3Full
         # python313Full
