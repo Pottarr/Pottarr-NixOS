@@ -49,6 +49,13 @@ in {
             source = "${dotfiles}/scripts/xfce_display_settings.sh";
             executable = true;
         };
+        home.file.".config/i3/lid-handler.sh" = {
+            source = "${dotfiles}/scripts/lid-handler.sh";
+            executable = true;
+        };
+        home.file.".config/acpi/events/lid-close" = {
+            source = "${dotfiles}/scripts/lid-close";
+        };
 
         # .local
 

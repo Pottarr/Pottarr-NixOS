@@ -69,10 +69,24 @@ in {
 
     # Configure USB Mounting
     services = {
+        acpid.enable = true;
         devmon.enable = true;
         gvfs.enable = true;
         udisks2.enable = true;
     };
+
+    # services.logind.extraConfig = ''
+    #     HandleLidSwitch=ignore
+    #     HandleLidSwitchExternalPower=ignore
+    #     HandleLidSwitchDocked=ignore
+    # '';
+
+    services.logind.settings.Login = {
+        HandleLidSwitch = "ignore";
+        HandleLidSwitchExternalPower = "ignore";
+        HandleLidSwitchDocked = "ignore";
+    };
+
 
     # Configure i3wm
     services.xserver = {
@@ -130,8 +144,11 @@ in {
         brightnessctl
         btop
         calcure
+        calibre
         caligula
         # ciscoPacketTracer8
+        cudatoolkit
+        cudaPackages.cuda-samples
         curl
         dbgate
         digital
@@ -428,7 +445,24 @@ in {
     # };
 
 
-    services.xserver.videoDrivers = [ "modesetting" ];
+    # services.xserver.videoDrivers = [ "modesetting" ];
+
+    hardware.graphics.enable = true;
+    services.xserver.videoDrivers = [ "nvidia" ];
+
+    hardware.nvidia = {
+        modesetting.enable = true;
+        open = false;
+        nvidiaSettings = true;
+        powerManagement.enable = false;
+        prime = {
+            offload.enable = true;
+            offload.enableOffloadCmd = true;
+
+            intelBusId = "PCI:0:2:0";
+            nvidiaBusId = "PCI:1:0:0";
+        };
+    };
 
 
 

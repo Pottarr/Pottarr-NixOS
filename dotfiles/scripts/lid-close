@@ -1,0 +1,2 @@
+event=button/lid.*
+action=/home/pottarr/.config/i3/lid-handler.sh
