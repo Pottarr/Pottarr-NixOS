@@ -1,33 +1,5 @@
 #!/usr/bin/env bash
 
-# Auto-start tmux
-# init_session() {
-#     if command -v tmux &> /dev/null; then
-#         if [ -z "$TMUX" ]; then
-#             tmux attach -t Main || tmux new -s Main
-#             exit 0
-#         else
-#             read -rp "Enter new session name: " SESSION_NAME
-#             if [[ -z "$TMUX" ]]; then
-#                 tmux attach -t Main || tmux new -s Main
-#                 exit 0
-#             else
-#                 SESSION_NAME=""
-#                 if [[ -z "$SESSION_NAME" ]]; then
-#                     read -rp "Enter new session name: " SESSION_NAME || exit 1
-#                 fi
-#             fi
-#             [ -z "$SESSION_NAME" ] && echo "Session name cannot be empty!" && exit 1
-#
-#             START_DIR="${PWD}"
-#
-#             tmux new-session -d -s "$SESSION_NAME" -c "$START_DIR"
-#             tmux switch-client -t "$SESSION_NAME"
-#             exit 0
-#         fi
-#     fi
-# }
-
 init_session() {
     local START_DIR="${PWD}"
     if ! command -v tmux &> /dev/null; then
@@ -42,7 +14,7 @@ init_session() {
         [ -z "$SESSION_NAME" ] && echo "Session name cannot be empty!" && exit 1
 
         if [[ -z $2 ]]; then
-            START_DIR="$(cat ~/.config/tmux/dir_list | fzf)"
+            START_DIR="$(cat ~/.config/tmux/dir_list | sk)"
         fi
         tmux new-session -d -s "$SESSION_NAME" -c "$START_DIR"
         tmux switch-client -t "$SESSION_NAME"

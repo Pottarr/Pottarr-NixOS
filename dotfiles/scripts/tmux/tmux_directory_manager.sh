@@ -1,246 +1,13 @@
 #!/usr/bin/env bash
-#
-#CONFIG="$HOME/.config/tmux/dir_list"
-#
-## append_dir() {
-##     if [[ ! -f "$CONFIG" ]]; then
-##         mkdir -p "$(dirname "$CONFIG")"
-##         touch "$CONFIG"
-##     fi
-##     local TARGET
-##     if [[ $# == 0 ]]; then
-##         TARGET="$PWD"
-##     elif [[ $# == 1 ]]; then
-##         # TARGET=$(fd --type=directory --absolute-path . "$1" | fzf)
-##         # TARGET=$(fd --type d . "$1" -0 | fzf --read0 | xargs -0 realpath)
-##         TARGET=$(fd --type d . "$1" | fzf)
-##         TARGET=$(realpath "$TARGET")
-##     elif [[ $# == 2 ]]; then
-##         case $1 in
-##             -xd|-exact-directory)
-##             TARGET=$(realpath "$2")
-##             ;;
-##             *)
-##             echo "Unknown option $1"
-##             exit 1
-##             ;;
-##         esac
-##     else
-##         echo "Invalid number of arguments. We need 0 to 1, you entered " $#
-##         exit 1
-##     fi
-##     if ! rg -q -N -U -F -x  "$TARGET" "$CONFIG"; then
-##         echo "$TARGET" >> "$CONFIG"
-##         echo "Added $TARGET to the list..."
-##         exit 0
-##     else
-##         echo "Directory already existed..."
-##         exit 1
-##     fi
-## }
-#
-#
-#
-#append_dir() {
-#    if [[ ! -f "$CONFIG" ]]; then
-#        mkdir -p "$(dirname "$CONFIG")"
-#        touch "$CONFIG"
-#    fi
-#
-#    local TARGET
-#
-#    case $# in
-#        0)
-#            TARGET="$PWD"
-#            ;;
-#
-#        1)
-#            TARGET=$(fd --type d . "$1" | fzf)
-#            [[ -n "$TARGET" ]] || return 1
-#            TARGET=$(realpath "$TARGET")
-#            ;;
-#
-#        2)
-#            case "$1" in
-#                -xd|-exact-directory)
-#                    TARGET=$(realpath "$2")
-#                    ;;
-#                *)
-#                    echo "Unknown option: $1" >&2
-#                    return 1
-#                    ;;
-#            esac
-#            ;;
-#
-#        *)
-#            echo "Usage: append_dir [path] | append_dir -xd <dir>" >&2
-#            return 1
-#            ;;
-#    esac
-#
-#    if ! rg -q -F -x "$TARGET" "$CONFIG"; then
-#        echo "$TARGET" >> "$CONFIG"
-#        echo "Added $TARGET to the list."
-#        return 0
-#    else
-#        echo "Directory already exists."
-#        return 1
-#    fi
-#}
-#
-#
-#delete_dir() {
-#    if [[ ! -f "$CONFIG" ]]; then
-#        echo "File does not exist: $CONFIG"
-#        echo "No directory to delete..."
-#        exit 1
-#    fi
-#    local TARGET=""
-#    if [[ $# == 0 ]]; then
-#        if [[ ! -s "$CONFIG" ]]; then
-#            echo "No directories to select."
-#            exit 1
-#        fi
-#        if [[ -n "$TARGET" ]]; then
-#            local ESC
-#            ESC=$(printf '%s\n' "$TARGET" | sed 's/[\/&]/\\&/g')
-#            sed -i "/$ESC/d" "$CONFIG"
-#            echo "Directory already existed..."
-#            exit 0
-#        else
-#            echo "No directory selected..."
-#            exit 1
-#        fi
-#    elif [[ $# == 1 ]]; then
-#        TARGET="$1"
-#        if rg -q -N -U -i "$TARGET" "$CONFIG"; then
-#            local ESC
-#            ESC=$(printf '%s\n' "$TARGET" | sed 's/[\/&]/\\&/g')
-#            sed -i "/$ESC/d" "$CONFIG"
-#            echo "Deleted ${TARGET} from the list..."
-#        fi
-#    else
-#        echo "Invalid number of arguments. We need 0 to 1, you entered " $#
-#        exit 1
-#    fi
-#}
-#
-#edit_dir() {
-#    nvim "$CONFIG"
-#    exit 0
-#}
-#
-#select_dir() {
-#    if [[ ! -f "$CONFIG" ]]; then
-#        echo "File does not exist: $CONFIG"
-#        echo "No directory to select..."
-#        exit 1
-#    fi
-#    local TARGET=""
-#    local EXTERNAL_TARGET="$1"
-#    if [[ $# == 0 ]]; then
-#        if [[ ! -s "$CONFIG" ]]; then
-#            echo "No directories to select."
-#            exit 1
-#        fi
-#        TARGET=$(sk < "$CONFIG") || exit 0
-#        [[ -z "$TARGET" ]] && echo "No directory selected" && exit 1
-#        tmux switch-client -c "$TARGET"
-#        exit 0
-#    elif [[ $# == 1 ]]; then
-#        tmux switch-client -c "$EXTERNAL_TARGET"
-#        exit 0
-#    else
-#        echo "Invalid number of arguments. We need 0 to 1 extra argument, you entered " "$($# - 1)"
-#        exit 1
-#    fi
-#}
-#
-#if [ -n "$TMUX" ]; then
-#    # tmux new-window -n TMXD
-#    if [[ $# == 0 ]]; then
-#        echo "Please insert some flag..."
-#        exit 1
-#    fi
-#    if [[ $# -gt 2 ]]; then
-#        echo "Invalid number of arguments. We need 0 to 2, you entered " $#
-#    else
-#        case $1 in
-#            -ap|--append-dir)
-#            append_dir "$2"
-#            ;;
-#            -de|--delete-dir)
-#            delete_dir "$2"
-#            ;;
-#            -ed|--edit-dir)
-#            if [[ $# -gt 1 ]]; then
-#                echo "Invalid number of arguments FOR THIS FLAG. We need 0 extra argument."
-#                echo "You entered $(( $# - 1 )) extra arguments"
-#            else
-#                edit_dir
-#            fi
-#            ;;
-#            -se|--select-dir)
-#            if [[ $# -gt 1 ]]; then
-#                echo "Invalid number of arguments FOR THIS FLAG. We need 0 extra argument."
-#                echo "You entered $(( $# - 1 )) extra arguments"
-#            else
-#                # select_dir "$@"
-#                echo "Must be in a TMUX session..."
-#            fi
-#            ;;
-#            *)
-#            echo "Unknown option $1"
-#            exit 1
-#            ;;
-#        esac
-#    fi
-#    tmux kill-window -t TMXD 2>/dev/null
-#
-#else
-#    if [[ $# == 0 ]]; then
-#            echo "Please insert some flag..."
-#            exit 1
-#    fi
-#    if [[ $# -gt 2 ]]; then
-#        echo "Invalid number of arguments. We need 0 to 2, you entered " $#
-#    else
-#        case $1 in
-#            -ap|--append-dir)
-#            append_dir "$2"
-#            ;;
-#            -de|--delete-dir)
-#            delete_dir "$2"
-#            ;;
-#            -ed|--edit-dir)
-#            if [[ $# -gt 1 ]]; then
-#                echo "Invalid number of arguments FOR THIS FLAG. We need 0 extra argument."
-#                echo "You entered $(( $# - 1 )) extra arguments"
-#            else
-#                edit_dir
-#            fi
-#            ;;
-#            -se|--select-dir)
-#            if [[ $# -gt 1 ]]; then
-#                echo "Invalid number of arguments FOR THIS FLAG. We need 0 extra argument."
-#                echo "You entered $(( $# - 1 )) extra arguments"
-#            else
-#                select_dir "$@"
-#            fi
-#            ;;
-#            *)
-#            echo "Unknown option $1"
-#            exit 1
-#            ;;
-#        esac
-#    fi
-#fi
 
 CONFIG="$HOME/.config/tmux/dir_list"
 
 # --------------------------------------------------
 # Append directory
 # --------------------------------------------------
+
+# Will be use in TMXS with TMUX key bind for only -ap|--append-dir
+# without extra trailing arguments
 append_dir() {
     [[ -f "$CONFIG" ]] || {
         mkdir -p "$(dirname "$CONFIG")"
@@ -254,38 +21,25 @@ append_dir() {
             TARGET="$PWD"
             ;;
         2)
-            TARGET=$(fd --type d . "$2" | fzf) || return 1
+            TARGET=$(realpath "$2")
             [[ -n "$TARGET" ]] || return 1
-            TARGET=$(realpath "$TARGET")
-            ;;
-        3)
-            case "$2" in
-                -xd|--exact-directory)
-                    TARGET=$(realpath "$3")
-                    [[ -n "$TARGET" ]] || return 1
-                    ;;
-                *)
-                    echo "Unknown option: $2" >&2
-                    return 1
-                    ;;
-            esac
             ;;
         *)
-            echo "Usage: append_dir [path] | append_dir -xd <dir>" >&2
+            echo "Usage: -ap|--append-dir [dir]" >&2
             return 1
             ;;
     esac
 
     [[ -d "$TARGET" ]] || {
-        echo "Not a directory: $TARGET" >&2
+        echo "Not a directory: $TARGET" | less
         return 1
     }
 
     if ! rg -q -F -x "$TARGET" "$CONFIG"; then
         echo "$TARGET" >> "$CONFIG"
-        echo "Added $TARGET"
+        echo "Added $TARGET" | less
     else
-        echo "Directory already exists"
+        echo "Directory already exists" | less
         return 1
     fi
 }
@@ -293,34 +47,36 @@ append_dir() {
 # --------------------------------------------------
 # Delete directory
 # --------------------------------------------------
+
+# Will never be used in TMXS command from TMUX key bind
 delete_dir() {
     [[ -f "$CONFIG" ]] || {
-        echo "No directory list exists."
+        echo "No directory list exists." | less
         return 1
     }
 
     local TARGET ESC
 
     case $# in
-        0)
+        1)
             [[ -s "$CONFIG" ]] || {
-                echo "No directories to delete."
+                echo "No directories to delete." | less
                 return 1
             }
             TARGET=$(sk < "$CONFIG") || return 1
             [[ -n "$TARGET" ]] || return 1
             ;;
-        1)
+        2)
             TARGET="$1"
             ;;
         *)
-            echo "Usage: delete_dir [directory]" >&2
+            echo "Usage: delete_dir [directory]" | less
             return 1
             ;;
     esac
 
     if ! rg -q -F -x "$TARGET" "$CONFIG"; then
-        echo "Directory not found."
+        echo "Directory not found in ~/.config/tmux/dir_list" >&2
         return 1
     fi
 
@@ -332,21 +88,30 @@ delete_dir() {
 # --------------------------------------------------
 # Edit list
 # --------------------------------------------------
+
+# Can be use in both inside or outside TMUX
 edit_dir() {
     nvim "$CONFIG"
 }
 
 # --------------------------------------------------
-# Select directory (tmux only)
+# Select directory
 # --------------------------------------------------
 select_dir() {
+    local SESSIONS
+    SESSIONS=$(tmux ls 2>/dev/null || true)
+    if [[ -z "$SESSIONS" ]]; then
+        echo "No tmux sessions found." > /dev/null
+        exit 1
+    fi
+
     [[ -n "$TMUX" ]] || {
-        echo "Must be inside a tmux session."
+        echo "Must be inside a tmux session." >&2
         return 1
     }
 
     [[ -f "$CONFIG" && -s "$CONFIG" ]] || {
-        echo "No directories to select."
+        echo "No directories to select from ~/.config/tmux/dir_list" > /dev/null
         return 1
     }
 
@@ -361,7 +126,7 @@ select_dir() {
             TARGET="$1"
             ;;
         *)
-            echo "Usage: select_dir [directory]" >&2
+            echo "Usage: -se|--select-dir [directory]" > /dev/null
             return 1
             ;;
     esac
@@ -374,10 +139,10 @@ select_dir() {
 # --------------------------------------------------
 if [[ $# -eq 0 ]]; then
     echo "Usage:"
-    echo "  -ap | --append-dir [path]"
-    echo "  -de | --delete-dir [path]"
+    echo "  -ap | --append-dir [directory]"
+    echo "  -de | --delete-dir [directory]"
     echo "  -ed | --edit-dir"
-    echo "  -se | --select-dir [path]"
+    echo "  -se | --select-dir [directory]"
     exit 1
 fi
 
@@ -386,20 +151,20 @@ case "$1" in
         append_dir "$@"
         ;;
     -de|--delete-dir)
-        delete_dir "$2"
+        delete_dir "$@"
         ;;
     -ed|--edit-dir)
         [[ $# -eq 1 ]] || {
-            echo "edit-dir takes no arguments" >&2
+            echo "edit-dir takes no arguments" > /dev/null
             exit 1
         }
         edit_dir
         ;;
     -se|--select-dir)
-        select_dir "$2"
+        select_dir "$@"
         ;;
     *)
-        echo "Unknown option: $1" >&2
+        echo "Unknown option: $1" > /dev/null
         exit 1
         ;;
 esac
