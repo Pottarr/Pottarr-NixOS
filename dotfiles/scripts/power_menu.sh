@@ -13,7 +13,8 @@ set -e
 set -u
 
 # All supported choices
-all=(shutdown reboot suspend hibernate logout lockscreen)
+# all=(shutdown reboot suspend hibernate logout lockscreen)
+all=(shutdown reboot suspend hibernate logout)
 
 # By default, show all (i.e., just copy the array)
 show=("${all[@]}")
