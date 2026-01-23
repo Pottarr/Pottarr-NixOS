@@ -6,8 +6,8 @@
 
 ## Recommendation
 
-- IdeaPad: For newer Laptop (comes with Dual-Boot)
-- ThinkPad: For older laptop (comes with Fingerprint-scanner)
+- Siri: For newer Laptop (comes with Dual-Boot)
+- Tofu: For older laptop (comes with Fingerprint-scanner)
 
 ## How to install
 
