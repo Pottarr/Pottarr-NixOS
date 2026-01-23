@@ -18,11 +18,11 @@
             # NixOS Configurations (per host)
             # -------------------------------
             nixosConfigurations = {
-            IdeaPad = nixpkgs.lib.nixosSystem {
+            Siri = nixpkgs.lib.nixosSystem {
                 inherit system;
                 modules = [
-                    ./hosts/IdeaPad/configuration.nix
-                    ./hosts/IdeaPad/hardware-configuration.nix
+                    ./hosts/Siri/configuration.nix
+                    ./hosts/Siri/hardware-configuration.nix
 
                     # Enable home-manager as a NixOS module
                     home-manager.nixosModules.home-manager
@@ -34,26 +34,11 @@
                 ];
             };
 
-            ThinkPad = nixpkgs.lib.nixosSystem {
+            Tofu = nixpkgs.lib.nixosSystem {
                 inherit system;
                 modules = [
-                    ./hosts/ThinkPad/configuration.nix
-                    ./hosts/ThinkPad/hardware-configuration.nix
-
-                    home-manager.nixosModules.home-manager
-                    {
-                        home-manager.useGlobalPkgs = true;
-                        home-manager.useUserPackages = true;
-                        home-manager.users.pottarr = import ./users/pottarr/home.nix;
-                    }
-                ];
-            };
-
-            BMAX = nixpkgs.lib.nixosSystem {
-                inherit system;
-                modules = [
-                    ./hosts/BMAX/configuration.nix
-                    ./hosts/BMAX/hardware-configuration.nix
+                    ./hosts/Tofu/configuration.nix
+                    ./hosts/Tofu/hardware-configuration.nix
 
                     home-manager.nixosModules.home-manager
                     {

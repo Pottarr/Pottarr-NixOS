@@ -63,5 +63,3 @@ ZSH_THEME_GIT_PROMPT_PREFIX="%F{188}("    # before branch
 ZSH_THEME_GIT_PROMPT_SUFFIX=")%f"           # after branch
 ZSH_THEME_GIT_PROMPT_DIRTY="%F{124}✗%f"     # repo dirty
 ZSH_THEME_GIT_PROMPT_CLEAN="%F{76}✓%f"   # repo clean
-
-bindkey -v
