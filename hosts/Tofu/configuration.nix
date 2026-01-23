@@ -108,6 +108,7 @@ in {
         acpi
         alacritty
         arandr
+        ascii
         bat
         blueman
         brightnessctl
