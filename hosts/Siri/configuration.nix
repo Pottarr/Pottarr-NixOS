@@ -138,6 +138,7 @@ in {
         acpi
         alacritty
         arandr
+        ascii
         bat
         binutils
         blueman
