@@ -178,6 +178,7 @@ in {
         google-chrome
         gparted
         gtk4
+        heroic
         i3lock-color
         i3-volume
         jdk
