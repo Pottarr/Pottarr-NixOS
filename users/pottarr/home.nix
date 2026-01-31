@@ -1,4 +1,4 @@
-{ config, inputs, pkgs, ... }:
+{ config, pkgs, tmxds, ... }:
 {
     home = {
         username = "pottarr";
@@ -6,7 +6,7 @@
         stateVersion = "25.05";
         packages = with pkgs; [
             dconf
-            inputs.tmxds.packages.${pkgs.system}.default
+            tmxds.packages.${pkgs.system}.default
             # X11 libraries
             xorg.libX11
             xorg.libXcursor

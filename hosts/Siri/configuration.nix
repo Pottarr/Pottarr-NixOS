@@ -390,6 +390,9 @@ in {
         packages  = with pkgs; [
         # (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
         nerd-fonts.caskaydia-cove
+        noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-color-emoji
         ];
     };
 
