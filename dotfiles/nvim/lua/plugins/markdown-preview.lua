@@ -8,7 +8,7 @@ return {
     -- New Chrome window
     vim.cmd([[
       function! OpenMarkdownPreviewNewWindow(url)
-        silent! execute '!google-chrome-stable --new-window --app' . shellescape(a:url) . ' &'
+        silent! execute '!google-chrome-stable --new-window --app=' . shellescape(a:url) . ' &'
       endfunction
     ]])
 
