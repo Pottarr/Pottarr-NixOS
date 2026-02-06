@@ -2,6 +2,20 @@ return {
     "toppair/peek.nvim",
     cmd = { "PeekOpen", "PeekClose" }, -- better than VeryLazy here
     build = "deno task --quiet build:fast",
+    keys = {
+        {
+            "<leader>mp",
+            function()
+                local peek = require("peek")
+                if peek.is_open() then
+                    vim.cmd("PeekClose")
+                else
+                    vim.cmd("PeekOpen")
+                end
+            end,
+            desc = "Toggle Markdown Preview",
+        },
+    },
     config = function()
         local peek = require("peek")
 
@@ -22,15 +36,6 @@ return {
                 vim.fn.system("i3-msg move left")
             end
         end, {})
-        vim.keymap.set("n", "<leader>mp", "<cmd>PeekOpen<CR>", {
-            desc = "Markdown Preview (Peek)",
-            silent = true,
-        })
-
-        vim.keymap.set("n", "<leader>mc", "<cmd>PeekClose<CR>", {
-            desc = "Close Markdown Preview (Peek)",
-            silent = true,
-        })
     end,
 }
 
