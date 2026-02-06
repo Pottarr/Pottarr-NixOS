@@ -6,6 +6,14 @@ return {
         "rcarriga/nvim-notify",
     },
     opts = {
+        require("noice").setup({
+            messages = {
+                view = "notify",
+            },
+            markdown = {
+                highlight = false,
+            },
+        }),
         lsp = {
             progress = {
                 enabled = false, -- ✅ disables "Validate Document" spam
@@ -25,3 +33,27 @@ return {
         -- },
     },
 }
+
+-- return {
+--     "folke/noice.nvim",
+--     event = "VeryLazy",
+--     dependencies = {
+--         "MunifTanjim/nui.nvim",
+--         "rcarriga/nvim-notify",
+--     },
+--     opts = {
+--         messages = {
+--             view = "notify",
+--         },
+--         markdown = {
+--             highlight = false, -- ✅ fixes your Tree-sitter "tab" crash
+--             links = false
+--         },
+--         lsp = {
+--             progress = {
+--                 enabled = false, -- ✅ disables "Validate Document" spam
+--             },
+--         },
+--     },
+-- }
+--

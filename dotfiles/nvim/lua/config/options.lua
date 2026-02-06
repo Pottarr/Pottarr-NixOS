@@ -13,6 +13,8 @@ vim.o.termguicolors = true
 vim.o.winborder = "rounded"
 vim.opt.colorcolumn = "70"
 
+vim.api.nvim_set_hl(0, "NotifyBackground", { bg = "#000000" })
+
 vim.api.nvim_create_autocmd(
     "ColorScheme", {
         callback = function()
@@ -24,6 +26,7 @@ vim.api.nvim_create_autocmd(
         end,
     }
 )
+
 
 vim.diagnostic.config({
     virtual_text = true,  -- show inline messages
