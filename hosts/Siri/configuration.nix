@@ -42,6 +42,7 @@ in {
 
     # Enable networking
     networking.networkmanager.enable = true;
+    # networking.networkmanager.wifi.macAddress = "random";
 
     # Set your time zone.
     time.timeZone = "Asia/Bangkok";
@@ -122,8 +123,12 @@ in {
     };
 
     # Allow unfree packages
-    nixpkgs.config.allowUnfree = true;
-
+    nixpkgs.config = {
+        allowUnfree = true;
+        # permittedInsecurePackages = [
+        #     "ciscoPacketTracer7-7.3.1"
+        # ];
+    };
 
     nixpkgs.config.allowBroken = true;
 
@@ -148,10 +153,12 @@ in {
         calibre
         caligula
         # ciscoPacketTracer8
+        # ciscoPacketTracer7
         cudatoolkit
         cudaPackages.cuda-samples
         curl
         dbgate
+        deno
         digital
         discord
         docker
@@ -243,11 +250,13 @@ in {
         # qtcreator
         ripgrep
         rofi
-        rustup
+        # -- Rust --
         rustc
         cargo
         rustfmt
         clippy
+        lld
+        # -----------
         scrot
         showmethekey
         skim
@@ -469,7 +478,6 @@ in {
             nvidiaBusId = "PCI:1:0:0";
         };
     };
-
 
 
     # hardware.graphics = {
