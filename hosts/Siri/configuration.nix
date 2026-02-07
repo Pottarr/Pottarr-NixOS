@@ -149,6 +149,7 @@ in {
         blueman
         brightnessctl
         btop
+        bun
         calcure
         calibre
         caligula
@@ -200,6 +201,7 @@ in {
         libffi
         localsend
         lua5_4
+        luarocks
         luminance
         man
         man-pages
@@ -218,6 +220,7 @@ in {
         lua-language-server
         rust-analyzer
         nodejs_24
+        # nodePackages.browser-sync
         obs-studio
         # (obs-studio.override { plugins = [ obs-linuxbrowser ]; })
         # obs-studio-plugins.obs-webkitgtk
