@@ -155,8 +155,8 @@ in {
         caligula
         # ciscoPacketTracer8
         # ciscoPacketTracer7
-        cudatoolkit
-        cudaPackages.cuda-samples
+        # cudatoolkit
+        # cudaPackages.cuda-samples
         curl
         dbgate
         deno
