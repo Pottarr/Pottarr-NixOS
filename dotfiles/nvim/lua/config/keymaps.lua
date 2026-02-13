@@ -36,3 +36,7 @@ map("n", "<a-d>", vim.diagnostic.open_float, { desc = "Show Diagnostic on Cursor
 
 -- Buffer
 map("n", "<Leader>bd", "<cmd>bd<CR>", { desc = "Close Current Buffer"})
+
+-- Live Server
+-- map("n", "<Leader>lt", "<cmd>!browser-sync start --server --files . &<CR>", { desc = "Toggle Live Server"})
+-- map("n", "<Leader>lt", "<cmd>!bunx five-server . &<CR>", { desc = "Toggle Live Server"})

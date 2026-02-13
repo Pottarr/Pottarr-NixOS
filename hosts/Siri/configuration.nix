@@ -40,6 +40,7 @@ in {
 
     # Enable networking
     networking.networkmanager.enable = true;
+    # networking.networkmanager.wifi.macAddress = "random";
 
     # Set your time zone.
     time.timeZone = "Asia/Bangkok";
@@ -134,14 +135,17 @@ in {
         blueman
         brightnessctl
         btop
+        bun
         calcure
         calibre
         caligula
         # ciscoPacketTracer8
-        cudatoolkit
-        cudaPackages.cuda-samples
+        # ciscoPacketTracer7
+        # cudatoolkit
+        # cudaPackages.cuda-samples
         curl
         dbgate
+        deno
         digital
         discord
         docker
@@ -183,6 +187,7 @@ in {
         libffi
         localsend
         lua5_4
+        luarocks
         luminance
         man
         man-pages
@@ -197,6 +202,7 @@ in {
         networkmanager
         networkmanagerapplet
         nodejs_24
+        # nodePackages.browser-sync
         obs-studio
         openssl
         pandoc
@@ -224,11 +230,13 @@ in {
         qt6.qttools
         ripgrep
         rofi
-        rustup
+        # -- Rust --
         rustc
         cargo
         rustfmt
         clippy
+        lld
+        # -----------
         scrot
         showmethekey
         skim
@@ -405,7 +413,6 @@ in {
             nvidiaBusId = "PCI:1:0:0";
         };
     };
-
 
 
     # hardware.graphics = {
