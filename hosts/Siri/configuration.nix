@@ -6,14 +6,12 @@
 
 let
     wallpaper = ../../dotfiles/wallpaper/Background.png;
-    # mouse_script = /etc/ELECOM.sh;
 in {
     imports = [ # Include the results of the hardware scan.
         ./hardware-configuration.nix
     ];
 
     # Bootloader.
-    # boot.loader.systemd-boot.enable = true;
     boot.tmp.cleanOnBoot = true;
     boot.loader.grub = {
         enable = true;
@@ -59,7 +57,6 @@ in {
         LC_PAPER = "th_TH.UTF-8";
         LC_TELEPHONE = "th_TH.UTF-8";
         LC_TIME = "en_GB.UTF-8";
-        # LC_TIME = "en_CUSTOM.UTF-8/UTF-8:./locales/en_custom";
     };
 
     # Configure keymap in X11
@@ -75,12 +72,6 @@ in {
         gvfs.enable = true;
         udisks2.enable = true;
     };
-
-    # services.logind.extraConfig = ''
-    #     HandleLidSwitch=ignore
-    #     HandleLidSwitchExternalPower=ignore
-    #     HandleLidSwitchDocked=ignore
-    # '';
 
     services.logind.settings.Login = {
         HandleLidSwitch = "ignore";
@@ -109,7 +100,6 @@ in {
 
     # Configure Display Manager ly
     services.displayManager = {
-        # ly.enable = true;
         defaultSession = "none+i3";
     };
 
@@ -118,7 +108,6 @@ in {
         isNormalUser = true;
         description = "Pottarr";
         extraGroups = [ "networkmanager" "wheel" "video" "storage" "plugdev" "input" "docker" "libvirtd" "kvm" ];
-        # packages = with pkgs; [];
         shell = pkgs.zsh;
     };
 
@@ -214,17 +203,11 @@ in {
         mpv
         nasm
         ncspot
-        # ncurses
         networkmanager
         networkmanagerapplet
-        # For neovim
-        lua-language-server
-        rust-analyzer
         nodejs_24
         # nodePackages.browser-sync
         obs-studio
-        # (obs-studio.override { plugins = [ obs-linuxbrowser ]; })
-        # obs-studio-plugins.obs-webkitgtk
         openssl
         pandoc
         pasystray
@@ -242,8 +225,6 @@ in {
         prismlauncher
         projectlibre
         pulseaudioFull
-        # python3Full
-        # python313Full
         python3Packages.pip
         python3Packages.pyside6
         python3Packages.shiboken6
@@ -251,7 +232,6 @@ in {
         qemu
         virt-manager
         qt6.qttools
-        # qtcreator
         ripgrep
         rofi
         # -- Rust --
@@ -285,12 +265,9 @@ in {
         volctl
         vscode
         wine
-        # webkitgtk
         xcb-util-cursor
         xclip
         xdot
-        # xfce.thunar
-        # xfce.tumbler
         xfce.xfce4-settings
         xfce.xfconf
         pkgs.xorg.libxcb
@@ -361,8 +338,6 @@ in {
         dconf = {
             enable = true;
         };
-        # Brightness CLI light
-        # light.enable = true;
         # i3lock
         i3lock.enable = true;
         neovim = {
@@ -370,14 +345,7 @@ in {
         };
         nix-ld = {
             enable = true;
-            # libraries = with pkgs; [
-            #     glib
-            # ];
         };
-        # obs-studio = {
-        #     enable = true;
-        #     enableVirtualCamera = true;
-        # };
         steam.enable = true;
         tmux.enable = true;
         zoxide.enable = true;
@@ -425,47 +393,14 @@ in {
         v4l2loopback
     ];
 
-    # boot.extraModprobeConfig = ''
-    #     options v4l2loopback devices=1 video_nr=0 card_label="OBS Virtual Camera" exclusive_caps=1
-    # '';
-
-
-    #
-    #
-    # boot.extraModulePackages = with config.boot.kernelPackages; [
-    #     v4l2loopback
-    # ];
-    # boot.kernelModules = [ "v4l2loopback" ];
-    #
-    #
     boot.extraModprobeConfig = ''
         options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
     '';
-    #
-    #
-    #
-    # boot.extraModprobeConfig = ''
-    #     options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
-    # '';
 
-    # Bluetooth
     hardware.bluetooth.enable = true;
     hardware.opentabletdriver.enable = true;
 
-
-    # services.pulseaudio.enable = false; # Disable PulseAudio
     security.rtkit.enable = true;
-    # services.pipewire = {
-    #     enable = true;
-    #     alsa.enable = true;
-    #     alsa.support32Bit = true;
-    #     pulse.enable = true;
-    #     # jack.enable = true; # Optional, for JACK applications
-    # };
-
-
-    # services.xserver.videoDrivers = [ "modesetting" ];
-
     hardware.graphics.enable = true;
     services.xserver.videoDrivers = [ "nvidia" ];
 
