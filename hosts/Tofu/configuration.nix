@@ -22,7 +22,7 @@ in {
 
     boot.loader.efi.canTouchEfiVariables = true;
 
-    networking.hostName = "ThinkPad"; # Define your hostname.
+    networking.hostName = "Tofu"; # Define your hostname.
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
     # Configure network proxy if necessary
@@ -82,7 +82,6 @@ in {
 
     # Configure Display Manager
     services.displayManager = {
-        # ly.enable = true;
         defaultSession = "none+i3";
     };
 
@@ -95,8 +94,14 @@ in {
     };
 
     # Allow unfree packages
-    nixpkgs.config.allowUnfree = true;
+    nixpkgs.config = {
+        allowUnfree = true;
+        permittedInsecurePackages = [
+            "ciscoPacketTracer8-8.2.2"
+        ];
 
+        ciscoPacketTracerSource = /nix/store/6hjgf7b5vg9nqa4hl150pxdcs8xf4i15-CiscoPacketTracer822_amd64_signed.deb;
+    };
     nixpkgs.config.allowBroken = true;
 
     # List packages installed in system profile. To search, run:
@@ -114,9 +119,11 @@ in {
         brightnessctl
         btop
         caligula
+        ciscoPacketTracer8
         curl
         dunst
         binutils
+        deno
         discord
         digital
         docker
@@ -143,6 +150,7 @@ in {
         lazydocker
         lazygit
         libreoffice
+        librewolf
         libvlc
         libxkbcommon
         libffi
@@ -151,9 +159,6 @@ in {
         nasm
         networkmanager
         networkmanagerapplet
-        # For neovim
-        lua-language-server
-        rust-analyzer
         nodejs_24
         obs-studio
         openssl
@@ -170,7 +175,6 @@ in {
         postman
         projectlibre
         pulseaudioFull
-        # python3Full
         python3Packages.pip
         python3Packages.tkinter
         ripgrep
@@ -192,8 +196,6 @@ in {
         volctl
         emote
         xclip
-        # xfce.thunar
-        # xfce.tumbler
         xfce.xfce4-settings
         xfce.xfconf
         xournalpp
@@ -244,7 +246,6 @@ in {
     i18n.inputMethod = {
         enable = true;
         type = "fcitx5";
-        # fcitx5.addons = with pkgs; [ fcitx5-configtool fcitx5-m17n ];
         fcitx5.addons = with pkgs; [ fcitx5-m17n ];
     };
 
@@ -252,7 +253,6 @@ in {
     fonts = {
         enableDefaultPackages = true;
         packages  = with pkgs; [
-            # (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
             nerd-fonts.caskaydia-cove
             noto-fonts
             noto-fonts-cjk-sans
@@ -261,7 +261,6 @@ in {
     };
 
     boot.kernelParams = [ "sysrq_always_enabled" ];
-    # boot.kernelPackages = pkgs.linuxPackages_latest;
 
     boot.kernel.sysctl."kernel.sysrq" = 1;
 
