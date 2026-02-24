@@ -6,7 +6,7 @@
         stateVersion = "25.05";
         packages = with pkgs; [
             dconf
-            tmxds.packages.${pkgs.system}.default
+            tmxds.packages.${pkgs.stdenv.hostPlatform.system}.default
             # X11 libraries
             xorg.libX11
             xorg.libXcursor

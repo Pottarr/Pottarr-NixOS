@@ -143,7 +143,7 @@ in {
         calcure
         calibre
         caligula
-        # ciscoPacketTracer8
+        ciscoPacketTracer8
         # ciscoPacketTracer7
         # cudatoolkit
         # cudaPackages.cuda-samples
@@ -163,7 +163,6 @@ in {
         ffmpegthumbnailer
         flatpak
         font-manager
-        fusuma
         fzf
         gcc_multi
         gdb
@@ -175,6 +174,7 @@ in {
         gnumake
         google-chrome
         gparted
+        gsettings-desktop-schemas
         gtk4
         heroic
         i3lock-color
@@ -255,6 +255,10 @@ in {
         thunderbird
         tigervnc
         tree
+        # -- Typst --
+        tinymist
+        typst
+        # -----------
         ueberzugpp
         unetbootin
         unixtools.watch
@@ -264,6 +268,7 @@ in {
         vlc
         volctl
         vscode
+        webkitgtk_4_1
         wine
         xcb-util-cursor
         xclip

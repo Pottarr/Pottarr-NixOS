@@ -39,6 +39,13 @@ if true then
                   },
               },
             })
+
+            lspconfig.tinymist.setup({
+                settings = {
+                    exportPdf = "onSave",
+                }
+            })
+
             vim.diagnostic.config({
                 virtual_text = true,
                 signs = true,

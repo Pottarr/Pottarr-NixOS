@@ -21,6 +21,7 @@ return {
 
         peek.setup({
               app = { 'google-chrome-stable', '--new-window' }
+              -- app = { 'webview' }
         })
 
         vim.api.nvim_create_user_command("PeekOpen", function()

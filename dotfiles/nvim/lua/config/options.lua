@@ -12,6 +12,7 @@ vim.opt.spelllang= en_us
 vim.o.termguicolors = true
 vim.o.winborder = "rounded"
 vim.opt.colorcolumn = "70"
+vim.g.editorconfig = false
 
 vim.api.nvim_set_hl(0, "NotifyBackground", { bg = "#000000" })
 
