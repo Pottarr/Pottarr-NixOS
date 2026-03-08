@@ -1,7 +1,8 @@
 return {
     "toppair/peek.nvim",
-    cmd = { "PeekOpen", "PeekClose" }, -- better than VeryLazy here
+    cmd = { "PeekOpen", "PeekClose" },
     build = "deno task --quiet build:fast",
+    ft = 'markdown',
     keys = {
         {
             "<leader>mp",
@@ -20,8 +21,7 @@ return {
         local peek = require("peek")
 
         peek.setup({
-              app = { 'google-chrome-stable', '--new-window' }
-              -- app = { 'webview' }
+            app = { 'qutebrowser' }
         })
 
         vim.api.nvim_create_user_command("PeekOpen", function()

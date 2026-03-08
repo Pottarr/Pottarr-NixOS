@@ -5,7 +5,7 @@
         homeDirectory = "/home/pottarr";
         stateVersion = "25.05";
         packages = with pkgs; [
-            dconf
+            dconf-editor
             tmxds.packages.${pkgs.stdenv.hostPlatform.system}.default
             # X11 libraries
             xorg.libX11
@@ -43,12 +43,18 @@
     gtk = {
         enable = true;
         theme = {
-        name = "Adwaita-dark";
-        package = pkgs.gnome-themes-extra;
+            name = "Adwaita-dark";
+            package = pkgs.gnome-themes-extra;
         };
         iconTheme = {
-        name = "Adwaita";
-        package = pkgs.adwaita-icon-theme;
+            name = "Adwaita";
+            package = pkgs.adwaita-icon-theme;
+        };
+        gtk3.extraConfig = {
+            gtk-recent-files-enabled = 0;
+        };
+        gtk4.extraConfig = {
+            gtk-recent-files-enabled = 0;
         };
     };
 

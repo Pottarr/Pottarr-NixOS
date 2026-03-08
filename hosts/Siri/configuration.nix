@@ -232,6 +232,7 @@ in {
         qemu
         virt-manager
         qt6.qttools
+        qutebrowser
         ripgrep
         rofi
         # -- Rust --
@@ -268,7 +269,6 @@ in {
         vlc
         volctl
         vscode
-        webkitgtk_4_1
         wine
         xcb-util-cursor
         xclip

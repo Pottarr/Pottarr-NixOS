@@ -176,6 +176,7 @@ in {
         pulseaudioFull
         python3Packages.pip
         python3Packages.tkinter
+        qutebrowser
         ripgrep
         rofi
         rustup

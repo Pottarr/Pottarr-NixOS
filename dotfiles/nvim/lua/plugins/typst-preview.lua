@@ -4,5 +4,13 @@ return {
     version = '1.*',
     opts = {
         open_cmd = 'sh -c \'google-chrome-stable --app=%s\'',
-    }, -- lazy.nvim will implicitly calls `setup {}`
+    },
+    keys = {
+        {
+        "<leader>tp",
+        "<cmd>TypstPreviewToggle<CR>",
+        desc = "Toggle Typst Preview",
+        },
+        { "<leader>mp", false },
+    },
 }
