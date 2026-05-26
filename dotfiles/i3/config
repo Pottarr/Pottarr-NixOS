@@ -85,7 +85,7 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec ghostty
 bindsym $mod+f exec pcmanfm
 bindsym $mod+b exec blueman-manager
 

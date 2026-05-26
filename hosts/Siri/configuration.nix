@@ -22,12 +22,16 @@ in {
         configurationLimit = 10;
     };
 
+    nix.settings.download-buffer-size = 67108864;
+    nix.settings.auto-optimise-store = true;
+    nix.settings.max-jobs = "auto";
+
     # keep only last N generations
-    system.autoUpgrade.enable = true;
-    system.autoUpgrade.allowReboot = false;
+    # system.autoUpgrade.enable = true;
+    # system.autoUpgrade.allowReboot = false;
     nix.gc.automatic = true;
     nix.gc.dates = "weekly";
-    nix.gc.options = "--delete-older-than 30d";
+    nix.gc.options = "--delete-older-than 14d";
 
     boot.loader.efi.canTouchEfiVariables = true;
 
@@ -71,6 +75,7 @@ in {
         devmon.enable = true;
         gvfs.enable = true;
         udisks2.enable = true;
+        usbmuxd.enable = true;
     };
 
     services.logind.settings.Login = {
@@ -107,18 +112,18 @@ in {
     users.users.pottarr = {
         isNormalUser = true;
         description = "Pottarr";
-        extraGroups = [ "networkmanager" "wheel" "video" "storage" "plugdev" "input" "docker" "libvirtd" "kvm" ];
+        extraGroups = [ "networkmanager" "wheel" "video" "storage" "plugdev" "input" "docker" "libvirtd" "kvm" "pcspkr" ];
         shell = pkgs.zsh;
     };
 
     # Allow unfree packages
-    nixpkgs.config = {
-        allowUnfree = true;
-        permittedInsecurePackages = [
-            "ciscoPacketTracer8-8.2.2"
-        ];
-        ciscoPacketTracerSource = /nix/store/6hjgf7b5vg9nqa4hl150pxdcs8xf4i15-CiscoPacketTracer822_amd64_signed.deb;
-    };
+    # nixpkgs.config = {
+    #     allowUnfree = true;
+    #     permittedInsecurePackages = [
+    #         "ciscoPacketTracer8-8.2.2"
+    #     ];
+    #     ciscoPacketTracerSource = /nix/store/6hjgf7b5vg9nqa4hl150pxdcs8xf4i15-CiscoPacketTracer822_amd64_signed.deb;
+    # };
 
     nixpkgs.config.allowBroken = true;
 
@@ -131,10 +136,13 @@ in {
         # Added by Pottarr
         abook
         acpi
+        activate-linux
         alacritty
+        anydesk
         arandr
         ascii
         bat
+        beep
         binutils
         blueman
         brightnessctl
@@ -143,9 +151,10 @@ in {
         calcure
         calibre
         caligula
-        ciscoPacketTracer8
+        chafa
+        # ciscoPacketTracer8
         # ciscoPacketTracer7
-        # cudatoolkit
+        cudatoolkit
         # cudaPackages.cuda-samples
         curl
         dbgate
@@ -154,6 +163,7 @@ in {
         discord
         docker
         docker-compose
+        drawio
         dunst
         emote
         eza
@@ -167,6 +177,8 @@ in {
         gcc_multi
         gdb
         gf
+        ghidra
+        ghostty
         gimp
         git
         glibc
@@ -182,10 +194,12 @@ in {
         jdk
         jupyter
         kdePackages.kdenlive
+        kitty-img
         lazydocker
         lazygit
         libgcc
         libreoffice
+        librewolf
         libvlc
         libxkbcommon
         libffi
@@ -205,9 +219,11 @@ in {
         ncspot
         networkmanager
         networkmanagerapplet
+        nmap
         nodejs_24
         # nodePackages.browser-sync
         obs-studio
+        openconnect
         openssl
         pandoc
         pasystray
@@ -222,15 +238,17 @@ in {
         postgresql.pg_config
         posting
         postman
+        # Minecraft
         prismlauncher
+        openjdk8
         projectlibre
         pulseaudioFull
         python3Packages.pip
         python3Packages.pyside6
         python3Packages.shiboken6
         python3Packages.tkinter
+        qbittorrent
         qemu
-        virt-manager
         qt6.qttools
         qutebrowser
         ripgrep
@@ -244,6 +262,7 @@ in {
         # -----------
         scrot
         showmethekey
+        sioyek
         skim
         skyemu
         snapshot
@@ -270,6 +289,7 @@ in {
         volctl
         vscode
         wine
+        xarchiver
         xcb-util-cursor
         xclip
         xdot
@@ -305,6 +325,9 @@ in {
             package = pkgs.mongodb-ce;
             bind_ip = "127.0.0.1";
         };
+        tailscale = {
+            enable = true;
+        };
     };
 
     services.flatpak.enable = true;
@@ -322,14 +345,34 @@ in {
         "/var/lib/flatpak/exports/share"
         "/home/pottarr/.local/share/flatpak/exports/share"
     ];
+    environment.sessionVariables.GDK_BACKEND = "x11";
 
     services.libinput.touchpad.naturalScrolling = true;
 
     virtualisation = {
-        docker = {
-            enable = true;
-        };
+        docker.enable = true;
+        libvirtd.enable = true;
     };
+
+    # services.ollama = {
+    #     enable = true;
+    #     # acceleration = "cuda";
+    #     package = (pkgs.ollama.override { acceleration = "cuda"; }).overrideAttrs (old: {
+    #         version = "0.21.2";
+    #
+    #         src = pkgs.fetchFromGitHub {
+    #             owner = "ollama";
+    #             repo = "ollama";
+    #             rev = "v0.21.2"; # Make sure this tag actually exists in their repo!
+    #             fetchSubmodules = true;
+    #             hash = "sha256-bWZsuJmSPO/Y5BqpyR/MNHVV8YWXAR8Z37YgwgnNBvs=";
+    #         };
+    #         proxyVendor = true;
+    #         # Go packages require a vendor hash
+    #         vendorHash = "sha256-Lc1Ktdqtv2VhJQssk8K1UOimeEjVNvDWePE9WkamCos=";
+    #         doCheck = false;
+    #     });
+    # };
 
     programs = {
         # ZSH
@@ -350,11 +393,30 @@ in {
         };
         nix-ld = {
             enable = true;
+            libraries = with pkgs; [
+                # stdenv.cc.cc
+                stdenv.cc.cc.lib
+                # glibc
+                zlib
+            ];
         };
         steam.enable = true;
+        virt-manager.enable = true;
         tmux.enable = true;
         zoxide.enable = true;
     };
+    # environment.sessionVariables = {
+    #     NIX_LD_LIBRARY_PATH = with pkgs;
+    #         lib.makeLibraryPath [
+    #             stdenv.cc.cc.lib
+    #             zlib
+    #         ];
+    # };
+
+
+    environment.sessionVariables = {
+            LD_LIBRARY_PATH = "$NIX_LD_LIBRARY_PATH";
+        };
 
     security.polkit.enable = true;
 
@@ -421,7 +483,9 @@ in {
             intelBusId = "PCI:0:2:0";
             nvidiaBusId = "PCI:1:0:0";
         };
+        # cudaSupport = true;
     };
+    hardware.nvidia-container-toolkit.enable = true;
 
 
     # hardware.graphics = {

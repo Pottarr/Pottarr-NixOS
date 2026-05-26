@@ -40,3 +40,7 @@ map("n", "<Leader>bd", "<cmd>bd<CR>", { desc = "Close Current Buffer"})
 -- Live Server
 -- map("n", "<Leader>lt", "<cmd>!browser-sync start --server --files . &<CR>", { desc = "Toggle Live Server"})
 -- map("n", "<Leader>lt", "<cmd>!bunx five-server . &<CR>", { desc = "Toggle Live Server"})
+
+-- Dashboard
+vim.keymap.set("n", "<leader>jk", function() require("snacks").dashboard.open() end, { desc = "Dashboard" })
+

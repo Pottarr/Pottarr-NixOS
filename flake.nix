@@ -20,26 +20,43 @@
         Siri = nixpkgs.lib.nixosSystem {
             inherit system;
 
+            specialArgs = {};
+
             modules = [
-            ./hosts/Siri/configuration.nix
-            ./hosts/Siri/hardware-configuration.nix
+                {
+                    nixpkgs = {
+                        config = {
+                        allowUnfree = true;
+                        allowBroken = true;
+                        permittedInsecurePackages = [
+                            "ciscoPacketTracer8-8.2.2"
+                        ];
+                        ciscoPacketTracerSource = /nix/store/6hjgf7b5vg9nqa4hl150pxdcs8xf4i15-CiscoPacketTracer822_amd64_signed.deb;
+                        };
+                    };
+                }
 
-            # ✅ Home Manager as NixOS module
-            home-manager.nixosModules.home-manager
+                ./hosts/Siri/configuration.nix
+                ./hosts/Siri/hardware-configuration.nix
 
-            {
+                home-manager.nixosModules.home-manager
+
+                {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
 
                 home-manager.extraSpecialArgs = {
-                inherit tmxds;
+                    inherit tmxds;
                 };
 
                 home-manager.users.pottarr =
-                import ./users/pottarr/home.nix;
-            }
+                    import ./users/pottarr/home.nix;
+                }
             ];
         };
+
+
+
 
         Tofu = nixpkgs.lib.nixosSystem {
             inherit system;

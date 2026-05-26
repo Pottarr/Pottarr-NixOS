@@ -6,7 +6,7 @@ result
 # hosts/Siri/hardware-configuration.nix
 
 # Flake lockfile (optional — keep if you want reproducibility)
-flake.lock
+# flake.lock
 
 # Logs and caches
 # .cache/
