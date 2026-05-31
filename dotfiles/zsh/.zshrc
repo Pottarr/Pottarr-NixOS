@@ -45,6 +45,9 @@ alias ls="eza --icons=always"
 alias tree="eza -T --icons=always"
 alias za="zathura"
 alias open="xdg-open"
+alias tsu="sudo tailscale up"
+alias tsd="sudo tailscale down"
+alias tss="tailscale status"
 # alias cdd="zi"
 
 cdd() {

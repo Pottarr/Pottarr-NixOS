@@ -5,7 +5,7 @@
 { config, lib, pkgs, ... }:
 
 let
-    wallpaper = ../../dotfiles/wallpaper/Background.png;
+    # wallpaper = ../../dotfiles/wallpaper/Background.png;
 in {
     imports = [ # Include the results of the hardware scan.
         ./hardware-configuration.nix
@@ -86,27 +86,33 @@ in {
 
 
     # Configure i3wm
+    services.displayManager.gdm.enable = true;
     services.xserver = {
         enable = true;
-        displayManager.lightdm = {
-            enable =  true;
-            greeters.gtk = {
-                enable = true;
-                theme.name = "Adwaita-dark";
-                cursorTheme.name = "Adwaita";
-            };
-            background = wallpaper;
-        };
+        # displayManager.gdm.enable = true;
+        # displayManager.lightdm = {
+        #     enable =  true;
+        #     greeters.gtk = {
+        #         enable = true;
+        #         theme.name = "Adwaita-dark";
+        #         cursorTheme.name = "Adwaita";
+        #     };
+        #     background = wallpaper;
+        # };
         windowManager.i3 = {
         enable = true;
         extraPackages = with pkgs; [ i3status i3lock i3blocks ];
         };
     };
 
-    # Configure Display Manager ly
-    services.displayManager = {
-        defaultSession = "none+i3";
+    services.desktopManager = {
+        gnome.enable = true;
     };
+
+    # Configure Display Manager
+    # services.displayManager = {
+    #     defaultSession = "none+i3";
+    # };
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.pottarr = {
@@ -138,6 +144,7 @@ in {
         acpi
         activate-linux
         alacritty
+        # antigravity.packages.${pkgs.system}.default
         anydesk
         arandr
         ascii
@@ -176,6 +183,7 @@ in {
         fzf
         gcc_multi
         gdb
+        gdm-settings
         gf
         ghidra
         ghostty
@@ -183,6 +191,8 @@ in {
         git
         glibc
         gnome-builder
+        gnome-themes-extra
+        gnome-tweaks
         gnumake
         google-chrome
         gparted
@@ -345,7 +355,7 @@ in {
         "/var/lib/flatpak/exports/share"
         "/home/pottarr/.local/share/flatpak/exports/share"
     ];
-    environment.sessionVariables.GDK_BACKEND = "x11";
+    # environment.sessionVariables.GDK_BACKEND = "x11";
 
     services.libinput.touchpad.naturalScrolling = true;
 
@@ -354,34 +364,14 @@ in {
         libvirtd.enable = true;
     };
 
-    # services.ollama = {
-    #     enable = true;
-    #     # acceleration = "cuda";
-    #     package = (pkgs.ollama.override { acceleration = "cuda"; }).overrideAttrs (old: {
-    #         version = "0.21.2";
-    #
-    #         src = pkgs.fetchFromGitHub {
-    #             owner = "ollama";
-    #             repo = "ollama";
-    #             rev = "v0.21.2"; # Make sure this tag actually exists in their repo!
-    #             fetchSubmodules = true;
-    #             hash = "sha256-bWZsuJmSPO/Y5BqpyR/MNHVV8YWXAR8Z37YgwgnNBvs=";
-    #         };
-    #         proxyVendor = true;
-    #         # Go packages require a vendor hash
-    #         vendorHash = "sha256-Lc1Ktdqtv2VhJQssk8K1UOimeEjVNvDWePE9WkamCos=";
-    #         doCheck = false;
-    #     });
-    # };
-
     programs = {
         # ZSH
         zsh = {
             enable = true;
-            ohMyZsh = {
-                enable = true;
-                theme = "robbyrussell";
-            };
+            # ohMyZsh = {
+            #    enable = true;
+            #    theme = "robbyrussell";
+            # };
         };
         dconf = {
             enable = true;
@@ -423,7 +413,7 @@ in {
     security.pam.services.i3lock = {
         allowNullPassword = false;
     };
-    
+
     # Configure Keyboard Input fcitx
     i18n.inputMethod = {
         enable = true;
@@ -449,8 +439,6 @@ in {
     boot.kernelParams = [
         "sysrq_always_enabled"
     ];
-
-    # boot.kernelPackages = pkgs.linuxPackages_latest;
 
     boot.kernel.sysctl."kernel.sysrq" = 1;
 

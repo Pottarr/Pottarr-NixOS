@@ -6,10 +6,11 @@
 
         home-manager = {
         url = "github:nix-community/home-manager/release-25.11";
-        inputs.nixpkgs.follows = "nixpkgs";
+            inputs.nixpkgs.follows = "nixpkgs";
         };
 
         tmxds.url = "github:Pottarr/TMXDS";
+        # antigravity.url = "github:jacopone/antigravity-nix";
     };
 
     outputs = { nixpkgs, home-manager, tmxds, ... }:
