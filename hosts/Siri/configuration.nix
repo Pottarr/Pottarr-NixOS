@@ -297,6 +297,7 @@ in {
         vdirsyncer
         vlc
         volctl
+        snixembed
         vscode
         wine
         xarchiver
@@ -368,10 +369,10 @@ in {
         # ZSH
         zsh = {
             enable = true;
-            # ohMyZsh = {
-            #    enable = true;
-            #    theme = "robbyrussell";
-            # };
+            ohMyZsh = {
+               enable = true;
+               # theme = "robbyrussell";
+            };
         };
         dconf = {
             enable = true;

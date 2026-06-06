@@ -20,3 +20,5 @@ result
 # Secrets (if not using agenix or sops)
 # secrets.nix
 # secrets/
+
+.antigravitycli/

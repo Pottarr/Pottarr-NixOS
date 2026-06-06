@@ -46,6 +46,9 @@ exec --no-startup-id fcitx5 -d
 exec --no-startup-id /home/pottarr/.local/bin/ELECOM
 # exec --no-startup-id pasystray
 exec --no-startup-id volctl
+exec --no-startup-id snixembed --fork
+exec --no-startup-id tailscale systray
+exec --no-startup-id /home/pottarr/.local/bin/screenshot-tray
 exec --no-startup-id xfsettingsd
 exec_always --no-startup-id exec /home/pottarr/.config/i3/battery-notification/battery_notification.sh
 
