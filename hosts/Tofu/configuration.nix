@@ -96,10 +96,10 @@ in {
     # Allow unfree packages
     nixpkgs.config = {
         allowUnfree = true;
-        permittedInsecurePackages = [
-            "ciscoPacketTracer8-8.2.2"
-        ];
-        ciscoPacketTracerSource = /nix/store/6hjgf7b5vg9nqa4hl150pxdcs8xf4i15-CiscoPacketTracer822_amd64_signed.deb;
+        # permittedInsecurePackages = [
+        #     "ciscoPacketTracer8-8.2.2"
+        # ];
+        # ciscoPacketTracerSource = /nix/store/6hjgf7b5vg9nqa4hl150pxdcs8xf4i15-CiscoPacketTracer822_amd64_signed.deb;
     };
     nixpkgs.config.allowBroken = true;
 
@@ -118,7 +118,7 @@ in {
         brightnessctl
         btop
         caligula
-        ciscoPacketTracer8
+        # ciscoPacketTracer8
         curl
         dunst
         binutils
@@ -138,6 +138,7 @@ in {
         gcc
         gdb
         gf
+        ghostty
         git
         glib
         google-chrome
@@ -182,6 +183,7 @@ in {
         rustup
         scrot
         skim
+        snixembed
         spotify
         sqlite
         texliveFull
@@ -303,6 +305,9 @@ in {
         postgresql = {
             enable = true;
             package = pkgs.postgresql;
+        };
+        tailscale = {
+            enable = true;
         };
     };
 

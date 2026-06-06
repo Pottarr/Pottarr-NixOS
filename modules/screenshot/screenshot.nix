@@ -21,5 +21,8 @@ in
 
         home.file.".local/bin/screenshot-tray".source = "${dotfiles}/scripts/screenshot_tray.py";
         home.file.".local/bin/screenshot-tray".executable = true;
+
+        home.file.".local/bin/screenshot-menu".source = "${dotfiles}/scripts/screenshot_menu.py";
+        home.file.".local/bin/screenshot-menu".executable = true;
     };
 }

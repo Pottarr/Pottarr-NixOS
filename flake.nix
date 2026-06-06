@@ -29,10 +29,10 @@
                         config = {
                         allowUnfree = true;
                         allowBroken = true;
-                        permittedInsecurePackages = [
-                            "ciscoPacketTracer8-8.2.2"
-                        ];
-                        ciscoPacketTracerSource = /nix/store/6hjgf7b5vg9nqa4hl150pxdcs8xf4i15-CiscoPacketTracer822_amd64_signed.deb;
+                        # permittedInsecurePackages = [
+                        #     "ciscoPacketTracer8-8.2.2"
+                        # ];
+                        # ciscoPacketTracerSource = /nix/store/6hjgf7b5vg9nqa4hl150pxdcs8xf4i15-CiscoPacketTracer822_amd64_signed.deb;
                         };
                     };
                 }

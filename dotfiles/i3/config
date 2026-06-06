@@ -88,7 +88,8 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec ghostty
+# bindsym $mod+Return exec ghostty
+bindsym $mod+Return exec env LIBGL_ALWAYS_SOFTWARE=true ghostty
 bindsym $mod+f exec pcmanfm
 bindsym $mod+b exec blueman-manager
 
@@ -105,10 +106,10 @@ bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons
 
 #Screenshot
 # My Insert Button is swapped wth Print Button, so I changed it.
-bindsym $mod+Print exec /home/pottarr/.local/bin/screenshot window
-bindsym $mod+Shift+Print exec /home/pottarr/.local/bin/screenshot
-bindsym $mod+Shift+s+Print exec /home/pottarr/.local/bin/screenshot full
-bindsym $mod+Shift+s exec /home/pottarr/.local/bin/screenshot color
+# bindsym $mod+Print exec /home/pottarr/.local/bin/screenshot window
+bindsym $mod+Shift+Print exec /home/pottarr/.local/bin/screenshot-menu
+# bindsym $mod+Shift+s+Print exec /home/pottarr/.local/bin/screenshot full
+# bindsym $mod+Shift+s exec /home/pottarr/.local/bin/screenshot color
 
 # i3lock-color
 # bindsym $mod+Shift+x exec --no-startup-id fancy-lock-cmd

@@ -88,3 +88,7 @@ ZSH_THEME_GIT_PROMPT_PREFIX="%F{188}("    # before branch
 ZSH_THEME_GIT_PROMPT_SUFFIX=")%f"           # after branch
 ZSH_THEME_GIT_PROMPT_DIRTY="%F{124}✗%f"     # repo dirty
 ZSH_THEME_GIT_PROMPT_CLEAN="%F{76}✓%f"   # repo clean
+
+# Ghostty wrapper for systems with older GPUs/drivers (OpenGL < 4.3)
+alias ghostty="env LIBGL_ALWAYS_SOFTWARE=true ghostty"
+
