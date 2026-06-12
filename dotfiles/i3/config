@@ -54,10 +54,10 @@ exec_always --no-startup-id exec /home/pottarr/.config/i3/battery-notification/b
 
 
 set $wallpaper /home/pottarr/Pictures/Profile/Background.jpg
-exec --no-startup-id feh --bg-scale $wallpaper
+exec --no-startup-id /home/pottarr/.local/bin/wallpaper-daemon.sh
 
 # Config 2 displays with arandr manually
-bindsym $mod+Shift+i exec --no-startup-id feh --bg-scale $wallpaper $wallpaper
+bindsym $mod+Shift+i exec --no-startup-id /home/pottarr/.local/bin/wallpaper-daemon.sh --once
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status

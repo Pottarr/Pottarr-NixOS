@@ -53,6 +53,10 @@ in {
             source = "${dotfiles}/scripts/lid-handler.sh";
             executable = true;
         };
+        home.file.".local/bin/wallpaper-daemon.sh" = {
+            source = "${dotfiles}/scripts/wallpaper-daemon.sh";
+            executable = true;
+        };
         home.file.".config/acpi/events/lid-close" = {
             source = "${dotfiles}/scripts/lid-close";
         };
