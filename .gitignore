@@ -22,3 +22,7 @@ result
 # secrets/
 
 .antigravitycli/
+
+# Python cache
+__pycache__/
+*.pyc

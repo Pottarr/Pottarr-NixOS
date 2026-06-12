@@ -1,10 +1,24 @@
 #!/usr/bin/env bash
 
-WALLPAPER="/home/pottarr/Pictures/Profile/Background.jpg"
+DEFAULT_WALLPAPER="/home/pottarr/Pictures/Profile/Background.jpg"
+STATE_FILE="/home/pottarr/.config/i3/.current_wallpaper"
 
 setup_wallpaper() {
     # Wait a brief moment to ensure xrandr is updated and displays are stable
     sleep 1.5
+    
+    # Determine which wallpaper to use
+    if [ -f "$STATE_FILE" ]; then
+        WALLPAPER=$(cat "$STATE_FILE")
+    else
+        WALLPAPER="$DEFAULT_WALLPAPER"
+    fi
+    
+    # Fallback to default if the file from the state file doesn't exist
+    if [ ! -f "$WALLPAPER" ]; then
+        WALLPAPER="$DEFAULT_WALLPAPER"
+    fi
+
     if [ ! -f "$WALLPAPER" ]; then
         echo "Wallpaper file not found: $WALLPAPER" >&2
         return 1

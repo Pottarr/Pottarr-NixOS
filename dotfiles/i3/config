@@ -58,6 +58,7 @@ exec --no-startup-id /home/pottarr/.local/bin/wallpaper-daemon.sh
 
 # Config 2 displays with arandr manually
 bindsym $mod+Shift+i exec --no-startup-id /home/pottarr/.local/bin/wallpaper-daemon.sh --once
+bindsym $mod+Shift+w exec --no-startup-id /home/pottarr/.local/bin/wallpaper-picker
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status

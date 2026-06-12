@@ -57,6 +57,10 @@ in {
             source = "${dotfiles}/scripts/wallpaper-daemon.sh";
             executable = true;
         };
+        home.file.".local/bin/wallpaper-picker" = {
+            source = "${dotfiles}/scripts/wallpaper-picker.py";
+            executable = true;
+        };
         home.file.".config/acpi/events/lid-close" = {
             source = "${dotfiles}/scripts/lid-close";
         };
