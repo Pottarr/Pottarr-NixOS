@@ -23,17 +23,30 @@ setup_wallpaper() {
         echo "Wallpaper file not found: $WALLPAPER" >&2
         return 1
     fi
+
+    # Read the wallpaper mode
+    STATE_FILE_MODE="${STATE_FILE}_mode"
+    if [ -f "$STATE_FILE_MODE" ]; then
+        MODE=$(cat "$STATE_FILE_MODE")
+    else
+        MODE="scale"
+    fi
+
+    # Validate mode
+    if [[ ! "$MODE" =~ ^(scale|tile|center|fill)$ ]]; then
+        MODE="scale"
+    fi
     
     # Get the number of connected monitors
     num_monitors=$(xrandr --query | grep " connected" | wc -l)
     
     # Build the feh command
-    cmd=("feh" "--bg-scale")
+    cmd=("feh" "--bg-$MODE")
     for ((i=0; i<num_monitors; i++)); do
         cmd+=("$WALLPAPER")
     done
     
-    echo "Setting wallpaper for $num_monitors connected monitor(s)..."
+    echo "Setting wallpaper in '$MODE' mode for $num_monitors connected monitor(s)..."
     "${cmd[@]}"
 }
 

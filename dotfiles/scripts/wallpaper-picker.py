@@ -71,6 +71,33 @@ class WallpaperPicker(wx.Frame):
         self.Bind(wx.EVT_MENU, self.on_toggle_hidden, id=self.accel_tbl_id)
         accel_tbl = wx.AcceleratorTable([(wx.ACCEL_CTRL, ord('h'), self.accel_tbl_id)])
         self.SetAcceleratorTable(accel_tbl)
+
+        # Wallpaper mode choice
+        mode_label = wx.StaticText(left_panel, label="Style (Scale/Tile/Center/Fill):")
+        mode_label.SetForegroundColour(wx.Colour(202, 211, 245))
+        left_sizer.Add(mode_label, 0, wx.TOP | wx.LEFT | wx.RIGHT, 10)
+
+        # Load existing mode if saved
+        saved_mode = "scale"
+        if os.path.exists(STATE_FILE + "_mode"):
+            try:
+                with open(STATE_FILE + "_mode", "r") as f:
+                    saved_mode = f.read().strip().lower()
+            except Exception:
+                pass
+        
+        mode_choices = ["Scale", "Tile", "Center", "Fill"]
+        default_sel = 0
+        for idx, m in enumerate(mode_choices):
+            if m.lower() == saved_mode:
+                default_sel = idx
+                break
+
+        self.mode_choice = wx.Choice(left_panel, choices=mode_choices)
+        self.mode_choice.SetSelection(default_sel)
+        self.mode_choice.Bind(wx.EVT_CHOICE, self.on_mode_changed)
+        left_sizer.Add(self.mode_choice, 0, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.BOTTOM, 10)
+
         left_panel.SetSizer(left_sizer)
 
         # Right panel: Preview & Actions
@@ -126,6 +153,9 @@ class WallpaperPicker(wx.Frame):
         self.dir_ctrl.ShowHidden(show)
         self.dir_ctrl.ReCreateTree()
 
+    def on_mode_changed(self, event):
+        self.preview_canvas.Refresh()
+
     def on_paint(self, event):
         dc = wx.PaintDC(self.preview_canvas)
         size = self.preview_canvas.GetSize()
@@ -142,26 +172,77 @@ class WallpaperPicker(wx.Frame):
             text = "Select an image from the file explorer"
             tw, th = dc.GetTextExtent(text)
             dc.DrawText(text, (size.width - tw) // 2, (size.height - th) // 2)
+            
+            # Draw border representing screen edges
+            dc.SetPen(wx.Pen(wx.Colour(139, 213, 202), 2)) # Teal border
+            dc.SetBrush(wx.TRANSPARENT_BRUSH)
+            dc.DrawRectangle(0, 0, size.width, size.height)
             return
 
         try:
-            # Scale and display image
             img = wx.Image(self.selected_file, wx.BITMAP_TYPE_ANY)
             img_w, img_h = img.GetWidth(), img.GetHeight()
+            mode = self.mode_choice.GetString(self.mode_choice.GetSelection()).lower()
 
-            scale = min(size.width / img_w, size.height / img_h)
-            new_w = max(1, int(img_w * scale))
-            new_h = max(1, int(img_h * scale))
+            if mode == "scale":
+                # Stretches image to fit completely
+                img.Rescale(size.width, size.height, wx.IMAGE_QUALITY_HIGH)
+                bmp = wx.Bitmap(img)
+                dc.DrawBitmap(bmp, 0, 0)
 
-            x = (size.width - new_w) // 2
-            y = (size.height - new_h) // 2
+            elif mode == "tile":
+                # Tiles image repeatedly at original size
+                bmp = wx.Bitmap(img)
+                for x in range(0, size.width, img_w):
+                    for y in range(0, size.height, img_h):
+                        dc.DrawBitmap(bmp, x, y)
 
-            img.Rescale(new_w, new_h, wx.IMAGE_QUALITY_HIGH)
-            bmp = wx.Bitmap(img)
-            dc.DrawBitmap(bmp, x, y)
+            elif mode == "center":
+                # Centers original size image, clipping edges if too large
+                x = (size.width - img_w) // 2
+                y = (size.height - img_h) // 2
+                bmp = wx.Bitmap(img)
+                dc.DrawBitmap(bmp, x, y)
+
+            elif mode == "fill":
+                # Scales to fill maintaining aspect ratio (crops excess)
+                scale = max(size.width / img_w, size.height / img_h)
+                new_w = max(1, int(img_w * scale))
+                new_h = max(1, int(img_h * scale))
+                x = (size.width - new_w) // 2
+                y = (size.height - new_h) // 2
+                img.Rescale(new_w, new_h, wx.IMAGE_QUALITY_HIGH)
+                bmp = wx.Bitmap(img)
+                dc.DrawBitmap(bmp, x, y)
+
+            # Draw border representing screen edges
+            dc.SetPen(wx.Pen(wx.Colour(139, 213, 202), 2)) # Teal border
+            dc.SetBrush(wx.TRANSPARENT_BRUSH)
+            dc.DrawRectangle(0, 0, size.width, size.height)
+
+            # Draw i3bar simulation at the top
+            bar_height = 24
+            dc.SetPen(wx.TRANSPARENT_PEN)
+            dc.SetBrush(wx.Brush(wx.Colour(16, 17, 22))) # Dark color matching standard i3bar
+            dc.DrawRectangle(2, 2, size.width - 4, bar_height)
+            
+            # Draw thin separator line below the i3bar simulation
+            dc.SetPen(wx.Pen(wx.Colour(73, 76, 100), 1))
+            dc.DrawLine(2, bar_height + 2, size.width - 2, bar_height + 2)
+            
+            dc.SetTextForeground(wx.Colour(165, 173, 203))
+            font = wx.Font(8, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL)
+            dc.SetFont(font)
+            dc.DrawText("i3status / i3bar zone (top)", 10, 6)
+
         except Exception as e:
             dc.SetTextForeground(wx.Colour(238, 153, 160))
             dc.DrawText(f"Failed to load preview: {str(e)}", 10, 10)
+            
+            # Draw border
+            dc.SetPen(wx.Pen(wx.Colour(139, 213, 202), 2))
+            dc.SetBrush(wx.TRANSPARENT_BRUSH)
+            dc.DrawRectangle(0, 0, size.width, size.height)
 
     def on_set_wallpaper(self, event):
         if not self.selected_file or not os.path.exists(self.selected_file):
@@ -175,6 +256,11 @@ class WallpaperPicker(wx.Frame):
 
             with open(STATE_FILE, "w") as f:
                 f.write(self.selected_file)
+
+            # Save the wallpaper mode to the state file
+            mode = self.mode_choice.GetString(self.mode_choice.GetSelection()).lower()
+            with open(STATE_FILE + "_mode", "w") as f:
+                f.write(mode)
 
             # Trigger background daemon update
             subprocess.Popen([DAEMON_CMD, "--once"])
