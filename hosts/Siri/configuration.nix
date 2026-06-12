@@ -85,6 +85,8 @@ in {
     };
 
 
+    users.motd = builtins.readFile ../../dotfiles/logo;
+
     # Configure i3wm
     services.displayManager.gdm.enable = true;
     services.xserver = {

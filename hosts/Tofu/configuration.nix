@@ -62,6 +62,8 @@ in {
         udisks2.enable = true;
     };
 
+    users.motd = builtins.readFile ../../dotfiles/logo;
+
     # Configure i3wm
     services.xserver = {
         enable = true;

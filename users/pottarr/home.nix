@@ -20,6 +20,8 @@
         ];
     };
 
+    home.file."logo".source = ../../dotfiles/logo;
+
     i3.enable = true;
     i3blocks.enable = true;
     imports = [
@@ -80,4 +82,35 @@
         enable = true;
         pictures = "${config.home.homeDirectory}/Pictures";
     };
+
+    xdg.configFile."fastfetch/config.jsonc".text = ''
+        {
+            "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+            "logo": {
+                "source": "/home/pottarr/logo",
+                "type": "auto",
+                "padding": {
+                    "top": 1,
+                    "bottom": 0,
+                    "left": 3,
+                    "right": 3
+                }
+            },
+            "modules": [
+                "break",
+                "title",
+                "os",
+                "host",
+                "kernel",
+                "uptime",
+                "cpu",
+                "gpu",
+                "memory",
+                "disk",
+                "localip",
+                "battery",
+                "break"
+            ]
+        }
+    '';
 }
