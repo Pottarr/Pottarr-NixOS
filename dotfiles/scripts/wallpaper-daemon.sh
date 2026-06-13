@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-DEFAULT_WALLPAPER="/home/pottarr/Pictures/Profile/Background.jpg"
-STATE_FILE="/home/pottarr/.config/i3/.current_wallpaper"
+DEFAULT_WALLPAPER="$HOME/Pictures/Profile/Background.jpg"
+STATE_FILE="$HOME/.config/i3/.current_wallpaper"
 
 setup_wallpaper() {
     # Wait a brief moment to ensure xrandr is updated and displays are stable
