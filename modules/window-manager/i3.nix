@@ -79,6 +79,10 @@ in {
             source = "${dotfiles}/scripts/lock.sh";
             executable = true;
         };
+        home.file.".local/bin/touchpad-toggle" = {
+            source = "${dotfiles}/scripts/touchpad-toggle.sh";
+            executable = true;
+        };
     };
 }
 

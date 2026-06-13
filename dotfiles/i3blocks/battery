@@ -22,7 +22,30 @@ my $percent;
 my $ac_adapt;
 my $full_text;
 my $short_text;
-my $bat_number = $ENV{BAT_NUMBER} || 0;
+my $bat_number = $ENV{BAT_NUMBER};
+if (not defined($bat_number) or $bat_number eq '') {
+    if (opendir(my $dh, "/sys/class/power_supply")) {
+        my @bats = grep {
+            my $f = "/sys/class/power_supply/$_/type";
+            -f $f && do {
+                open my $fh, "<", $f;
+                my $t = <$fh>;
+                close $fh;
+                chomp($t);
+                $t eq "Battery"
+            }
+        } readdir($dh);
+        closedir($dh);
+        @bats = sort @bats;
+        for (my $i = 0; $i < @bats; $i++) {
+            if ($bats[$i] =~ /^BAT\d+$/) {
+                $bat_number = $i;
+                last;
+            }
+        }
+    }
+    $bat_number //= 0;
+}
 my $label = $ENV{LABEL} || "";
 
 # read the first line of the "acpi" command output

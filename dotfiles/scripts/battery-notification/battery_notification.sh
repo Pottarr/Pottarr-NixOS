@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-BAT_NUM="BAT1"
+# Find the first laptop battery in /sys/class/power_supply (e.g., BAT0 or BAT1)
+BAT_NUM=$(ls /sys/class/power_supply/ | grep -E '^BAT[0-9]+$' | head -n 1)
+BAT_NUM=${BAT_NUM:-BAT0} # Fallback to BAT0 if none detected
 
 # Using a PID file 
 
