@@ -113,6 +113,7 @@ in {
         # Added by Pottarr
         acpi
         alacritty
+        anydesk
         arandr
         ascii
         bat
@@ -190,6 +191,10 @@ in {
         sqlite
         texliveFull
         tree
+        # -- Typst --
+        tinymist
+        typst
+        # -----------
         ueberzugpp
         unetbootin
         unixtools.watch
