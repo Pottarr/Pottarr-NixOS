@@ -48,10 +48,28 @@ if (not defined($bat_number) or $bat_number eq '') {
 }
 my $label = $ENV{LABEL} || "";
 
-# read the first line of the "acpi" command output
-open (ACPI, "acpi -b 2>/dev/null| grep 'Battery $bat_number' |") or die;
-$acpi = <ACPI>;
+# Read all lines of the "acpi" command output
+open (ACPI, "acpi -b 2>/dev/null |") or die;
+my @lines = <ACPI>;
 close(ACPI);
+
+# Automatically find a battery that has charge, or fallback to the first parsed line
+foreach my $line (@lines) {
+    if ($line =~ /Battery (\d+): ([\w\s]+), (\d+)%/) {
+        my $percent = $3;
+        if ($percent > 0 || not defined($acpi)) {
+            $acpi = $line;
+            if ($percent > 0) {
+                last;
+            }
+        }
+    }
+}
+
+# If no batteries matched the pattern, default to the first line if available
+if (not defined($acpi) and @lines > 0) {
+    $acpi = $lines[0];
+}
 
 # fail on unexpected output
 if (not defined($acpi)) {

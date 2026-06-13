@@ -112,7 +112,7 @@ command = battery
 interval=10
 # LABEL=BAT
 LABEL=⚡
-#BAT_NUMBER=0
+## BAT_NUMBER=0
 
 
 # [rofi-calendar]
