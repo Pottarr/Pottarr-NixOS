@@ -56,8 +56,8 @@ exec_always --no-startup-id exec /home/pottarr/.config/i3/battery-notification/b
 set $wallpaper /home/pottarr/Pictures/Profile/Background.jpg
 exec --no-startup-id /home/pottarr/.local/bin/wallpaper-daemon.sh
 
-# Config 2 displays with arandr manually
-bindsym $mod+Shift+i exec --no-startup-id /home/pottarr/.local/bin/wallpaper-daemon.sh --once
+# Reset to default wallpaper (Phra Chom Klao)
+bindsym $mod+Shift+i exec --no-startup-id "rm -f /home/pottarr/.config/i3/.current_wallpaper /home/pottarr/.config/i3/.current_wallpaper_mode && /home/pottarr/.local/bin/wallpaper-daemon.sh --once"
 bindsym $mod+Shift+w exec --no-startup-id /home/pottarr/.local/bin/wallpaper-picker
 
 # Use pactl to adjust volume in PulseAudio.
