@@ -170,7 +170,7 @@ in {
         deno
         digital
         discord
-        docker
+        docker_29
         docker-compose
         drawio
         dunst
@@ -200,7 +200,7 @@ in {
         gparted
         gsettings-desktop-schemas
         gtk4
-        heroic
+        haruna
         i3lock-color
         i3-volume
         jdk
@@ -364,6 +364,7 @@ in {
 
     virtualisation = {
         docker.enable = true;
+        docker.package = pkgs.docker_29;
         libvirtd.enable = true;
     };
 

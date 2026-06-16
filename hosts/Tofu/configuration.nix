@@ -128,7 +128,7 @@ in {
         deno
         discord
         digital
-        docker
+        docker_29
         eza
         fastfetch
         fd
