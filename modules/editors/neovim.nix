@@ -38,6 +38,8 @@
         # Use Mason
         typescript-language-server
         nodePackages.prettier
+        # Clipboard utility for X11
+        xclip
     ];
 
     programs.neovim = {

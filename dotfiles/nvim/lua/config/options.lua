@@ -52,3 +52,6 @@ if vim.env.SSH_TTY or vim.env.SSH_CONNECTION or vim.env.SSH_CLIENT then
   }
 end
 
+vim.opt.clipboard = "unnamedplus"
+
+
