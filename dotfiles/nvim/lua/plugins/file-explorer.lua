@@ -7,7 +7,20 @@ return {
             {
                 "<leader>e",
                 "<CMD>Oil<CR>",
-                desc = "Open Oil File Explorer"
+                desc = "Open Oil File Explorer (Local)"
+            },
+            {
+                "<leader>E",
+                function()
+                    vim.ui.input({ prompt = "Enter remote host (user@hostname): " }, function(input)
+                        if not input or input == "" then
+                            return
+                        end
+                        input = input:gsub("%s+", "")
+                        vim.cmd("edit oil-ssh://" .. input .. "/")
+                    end)
+                end,
+                desc = "Open Oil File Explorer (Remote SSH)"
             }
         },
         -- Optional dependencies
