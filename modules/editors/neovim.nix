@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
     home.packages = with pkgs; [
@@ -45,6 +45,6 @@
     programs.neovim = {
         enable = true;
     };
-    home.file.".config/nvim".source = ../../dotfiles/nvim;
+    home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "/home/pottarr/Setups/Pottarr-NixOS/dotfiles/nvim";
 }
 
