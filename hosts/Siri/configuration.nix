@@ -107,9 +107,6 @@ in {
         };
     };
 
-    services.desktopManager = {
-        gnome.enable = true;
-    };
 
     # Configure Display Manager
     # services.displayManager = {
@@ -142,6 +139,7 @@ in {
         vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
         wget
         # Added by Pottarr
+        swi-prolog
         abook
         acpi
         activate-linux
@@ -192,9 +190,6 @@ in {
         gimp
         git
         glibc
-        gnome-builder
-        gnome-themes-extra
-        gnome-tweaks
         gnumake
         google-chrome
         gparted
@@ -277,7 +272,6 @@ in {
         sioyek
         skim
         skyemu
-        snapshot
         spotify
         sqlite
         stdenv.cc
@@ -317,27 +311,28 @@ in {
         xss-lock
         yazi
         yosys
+        yt-dlp
         zathura
+        zed-editor
         zip
         zoom-us
     ];
 
-    # DB
     services = {
-        postgresql = {
-            enable = true;
-            package = pkgs.postgresql;
-        };
-        mysql = {
-            enable = true;
-            package = pkgs.mysql80;
-            dataDir = "/var/lib/mysql";
-        };
-        mongodb = {
-             enable = true;
-            package = pkgs.mongodb-ce;
-            bind_ip = "127.0.0.1";
-        };
+        # postgresql = {
+        #     enable = true;
+        #     package = pkgs.postgresql;
+        # };
+        # mysql = {
+        #     enable = true;
+        #     package = pkgs.mysql80;
+        #     dataDir = "/var/lib/mysql";
+        # };
+        # mongodb = {
+        #      enable = true;
+        #     package = pkgs.mongodb-ce;
+        #     bind_ip = "127.0.0.1";
+        # };
         tailscale = {
             enable = true;
         };
