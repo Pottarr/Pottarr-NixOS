@@ -17,9 +17,8 @@ class CalendarPopup(wx.PopupTransientWindow):
                                                   wx.adv.CAL_SEQUENTIAL_MONTH_SELECTION | 
                                                   wx.adv.CAL_MONDAY_FIRST)
 
-        # Prevent moving the selection (blue highlight)
-        self.calendar.Bind(wx.adv.EVT_CALENDAR_SEL_CHANGED, self.OnSelChanged)
-
+        # Intercept mouse clicks to prevent selecting a different day
+        self.calendar.Bind(wx.EVT_LEFT_DOWN, self.OnCalendarLeftDown)
 
         sizer = wx.BoxSizer(wx.VERTICAL)
         sizer.Add(self.calendar, 1, wx.EXPAND | wx.ALL, 10)
@@ -28,11 +27,17 @@ class CalendarPopup(wx.PopupTransientWindow):
         sizer.Fit(panel)
         self.Fit()
 
-    def OnSelChanged(self, event):
-        # Force the selected date to remain on today's date
-        current_date = self.calendar.GetDate()
-        if not current_date.IsSameDate(self.today):
-            self.calendar.SetDate(self.today)
+    def OnCalendarLeftDown(self, event):
+        # HitTest tells us what part of the calendar was clicked
+        hit_result = self.calendar.HitTest(event.GetPosition())
+        # hit_result is a tuple: (HitTestPlace, DateTime, WeekDay)
+        if hit_result[0] == wx.adv.CAL_HITTEST_DAY:
+            # The user clicked on a day. We simply return and DO NOT call event.Skip()
+            # This blocks the click, preventing the selection from moving!
+            return
+        
+        # For everything else (like month/year arrows), allow the click through
+        event.Skip()
 
 
     def OnDismiss(self):
