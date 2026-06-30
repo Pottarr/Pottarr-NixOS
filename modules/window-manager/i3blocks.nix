@@ -26,5 +26,13 @@ in
             source = "${dotfiles}/i3blocks/rofi-calendar";
             executable = true;
         };
+        home.file.".config/i3blocks/date" = {
+            source = "${dotfiles}/i3blocks/date";
+            executable = true;
+        };
+        home.file.".config/i3blocks/calendar-dropdown.py" = {
+            source = "${dotfiles}/i3blocks/calendar-dropdown.py";
+            executable = true;
+        };
     };
 }

@@ -121,7 +121,6 @@ LABEL=⚡
 # interval = 3600
 
 [date]
-command=date '+%A : %d/%m/%Y'
 interval=1
 # type = custom/script
 # command=date '+%A : %d/%m/%Y'
