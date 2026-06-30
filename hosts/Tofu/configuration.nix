@@ -163,6 +163,7 @@ in {
         nasm
         networkmanager
         networkmanagerapplet
+        net-tools
         nodejs_24
         obs-studio
         openssl

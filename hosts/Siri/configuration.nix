@@ -226,6 +226,7 @@ in {
         ncspot
         networkmanager
         networkmanagerapplet
+        net-tools
         nmap
         nodejs_24
         # nodePackages.browser-sync

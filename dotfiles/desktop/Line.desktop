@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Line (Chrome extension)
+Comment=Launch Line with forced dark theme
+Exec=google-chrome-stable --force-dark-mode --profile-directory=Default --app=chrome-extension://ophjlpahpchlmihnnnihgmmeilfjmjjc/index.html
+Terminal=false
+Type=Application
+Icon=Line
+Categories=Network;WebBrowser;
+StartupNotify=true
