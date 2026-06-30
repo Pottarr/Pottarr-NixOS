@@ -21,7 +21,7 @@
     };
 
     home.file."logo".source = ../../dotfiles/logo;
-
+    home.file.".config/fcitx5/profile".source = ../../dotfiles/fcitx5/profile;
     i3.enable = true;
     i3blocks.enable = true;
     imports = [
