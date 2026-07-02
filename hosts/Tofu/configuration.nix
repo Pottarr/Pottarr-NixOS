@@ -91,7 +91,7 @@ in {
     users.users.pottarr = {
         isNormalUser = true;
         description = "Pottarr";
-        extraGroups = [ "networkmanager" "wheel" "video" "storage" "plugdev" "input" ];
+        extraGroups = [ "networkmanager" "wheel" "video" "storage" "plugdev" "input" "docker" ];
         shell = pkgs.zsh;
     };
 
@@ -318,6 +318,11 @@ in {
         tailscale = {
             enable = true;
         };
+    };
+
+    virtualisation = {
+        docker.enable = true;
+        docker.package = pkgs.docker_29;
     };
 
     # Open ports in the firewall.

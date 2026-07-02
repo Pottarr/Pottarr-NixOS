@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+let
+    dotfiles = ../../dotfiles;
+in
 {
     home.packages = with pkgs; [
         # Assembly
@@ -40,11 +43,15 @@
         nodePackages.prettier
         # Clipboard utility for X11
         xclip
+        # Embedded Development
+        arduino-cli
+        arduino-language-server
+        platformio
     ];
 
     programs.neovim = {
         enable = true;
     };
-    home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "/home/pottarr/Setups/Pottarr-NixOS/dotfiles/nvim";
+    home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "/home/pottarr/Pottarr-NixOS/dotfiles/nvim";
 }
 

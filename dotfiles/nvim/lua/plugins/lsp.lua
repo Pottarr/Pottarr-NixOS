@@ -15,6 +15,7 @@ if true then
             lspconfig.nixd.setup({ mason = false, })
             lspconfig.pyright.setup({ mason = false, })
             lspconfig.tsserver.setup({ mason = false, })
+            lspconfig.arduino_language_server.setup({ mason = false, })
             -- require('render-markdown').setup({
             --     completions = { lsp = { enabled = true } },
             -- })
