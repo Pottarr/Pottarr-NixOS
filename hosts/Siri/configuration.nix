@@ -337,6 +337,7 @@ in {
         tailscale = {
             enable = true;
         };
+        resolved.enable = true;
     };
 
     services.flatpak.enable = true;

@@ -318,6 +318,7 @@ in {
         tailscale = {
             enable = true;
         };
+        resolved.enable = true;
     };
 
     virtualisation = {
