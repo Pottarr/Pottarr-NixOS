@@ -5,6 +5,7 @@
         homeDirectory = "/home/pottarr";
         stateVersion = "25.05";
         packages = with pkgs; [
+            emote
             dconf-editor
             tmxds.packages.${pkgs.stdenv.hostPlatform.system}.default
             # X11 libraries
@@ -24,13 +25,13 @@
     home.file.".config/fcitx5/profile".source = ../../dotfiles/fcitx5/profile;
     i3.enable = true;
     i3blocks.enable = true;
+    services.picom.enable = true;
     imports = [
         ../../modules/editors/neovim.nix
         ../../modules/terminal/terminal.nix
         ../../modules/screenshot/screenshot.nix
         ../../modules/window-manager/i3.nix
         ../../modules/window-manager/i3blocks.nix
-        ../../modules/window-manager/picom.nix
         ../../modules/obs/obs.nix
         ../../modules/shortcuts/desktop.nix
     ];

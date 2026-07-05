@@ -52,6 +52,6 @@ in
     programs.neovim = {
         enable = true;
     };
-    home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "/home/pottarr/Pottarr-NixOS/dotfiles/nvim";
+    home.file.".config/nvim".source = "${dotfiles}/nvim";
 }
 
