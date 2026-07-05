@@ -22,5 +22,5 @@ fi
 if [[ -z "$1" ]]; then
     google-chrome-stable "$url" & disown
 else
-    google-chrome-stable "$url" --new-window & disown
+    google-chrome-stable --app="$url" & disown
 fi
