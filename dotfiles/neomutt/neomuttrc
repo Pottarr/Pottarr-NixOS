@@ -12,6 +12,7 @@ set editor = "vim"              # Use Vim to compose emails
 set timeout = 3                 # Idle time before scanning for new mail
 set mail_check = 60             # Check for new mail every 60 seconds
 set sort = reverse-threads      # Show newest emails at the top, grouped by thread
+set quit = ask-yes              # Prompt for confirmation before quitting
 
 # ---------------------------------------------------------
 # VIM KEYBINDINGS
