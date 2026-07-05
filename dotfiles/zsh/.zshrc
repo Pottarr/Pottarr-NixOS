@@ -48,6 +48,8 @@ alias open="xdg-open"
 alias tsu="sudo tailscale up"
 alias tsd="sudo tailscale down"
 alias tss="tailscale status"
+alias dsize="du -sh ."
+alias fsize="du -ah ."
 # alias cdd="zi"
 
 cdd() {

@@ -1,0 +1,52 @@
+# ---------------------------------------------------------
+# CACHE SETTINGS (For speed)
+# ---------------------------------------------------------
+set header_cache = "~/.config/neomutt/cache/headers"
+set message_cachedir = "~/.config/neomutt/cache/bodies"
+set imap_check_subscribed = yes
+
+# ---------------------------------------------------------
+# BEHAVIOR & EDITOR
+# ---------------------------------------------------------
+set editor = "vim"              # Use Vim to compose emails
+set timeout = 3                 # Idle time before scanning for new mail
+set mail_check = 60             # Check for new mail every 60 seconds
+set sort = reverse-threads      # Show newest emails at the top, grouped by thread
+
+# ---------------------------------------------------------
+# VIM KEYBINDINGS
+# ---------------------------------------------------------
+# Navigation
+bind index,pager j next-entry
+bind index,pager k previous-entry
+bind index,pager \Cd half-down
+bind index,pager \Cu half-up
+bind index g noop
+bind index gg first-entry
+bind index G last-entry
+
+# Reading / Actions
+bind index \CR display-message  # Enter to read
+bind pager \CR next-line        # Enter to scroll down inside an email
+bind pager q exit               # 'q' to go back to inbox
+
+# Composing
+bind index m mail               # 'm' to compose a new mail
+bind index r reply              # 'r' to reply
+bind index a group-reply        # 'a' to reply all
+
+# Mailbox Management
+bind index d delete-message     # 'd' to delete
+bind index u undelete-message   # 'u' to undo delete
+bind index s save-message       # 's' to archive/save to another folder
+
+# ---------------------------------------------------------
+# MULTIPLE ACCOUNTS (Macros)
+# ---------------------------------------------------------
+# Source the personal account by default when Neomutt opens
+source ~/.config/neomutt/accounts/personal
+
+# Macros to switch profiles instantly using Alt+1, Alt+2, and Alt+3
+macro index,pager <Esc>1 "<enter-command>source ~/.config/neomutt/accounts/personal<enter><change-folder>!<enter>" "Load Personal Gmail"
+macro index,pager <Esc>2 "<enter-command>source ~/.config/neomutt/accounts/work<enter><change-folder>!<enter>" "Load Work Mail"
+macro index,pager <Esc>3 "<enter-command>source ~/.config/neomutt/accounts/kmitl<enter><change-folder>!<enter>" "Load KMITL College Mail"
