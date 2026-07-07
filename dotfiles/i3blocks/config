@@ -154,6 +154,9 @@ interval=1
 [keyboard-layout]
 interval=1
 
+[display-menu]
+interval=once
+
 
 # [i3volume]
 # label=

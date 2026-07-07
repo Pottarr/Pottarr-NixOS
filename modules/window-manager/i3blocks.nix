@@ -46,6 +46,14 @@ in
             source = "${dotfiles}/i3blocks/keyboard-layout";
             executable = true;
         };
+        home.file.".config/i3blocks/display-menu" = {
+            source = "${dotfiles}/i3blocks/display-menu";
+            executable = true;
+        };
+        home.file.".config/i3blocks/display-menu.py" = {
+            source = "${dotfiles}/i3blocks/display-menu.py";
+            executable = true;
+        };
         home.file.".config/i3blocks/calendar-dropdown.py" = {
             source = "${dotfiles}/i3blocks/calendar-dropdown.py";
             executable = true;
