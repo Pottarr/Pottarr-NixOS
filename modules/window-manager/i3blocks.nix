@@ -54,6 +54,10 @@ in
             source = "${dotfiles}/i3blocks/display-menu.py";
             executable = true;
         };
+        home.file.".config/i3blocks/power-menu" = {
+            source = "${dotfiles}/i3blocks/power-menu";
+            executable = true;
+        };
         home.file.".config/i3blocks/calendar-dropdown.py" = {
             source = "${dotfiles}/i3blocks/calendar-dropdown.py";
             executable = true;

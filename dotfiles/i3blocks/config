@@ -157,6 +157,9 @@ interval=1
 [display-menu]
 interval=once
 
+[power-menu]
+interval=once
+
 
 # [i3volume]
 # label=
