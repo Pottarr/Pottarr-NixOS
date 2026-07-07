@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 if xset q | grep -q "Caps Lock:\s*on"; then
-    echo "A"
+    echo "CAP🟢"
 else
-    echo "a"
+    echo "CAP🔴"
 fi

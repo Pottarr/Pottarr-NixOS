@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+layout=$(fcitx5-remote -n 2>/dev/null)
+if [[ "$layout" == "keyboard-th" ]]; then
+    echo "🇹🇭"
+else
+    echo "🇺🇸"
+fi

@@ -3,7 +3,7 @@
 # Toggle mic if clicked
 if [ -n "$BLOCK_BUTTON" ] && [ "$BLOCK_BUTTON" -eq 1 ]; then
     wpctl set-mute @DEFAULT_SOURCE@ toggle
-
+    
     # Send a notification
     status=$(wpctl get-volume @DEFAULT_SOURCE@)
     if echo "$status" | grep -q "\[MUTED\]"; then
@@ -16,7 +16,7 @@ fi
 # Get current status for status line
 status=$(wpctl get-volume @DEFAULT_SOURCE@)
 if echo "$status" | grep -q "\[MUTED\]"; then
-    echo "🎤❌"
+    echo "🎤🔴"
 else
-    echo "🎤✅"
+    echo "🎤🟢"
 fi

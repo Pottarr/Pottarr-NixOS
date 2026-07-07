@@ -147,6 +147,9 @@ interval=1
 command=date '+%H:%M:%S'
 interval=1
 
+[keyboard-layout]
+interval=1
+
 
 # [i3volume]
 # label=

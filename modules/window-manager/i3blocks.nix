@@ -38,6 +38,10 @@ in
             source = "${dotfiles}/i3blocks/mic";
             executable = true;
         };
+        home.file.".config/i3blocks/keyboard-layout" = {
+            source = "${dotfiles}/i3blocks/keyboard-layout";
+            executable = true;
+        };
         home.file.".config/i3blocks/calendar-dropdown.py" = {
             source = "${dotfiles}/i3blocks/calendar-dropdown.py";
             executable = true;
