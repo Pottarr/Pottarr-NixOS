@@ -1,6 +1,48 @@
-#!/usr/bin/env bash
-if xset q | grep -q "Num Lock:\s*on"; then
-    echo "NUM🟢"
-else
-    echo "NUM🔴"
-fi
+#!/usr/bin/env python3
+import subprocess
+import sys
+
+# KEY_NUMLOCK keycode in Linux input event codes
+KEY_NUMLOCK = 69
+
+def has_numlock():
+    try:
+        with open('/proc/bus/input/devices', 'r') as f:
+            lines = f.read().split('\n\n')
+        for block in lines:
+            if not block.strip():
+                continue
+            is_keyboard = False
+            key_bitmap = ''
+            for line in block.split('\n'):
+                if line.startswith('H:'):
+                    if 'kbd' in line:
+                        is_keyboard = True
+                elif line.startswith('B: KEY='):
+                    key_bitmap = line.split('=')[1].strip()
+            
+            if is_keyboard and key_bitmap:
+                parts = key_bitmap.split()
+                bit_str = ''
+                for part in parts:
+                    val = int(part, 16)
+                    bit_str = f'{val:064b}' + bit_str
+                if len(bit_str) > KEY_NUMLOCK and bit_str[-1 - KEY_NUMLOCK] == '1':
+                    return True
+    except Exception:
+        return True  # Fallback to True if we fail to read/parse
+    return False
+
+if not has_numlock():
+    # Hide the block by outputting nothing
+    sys.exit(0)
+
+# Check state using xset
+try:
+    status = subprocess.check_output(['xset', 'q']).decode('utf-8')
+    if 'Num Lock:    on' in status:
+        print("NUM🟢")
+    else:
+        print("NUM🔴")
+except Exception:
+    pass
