@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# Toggle mute if clicked
+if [ -n "$BLOCK_BUTTON" ] && [ "$BLOCK_BUTTON" -eq 1 ]; then
+    wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+fi
+
+# Get current status
+vol_status=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
+if echo "$vol_status" | grep -q "\[MUTED\]"; then
+    echo "🔇"
+else
+    vol=$(echo "$vol_status" | awk '{print $2}')
+    percent=$(echo "$vol" | awk '{print int($1 * 100)}')
+    echo "🔊 ${percent}%"
+fi

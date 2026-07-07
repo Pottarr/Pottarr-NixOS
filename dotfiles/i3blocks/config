@@ -59,103 +59,56 @@ markup=none
 # separator=false
 # interval=30
 
-# Disk usage
-#
-# The directory defaults to $HOME if the instance is not specified.
-# The script may be called with a optional argument to set the alert
-# (defaults to 10 for 10%).
-# [disk]
-# command = disk
-# label=HOME
-#DIR=/mnt/data
-# interval=30
-
-# Network interface monitoring
-#
-# If the instance is not specified, use the interface used for default route.
-# The address can be forced to IPv4 or IPv6 with -4 or -6 switches.
-# [iface]
-# #IFACE=wlan0
-# color=#00FF00
-# interval=10
-# separator=false
-
-# [wifi]
-# #INTERFACE=wlp3s0
-# label=wifi:
-# interval=10
-# separator=false
-
-# [bandwidth]
-# #INTERFACE=eth0
-# interval=5
-
-# CPU usage
-#
-# The script may be called with -w and -c switches to specify thresholds,
-# see the script for details.
-# [cpu_usage]
-# label=CPU
-# interval=10
-# min_width=CPU 100.00%
-#separator=false
-
-# [load_average]
-# label=LOAD
-# interval=10
-
-# Battery indicator
-#
-# The battery instance defaults to 0.
-[battery]
-command = battery
-interval=10
-# LABEL=BAT
-LABEL=⚡
-## BAT_NUMBER=0
-
-[capslock]
-interval=1
-signal=11
+[disk]
+command=disk
+label=HOME
+interval=30
 
 [numlock]
 interval=1
 signal=13
 
-[mic]
+[capslock]
 interval=1
-signal=12
-
-# [rofi-calendar]
-# command = rofi-calendar
-# WEEK_START = sunday
-# interval = 3600
-
-[date]
-interval=1
-# type = custom/script
-# command=date '+%A : %d/%m/%Y'
-# # open note
-# click-left = naivecalendar
-# # copy-to-clipboard
-# click-right = naivecalendar -x 
-# # switch between date format : '%H:%M' and '%d/%m/%y'
-# scroll-up = "kill -USR1 $(pgrep --oldest --parent %pid%)"
-# scroll-down = "kill -USR1 $(pgrep --oldest --parent %pid%)"
-# tail = true
-# interval = 30
-
-# Date Time
-#
-[time]
-command=date '+%H:%M:%S'
-interval=1
+signal=11
 
 [keyboard-layout]
 interval=1
 
+[layout-daemon]
+interval=once
+
 [display-menu]
 interval=once
+
+[screenshot]
+interval=once
+
+[mic]
+interval=1
+signal=12
+
+[volume]
+interval=1
+signal=10
+
+[tailscale]
+interval=10
+
+[network]
+interval=10
+
+[battery]
+command=battery
+interval=10
+LABEL=⚡
+
+[date]
+interval=1
+
+[time]
+command=date '+%H:%M:%S'
+interval=1
 
 [power-menu]
 interval=once

@@ -58,6 +58,26 @@ in
             source = "${dotfiles}/i3blocks/power-menu";
             executable = true;
         };
+        home.file.".config/i3blocks/layout-daemon" = {
+            source = "${dotfiles}/i3blocks/layout-daemon";
+            executable = true;
+        };
+        home.file.".config/i3blocks/screenshot" = {
+            source = "${dotfiles}/i3blocks/screenshot";
+            executable = true;
+        };
+        home.file.".config/i3blocks/volume" = {
+            source = "${dotfiles}/i3blocks/volume";
+            executable = true;
+        };
+        home.file.".config/i3blocks/tailscale" = {
+            source = "${dotfiles}/i3blocks/tailscale";
+            executable = true;
+        };
+        home.file.".config/i3blocks/network" = {
+            source = "${dotfiles}/i3blocks/network";
+            executable = true;
+        };
         home.file.".config/i3blocks/calendar-dropdown.py" = {
             source = "${dotfiles}/i3blocks/calendar-dropdown.py";
             executable = true;

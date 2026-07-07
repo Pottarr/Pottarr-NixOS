@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# Open network settings on left click
+if [ -n "$BLOCK_BUTTON" ] && [ "$BLOCK_BUTTON" -eq 1 ]; then
+    nm-connection-editor &
+fi
+
+# Get Wi-Fi SSID
+wifi_ssid=$(nmcli -t -f ACTIVE,SSID dev wifi | grep '^yes' | cut -d':' -f2 | head -n1)
+if [ -n "$wifi_ssid" ]; then
+    echo "📶 $wifi_ssid"
+    exit 0
+fi
+
+# Fallback to Ethernet check
+eth_status=$(nmcli device status | grep ethernet | awk '{print $3}' | head -n1)
+if [ "$eth_status" = "connected" ]; then
+    echo "🔌 Wired"
+    exit 0
+fi
+
+echo "🚫"

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Check Tailscale connectivity
+if tailscale ip -4 &>/dev/null; then
+    echo "🔒"
+else
+    echo "🔓"
+fi

@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+
+# Toggle input layout if clicked
+if [ -n "$BLOCK_BUTTON" ] && [ "$BLOCK_BUTTON" -eq 1 ]; then
+    fcitx5-remote -t
+fi
+
 layout=$(fcitx5-remote -n 2>/dev/null)
 if [[ "$layout" == "keyboard-th" ]]; then
     echo "🇹🇭"

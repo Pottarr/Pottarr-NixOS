@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Open fcitx5 configuration tool if clicked
+if [ -n "$BLOCK_BUTTON" ] && [ "$BLOCK_BUTTON" -eq 1 ]; then
+    fcitx5-configtool &
+fi
+
+echo "⌨️"
