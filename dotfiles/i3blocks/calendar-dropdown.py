@@ -15,7 +15,7 @@ class CalendarPopup(wx.PopupTransientWindow):
         self.calendar = wx.adv.CalendarCtrl(panel, -1, self.today, 
                                             style=wx.adv.CAL_SHOW_HOLIDAYS | 
                                                   wx.adv.CAL_SEQUENTIAL_MONTH_SELECTION | 
-                                                  wx.adv.CAL_MONDAY_FIRST)
+                                                  wx.adv.CAL_SUNDAY_FIRST)
 
         # Intercept mouse clicks to prevent selecting a different day
         self.calendar.Bind(wx.EVT_LEFT_DOWN, self.OnCalendarLeftDown)

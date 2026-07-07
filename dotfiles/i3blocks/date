@@ -4,4 +4,4 @@ if [ "$BLOCK_BUTTON" = "1" ]; then
     /home/pottarr/.config/i3blocks/calendar-dropdown.py &
 fi
 
-date '+%A : %d/%m/%Y'
+date '+%A : %d/%m/%y'

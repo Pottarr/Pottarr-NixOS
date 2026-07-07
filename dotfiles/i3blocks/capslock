@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+if xset q | grep -q "Caps Lock:\s*on"; then
+    echo "A"
+else
+    echo "a"
+fi

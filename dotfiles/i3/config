@@ -61,13 +61,14 @@ bindsym $mod+Shift+i exec --no-startup-id "rm -f /home/pottarr/.config/i3/.curre
 bindsym $mod+Shift+w exec --no-startup-id /home/pottarr/.local/bin/wallpaper-picker
 
 # Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
+set $refresh_i3status pkill -SIGRTMIN+12 i3blocks
 # bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume @DEFAULT_SINK@ 5%+ && /home/pottarr/Setups/Pottarr-NixOS/dotfiles/scripts/volume_notification.sh && $refresh_i3status
 # bindsym XF86AudioLowerVolume exec --no-startup-id wpctl set-volume @DEFAULT_SINK@ 5%- && /home/pottarr/Setups/Pottarr-NixOS/dotfiles/scripts/volume_notification.sh && $refresh_i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume @DEFAULT_SINK@ 5%+ && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id wpctl set-volume @DEFAULT_SINK@ 5%- && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id wpctl set-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id wpctl set-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
 
 # Use light to adjust monnitor brightness.
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10% && /home/pottarr/.config/i3/brightness_notification.sh

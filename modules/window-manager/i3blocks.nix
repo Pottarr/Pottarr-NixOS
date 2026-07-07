@@ -30,6 +30,14 @@ in
             source = "${dotfiles}/i3blocks/date";
             executable = true;
         };
+        home.file.".config/i3blocks/capslock" = {
+            source = "${dotfiles}/i3blocks/capslock";
+            executable = true;
+        };
+        home.file.".config/i3blocks/mic" = {
+            source = "${dotfiles}/i3blocks/mic";
+            executable = true;
+        };
         home.file.".config/i3blocks/calendar-dropdown.py" = {
             source = "${dotfiles}/i3blocks/calendar-dropdown.py";
             executable = true;

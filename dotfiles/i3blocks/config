@@ -64,11 +64,11 @@ markup=none
 # The directory defaults to $HOME if the instance is not specified.
 # The script may be called with a optional argument to set the alert
 # (defaults to 10 for 10%).
-[disk]
-command = disk
-label=HOME
+# [disk]
+# command = disk
+# label=HOME
 #DIR=/mnt/data
-interval=30
+# interval=30
 
 # Network interface monitoring
 #
@@ -114,6 +114,13 @@ interval=10
 LABEL=⚡
 ## BAT_NUMBER=0
 
+[capslock]
+interval=1
+signal=11
+
+[mic]
+interval=1
+signal=12
 
 # [rofi-calendar]
 # command = rofi-calendar
