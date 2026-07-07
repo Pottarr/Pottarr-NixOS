@@ -34,6 +34,10 @@ in
             source = "${dotfiles}/i3blocks/capslock";
             executable = true;
         };
+        home.file.".config/i3blocks/numlock" = {
+            source = "${dotfiles}/i3blocks/numlock";
+            executable = true;
+        };
         home.file.".config/i3blocks/mic" = {
             source = "${dotfiles}/i3blocks/mic";
             executable = true;

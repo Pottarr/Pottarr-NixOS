@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+if xset q | grep -q "Num Lock:\s*on"; then
+    echo "NUM🟢"
+else
+    echo "NUM🔴"
+fi

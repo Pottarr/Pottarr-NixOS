@@ -118,6 +118,10 @@ LABEL=⚡
 interval=1
 signal=11
 
+[numlock]
+interval=1
+signal=13
+
 [mic]
 interval=1
 signal=12
