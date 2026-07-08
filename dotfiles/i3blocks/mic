@@ -16,7 +16,7 @@ fi
 # Get current status for status line
 status=$(wpctl get-volume @DEFAULT_SOURCE@)
 if echo "$status" | grep -q "\[MUTED\]"; then
-    echo "🎤🔴"
+    echo "󰍭 "
 else
-    echo "🎤🟢"
+    echo "󰍬 "
 fi

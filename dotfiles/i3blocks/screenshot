@@ -5,4 +5,4 @@ if [ -n "$BLOCK_BUTTON" ] && [ "$BLOCK_BUTTON" -eq 1 ]; then
     /home/pottarr/.local/bin/screenshot-menu &
 fi
 
-echo "📷"
+echo "  "

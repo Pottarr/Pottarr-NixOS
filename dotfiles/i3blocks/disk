@@ -19,6 +19,11 @@ DIR="${DIR:-$HOME}"
 ALERT_LOW="${ALERT_LOW:-$1}"
 ALERT_LOW="${ALERT_LOW:-10}" # color will turn red under this value (default: 10%)
 
+# Open default file manager if clicked
+if [ -n "$BLOCK_BUTTON" ] && [ "$BLOCK_BUTTON" -eq 1 ]; then
+    pcmanfm &
+fi
+
 LOCAL_FLAG="-l"
 if [ "$1" = "-n" ] || [ "$2" = "-n" ]; then
     LOCAL_FLAG=""

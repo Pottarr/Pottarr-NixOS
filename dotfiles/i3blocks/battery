@@ -82,13 +82,26 @@ elsif ($acpi !~ /: ([\w\s]+), (\d+)%/) {
 
 $status = $1;
 $percent = $2;
-$full_text = "$label$percent%";
 
-if ($status eq 'Discharging') {
-	$full_text .= ' DIS';
-} elsif ($status eq 'Charging') {
-	$full_text .= ' CHR';
-} elsif ($status eq 'Unknown') {
+my $icon = '';
+if ($percent < 15) {
+    $icon = '';
+} elsif ($percent < 40) {
+    $icon = '';
+} elsif ($percent < 65) {
+    $icon = '';
+} elsif ($percent < 85) {
+    $icon = '';
+}
+
+my $charge_symbol = '';
+if ($status eq 'Charging') {
+    $charge_symbol = ' ';
+}
+
+$full_text = "$charge_symbol$icon  $percent%";
+
+if ($status eq 'Unknown') {
 	open (AC_ADAPTER, "acpi -a |") or die;
 	$ac_adapt = <AC_ADAPTER>;
 	close(AC_ADAPTER);
@@ -97,9 +110,8 @@ if ($status eq 'Discharging') {
 		$ac_adapt = $1;
 
 		if ($ac_adapt eq 'on-line') {
-			$full_text .= ' CHR';
-		} elsif ($ac_adapt eq 'off-line') {
-			$full_text .= ' DIS';
+			$charge_symbol = ' ';
+            $full_text = "$charge_symbol$icon  $percent%";
 		}
 	}
 }

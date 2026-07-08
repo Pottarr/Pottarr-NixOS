@@ -51,6 +51,8 @@ class MainApp(wx.App):
         self.frame = wx.Frame(None, -1, "Hidden Frame")
         self.popup = CalendarPopup(self.frame)
 
+        self.Bind(wx.EVT_ACTIVATE_APP, self.OnActivateApp)
+
         mouse_pos = wx.GetMousePosition()
         popup_size = self.popup.GetSize()
         display_size = wx.GetDisplaySize()
@@ -70,6 +72,11 @@ class MainApp(wx.App):
         self.popup.SetPosition((x, y))
         self.popup.Popup()
         return True
+
+    def OnActivateApp(self, event):
+        if not event.GetActive():
+            self.popup.Dismiss()
+        event.Skip()
 
 if __name__ == "__main__":
     app = MainApp(False)

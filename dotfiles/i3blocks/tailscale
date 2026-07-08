@@ -1,8 +1,22 @@
-#!/usr/bin/env bash
+#!/usr/bin/env python3
+import json
+import subprocess
+import sys
 
-# Check Tailscale connectivity
-if tailscale ip -4 &>/dev/null; then
-    echo "🔒"
-else
-    echo "🔓"
-fi
+try:
+    # Query tailscale status in JSON format
+    raw_status = subprocess.check_output(['tailscale', 'status', '--json'], stderr=subprocess.DEVNULL)
+    status = json.loads(raw_status.decode('utf-8'))
+    
+    # Extract tailnet name
+    tailnet_name = status.get('CurrentTailnet', {}).get('Name')
+    
+    # Check if tailscale is actually running and connected
+    backend_state = status.get('BackendState', '')
+    if backend_state == 'Running' and tailnet_name:
+        print(f"TSS: {tailnet_name}")
+        sys.exit(0)
+except Exception:
+    pass
+
+print("TSS: DOWN")

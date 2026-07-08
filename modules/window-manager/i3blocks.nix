@@ -58,10 +58,6 @@ in
             source = "${dotfiles}/i3blocks/power-menu";
             executable = true;
         };
-        home.file.".config/i3blocks/layout-daemon" = {
-            source = "${dotfiles}/i3blocks/layout-daemon";
-            executable = true;
-        };
         home.file.".config/i3blocks/screenshot" = {
             source = "${dotfiles}/i3blocks/screenshot";
             executable = true;

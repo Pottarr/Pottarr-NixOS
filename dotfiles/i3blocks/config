@@ -60,8 +60,7 @@ markup=none
 # interval=30
 
 [disk]
-command=disk
-label=HOME
+label=  
 interval=30
 
 [numlock]
@@ -74,9 +73,6 @@ signal=11
 
 [keyboard-layout]
 interval=1
-
-[layout-daemon]
-interval=once
 
 [display-menu]
 interval=once
@@ -99,9 +95,7 @@ interval=10
 interval=10
 
 [battery]
-command=battery
 interval=10
-LABEL=⚡
 
 [date]
 interval=1

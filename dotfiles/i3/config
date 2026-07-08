@@ -41,14 +41,14 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- /home/pottarr/.local/bin/
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id dbus-run-session --exit-with-session i3
-exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet
 exec --no-startup-id fcitx5 -d
 exec --no-startup-id /home/pottarr/.local/bin/ELECOM
 # exec --no-startup-id pasystray
-exec --no-startup-id volctl
-exec --no-startup-id snixembed --fork
-exec --no-startup-id tailscale systray
-exec --no-startup-id /home/pottarr/.local/bin/screenshot-tray
+# exec --no-startup-id volctl
+# exec --no-startup-id snixembed --fork
+# exec --no-startup-id tailscale systray
+# exec --no-startup-id /home/pottarr/.local/bin/screenshot-tray
 exec --no-startup-id xfsettingsd
 exec_always --no-startup-id exec /home/pottarr/.config/i3/battery-notification/battery_notification.sh
 
@@ -265,6 +265,7 @@ bar {
 	position bottom
     status_command i3blocks
     font pango:CaskaydiaCove\ Nerd\ Font: 12
+    tray_output none
 }
 
 # Make wallpaper picker window float and center it by default
