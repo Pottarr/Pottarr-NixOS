@@ -25,6 +25,8 @@ in {
     nix.settings.download-buffer-size = 67108864;
     nix.settings.auto-optimise-store = true;
     nix.settings.max-jobs = "auto";
+    nix.settings.stalled-download-timeout = 600; # Allow up to 10min before giving up on slow downloads (e.g. large CUDA packages)
+    nix.settings.connect-timeout = 30;
 
     # keep only last N generations
     # system.autoUpgrade.enable = true;
@@ -318,13 +320,13 @@ in {
         xcb-util-cursor
         xclip
         xdot
-        xfce.xfce4-settings
-        xfce.xfconf
-        pkgs.xorg.libxcb
-        xorg.xcbutilwm
-        xorg.xcbutilimage
-        xorg.xcbutilkeysyms
-        xorg.xcbutilrenderutil
+        xfce4-settings
+        xfconf
+        libxcb
+        libxcb-wm
+        libxcb-image
+        libxcb-keysyms
+        libxcb-render-util
         xournalpp
         xss-lock
         yazi
@@ -423,7 +425,7 @@ in {
 
 
     environment.sessionVariables = {
-            LD_LIBRARY_PATH = "$NIX_LD_LIBRARY_PATH";
+            LD_LIBRARY_PATH = lib.mkForce "$NIX_LD_LIBRARY_PATH";
         };
 
     security.polkit.enable = true;
@@ -474,6 +476,13 @@ in {
     hardware.opentabletdriver.enable = true;
 
     security.rtkit.enable = true;
+    services.pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
     hardware.graphics.enable = true;
     services.xserver.videoDrivers = [ "nvidia" ];
 
