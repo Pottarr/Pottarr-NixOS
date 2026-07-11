@@ -40,7 +40,7 @@ in
         # Typescript
         # Use Mason
         typescript-language-server
-        nodePackages.prettier
+        prettier
         # Clipboard utility for X11
         xclip
         # Embedded Development
@@ -51,6 +51,8 @@ in
 
     programs.neovim = {
         enable = true;
+        withRuby = true;    # Explicitly set to silence stateVersion warning (default changed in 26.05)
+        withPython3 = true; # Explicitly set to silence stateVersion warning (default changed in 26.05)
     };
     home.file.".config/nvim".source = "${dotfiles}/nvim";
 }
