@@ -1,5 +1,6 @@
 return {
     "pottarr/peek.nvim",
+    -- dir="~/Code/Projects/peek.nvim",
     cmd = { "PeekOpen", "PeekClose" },
     build = "deno task --quiet build:fast",
     ft = 'markdown',
