@@ -23,7 +23,7 @@ in {
             [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
             # Export extra stuff
-            export PATH="$HOME/.local/bin:$PATH"
+            export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
         '';
     };
     home.file.".zshrc".source = "${dotfiles}/zsh/.zshrc";
