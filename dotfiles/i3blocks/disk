@@ -21,7 +21,7 @@ ALERT_LOW="${ALERT_LOW:-10}" # color will turn red under this value (default: 10
 
 # Open default file manager if clicked
 if [ -n "$BLOCK_BUTTON" ] && [ "$BLOCK_BUTTON" -eq 1 ]; then
-    pcmanfm &
+    pcmanfm -n ~ &
 fi
 
 LOCAL_FLAG="-l"
