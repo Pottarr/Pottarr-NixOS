@@ -9,10 +9,10 @@
             dconf-editor
             tmxds.packages.${pkgs.stdenv.hostPlatform.system}.default
             # X11 libraries
-            xorg.libX11
-            xorg.libXcursor
-            xorg.libXi
-            xorg.libXrandr
+            libx11
+            libxcursor
+            libxi
+            libxrandr
             libxkbcommon
             gnome-themes-extra
         ];
@@ -56,8 +56,11 @@
         gtk3.extraConfig = {
             gtk-recent-files-enabled = 0;
         };
-        gtk4.extraConfig = {
-            gtk-recent-files-enabled = 0;
+        gtk4 = {
+            theme = config.gtk.theme; # Explicitly inherit from gtk.theme to silence stateVersion warning
+            extraConfig = {
+                gtk-recent-files-enabled = 0;
+            };
         };
     };
 
@@ -81,6 +84,7 @@
 
     xdg.userDirs = {
         enable = true;
+        setSessionVariables = true; # Explicitly set to silence stateVersion warning
         pictures = "${config.home.homeDirectory}/Pictures";
     };
 
