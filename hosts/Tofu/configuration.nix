@@ -207,8 +207,8 @@ in {
         volctl
         emote
         xclip
-        xfce.xfce4-settings
-        xfce.xfconf
+        xfce4-settings
+        xfconf
         xournalpp
         xss-lock
         yazi
@@ -347,5 +347,7 @@ in {
         ];
         cores = 0;
         max-jobs = "auto";
+        stalled-download-timeout = 600;
+        connect-timeout = 30;
     };
 }
