@@ -147,6 +147,8 @@ in {
         # antigravity.packages.${pkgs.system}.default
         anydesk
         arandr
+        arduino-cli
+        arduino-ide
         ascii
         bat
         beep
