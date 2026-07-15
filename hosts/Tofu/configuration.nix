@@ -213,6 +213,7 @@ in {
         xss-lock
         yazi
         zathura
+        tigervnc # Added for Remote Desktop to Siri
         zip
     ];
 

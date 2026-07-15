@@ -594,4 +594,23 @@ in {
         "nix-command"
         "flakes"
     ];
+
+    # Remote Desktop Server (x11vnc)
+    environment.systemPackages = with pkgs; [ x11vnc ];
+    
+    systemd.services.x11vnc = {
+      description = "x11vnc Remote Desktop Server";
+      after = [ "display-manager.service" ];
+      wantedBy = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.x11vnc}/bin/x11vnc -display :0 -auth guess -forever -loop -noxdamage -repeat -rfbauth /home/pottarr/.vnc/passwd -rfbport 5900 -shared -localhost";
+        Restart = "on-failure";
+        User = "pottarr";
+      };
+    };
+
+    networking.firewall.extraCommands = ''
+      iptables -A INPUT -i tailscale0 -p tcp --dport 5900 -j ACCEPT
+    '';
 }
