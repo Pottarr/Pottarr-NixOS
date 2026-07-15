@@ -43,6 +43,18 @@
         enable = true;
     };
 
+    xdg.mimeApps = {
+        enable = true;
+        defaultApplications = {
+            "image/png" = [ "feh.desktop" ];
+            "image/jpeg" = [ "feh.desktop" ];
+            "image/jpg" = [ "feh.desktop" ];
+            "image/webp" = [ "feh.desktop" ];
+            "application/pdf" = [ "org.pwmt.zathura-pdf-mupdf.desktop" ];
+            "application/x-pdf" = [ "org.pwmt.zathura-pdf-mupdf.desktop" ];
+        };
+    };
+
     gtk = {
         enable = true;
         theme = {

@@ -52,6 +52,7 @@ alias tsd="sudo tailscale down"
 alias tss="tailscale status"
 alias dsize="du -sh ."
 alias fsize="du -ah ."
+alias rm="rm -i"
 # alias cdd="zi"
 
 cdd() {
