@@ -70,6 +70,10 @@ in
             source = "${dotfiles}/i3blocks/tailscale";
             executable = true;
         };
+        home.file.".config/i3blocks/rofi-wifi-menu" = {
+            source = "${dotfiles}/i3blocks/rofi-wifi-menu";
+            executable = true;
+        };
         home.file.".config/i3blocks/network" = {
             source = "${dotfiles}/i3blocks/network";
             executable = true;

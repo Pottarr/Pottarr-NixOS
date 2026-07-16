@@ -1,0 +1,123 @@
+#!/usr/bin/env bash
+
+# Notify user scanning is in progress
+notify-send -t 1500 "Wi-Fi" "Scanning for available networks..."
+
+# Get list of Wi-Fi networks sorted by signal strength, deduplicated, ignoring empty SSIDs
+ap_list=$(nmcli -t -f "active,ssid,signal,security" device wifi list | grep -v '^yes' | sort -t':' -k3 -n -r | awk -F':' '$2 != "" && !seen[$2]++ {print}')
+
+# Get currently connected SSID
+active_ssid=$(nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -d':' -f2)
+
+options=""
+
+# Add Disconnect option if connected
+if [ -n "$active_ssid" ]; then
+    options="󰖪  Disconnect from $active_ssid\n"
+fi
+
+# Add Wi-Fi toggle option
+wifi_state=$(nmcli -t -f WIFI general)
+if [ "$wifi_state" = "enabled" ]; then
+    options="${options}󰖩  Disable Wi-Fi\n"
+else
+    options="${options}󰖩  Enable Wi-Fi\n"
+fi
+
+# Format and append access points to options
+while IFS= read -r line; do
+    [ -z "$line" ] && continue
+    # Format: active:ssid:signal:security
+    IFS=':' read -r active ssid signal security <<< "$line"
+    [ -z "$ssid" ] && continue
+    
+    # Determine security icon
+    if [ -n "$security" ] && [ "$security" != "--" ]; then
+        sec_icon="🔒"
+    else
+        sec_icon="🔓"
+    fi
+    
+    # Determine signal icon
+    if [ "$signal" -ge 75 ]; then
+        sig_icon="󰖩"
+    elif [ "$signal" -ge 50 ]; then
+        sig_icon="󰖢"
+    elif [ "$signal" -ge 25 ]; then
+        sig_icon="󰖡"
+    else
+        sig_icon="󰖣"
+    fi
+    
+    options="${options}${sig_icon} ${sec_icon}  ${ssid} (${signal}%)\n"
+done <<< "$ap_list"
+
+# Show Rofi menu
+chosen=$(echo -e "$options" | rofi -dmenu -i -p "Wi-Fi: " -theme-str 'window {width: 450px;} listview {lines: 10;}')
+
+[ -z "$chosen" ] && exit 0
+
+# Check toggle options
+if [[ "$chosen" == *"Disconnect from "* ]]; then
+    nmcli connection down id "$active_ssid"
+    notify-send "Wi-Fi" "Disconnected from $active_ssid"
+    exit 0
+elif [[ "$chosen" == *"Disable Wi-Fi"* ]]; then
+    nmcli radio wifi off
+    notify-send "Wi-Fi" "Wi-Fi Disabled"
+    exit 0
+elif [[ "$chosen" == *"Enable Wi-Fi"* ]]; then
+    nmcli radio wifi on
+    notify-send "Wi-Fi" "Wi-Fi Enabled"
+    exit 0
+fi
+
+# Extract SSID from selection (format: "󰖩 🔒  SSID (80%)" or "󰖩 🔓  SSID (80%)")
+# Remove icons and trailing signal percentage
+ssid=$(echo "$chosen" | sed -E 's/^[^ ]+ [^ ]+ +//; s/ \([0-9]+%\)$//')
+
+if [ -z "$ssid" ]; then
+    exit 0
+fi
+
+# Check if connection already exists in NetworkManager profiles
+existing_connection=$(nmcli -t -f name connection show | grep -x "$ssid" || true)
+
+if [ -n "$existing_connection" ]; then
+    notify-send "Wi-Fi" "Connecting to $ssid..."
+    if nmcli connection up id "$ssid"; then
+        notify-send "Wi-Fi" "Connected to $ssid successfully!"
+    else
+        notify-send -u critical "Wi-Fi" "Failed to connect to $ssid."
+    fi
+else
+    # Check if the requested SSID is KMITL enterprise networks and redirect to setup script
+    if [[ "$ssid" == "KMITL-Legacy" || "$ssid" == "KMITL-HiSpeed" ]]; then
+        notify-send -u critical "KMITL Wi-Fi Setup Required" "Please run the setup_kmitl_wifi.sh script in ~/TEMP/KMITL-WiFi-Setup/ to configure KMITL Enterprise Wi-Fi."
+        exit 1
+    fi
+
+    # Check security type to prompt for password if needed
+    security_type=$(nmcli -t -f ssid,security dev wifi list | grep "^${ssid}:" | cut -d':' -f2 | head -n1 || true)
+    
+    if [ -n "$security_type" ] && [ "$security_type" != "--" ]; then
+        # Secured network, prompt for password using rofi
+        password=$(rofi -dmenu -password -p "Enter Password for $ssid: ")
+        [ -z "$password" ] && exit 0
+        
+        notify-send "Wi-Fi" "Connecting to $ssid..."
+        if nmcli dev wifi connect "$ssid" password "$password"; then
+            notify-send "Wi-Fi" "Connected to $ssid successfully!"
+        else
+            notify-send -u critical "Wi-Fi" "Failed to connect to $ssid."
+        fi
+    else
+        # Open network
+        notify-send "Wi-Fi" "Connecting to $ssid..."
+        if nmcli dev wifi connect "$ssid"; then
+            notify-send "Wi-Fi" "Connected to $ssid successfully!"
+        else
+            notify-send -u critical "Wi-Fi" "Failed to connect to $ssid."
+        fi
+    fi
+fi

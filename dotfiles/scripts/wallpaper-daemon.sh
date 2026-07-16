@@ -1,11 +1,22 @@
 #!/usr/bin/env bash
 
-DEFAULT_WALLPAPER="$HOME/Pictures/Profile/Background.jpg"
 STATE_FILE="$HOME/.config/i3/.current_wallpaper"
+
+find_default_wallpaper() {
+    for f in "$HOME/Pictures/Profile/Background".*; do
+        if [ -f "$f" ]; then
+            echo "$f"
+            return 0
+        fi
+    done
+    echo "$HOME/Pictures/Profile/Background.jpg"
+}
 
 setup_wallpaper() {
     # Wait a brief moment to ensure xrandr is updated and displays are stable
     sleep 1.5
+    
+    DEFAULT_WALLPAPER=$(find_default_wallpaper)
     
     # Determine which wallpaper to use
     if [ -f "$STATE_FILE" ]; then

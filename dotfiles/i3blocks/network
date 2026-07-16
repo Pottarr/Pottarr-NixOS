@@ -2,7 +2,7 @@
 
 # Open network settings on left click
 if [ -n "$BLOCK_BUTTON" ] && [ "$BLOCK_BUTTON" -eq 1 ]; then
-    nm-connection-editor &
+    /home/pottarr/.config/i3blocks/rofi-wifi-menu &
 fi
 
 # Get Wi-Fi SSID

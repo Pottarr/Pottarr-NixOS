@@ -30,7 +30,15 @@ in {
     # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
     # Enable networking
-    networking.networkmanager.enable = true;
+    networking.networkmanager = {
+        enable = true;
+        plugins = with pkgs; [
+            networkmanager-l2tp
+            networkmanager-openvpn
+        ];
+    };
+    environment.etc."strongswan.conf".text = "";
+    environment.etc."ipsec.secrets".text = "";
 
     # Set your time zone.
     time.timeZone = "Asia/Bangkok";
@@ -111,11 +119,12 @@ in {
         vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
         wget
         # Added by Pottarr
-        swi-prolog
         acpi
         alacritty
         anydesk
         arandr
+        arduino-cli
+        arduino-ide
         ascii
         bat
         blueman
@@ -153,8 +162,8 @@ in {
         jupyter
         lazydocker
         lazygit
-        libreoffice
-        librewolf
+        # libreoffice
+        # librewolf
         libvlc
         libxkbcommon
         libffi
@@ -164,8 +173,14 @@ in {
         networkmanager
         networkmanagerapplet
         net-tools
+        # VPN
+        openvpn
+        wireguard-tools
+        networkmanager-openvpn
+        networkmanager-l2tp
+        strongswan
         nodejs_24
-        obs-studio
+        # obs-studio
         openssl
         pandoc
         pasystray
@@ -191,7 +206,8 @@ in {
         snixembed
         spotify
         sqlite
-        texliveFull
+        swi-prolog
+        # texliveFull
         tree
         # -- Typst --
         tinymist
@@ -200,6 +216,7 @@ in {
         ueberzugpp
         unetbootin
         unixtools.watch
+        unrar
         unzip
         v4l-utils
         vdirsyncer
@@ -348,7 +365,7 @@ in {
         ];
         cores = 0;
         max-jobs = "auto";
-        stalled-download-timeout = 600;
-        connect-timeout = 30;
+        stalled-download-timeout = 15;
+        connect-timeout = 10;
     };
 }

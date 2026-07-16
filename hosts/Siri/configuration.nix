@@ -291,7 +291,6 @@ in {
         swtpm
         telegram-desktop
         texliveFull
-        thunderbird
         tigervnc
         tree
         # -- Typst --
@@ -470,6 +469,7 @@ in {
 
     boot.extraModprobeConfig = ''
         options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
+        options kvm_intel nested=1
     '';
 
     hardware.bluetooth.enable = true;
